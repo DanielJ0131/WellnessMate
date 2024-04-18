@@ -1,4 +1,4 @@
-# ADMProject
+# WellnessMate
 Project for the Agile Development Methods Course
 
 by Daniel, Patrick, Tony, André, Elina
