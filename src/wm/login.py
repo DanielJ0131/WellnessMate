@@ -1,6 +1,6 @@
 """Login module for the application."""
 
-from tkinter import Frame, Label, Tk, PhotoImage
+from tkinter import Frame, Label, Tk, PhotoImage, Entry, Button
 
 # Window
 windows = Tk()
@@ -13,10 +13,28 @@ windows.geometry("490x240+200+200")
 frame = Frame(windows, width=700, height=400, bg='black')
 frame.place(x=0, y=0)
 
-users_image = PhotoImage(file='src/assets/users.png')
+# Username
+user_image = PhotoImage(file='src/assets/user.png')
 user_label = Label(frame, text="Username: ", fg='#97ffff',
-                   image=users_image, compound='left', bg='black',
+                   image=user_image, compound='left', bg='black',
                    font=('Calibre', 14))
 user_label.grid(row=1, column=0, padx=3, pady=20)
 
+# Password
+password_image = PhotoImage(file='src/assets/password.png')
+password_label = Label(frame, text="Password: ", fg='#97ffff',
+                       image=password_image, compound='left', bg='black',
+                       font=('Calibre', 14))
+password_label.grid(row=2, column=0, padx=3, pady=20)
+
+# Entries
+user_entry = Entry(frame, width=39, bd=3)
+user_entry.grid(row=1, column=2, columnspan=2, padx=57)
+
+password_entry = Entry(frame, width=39, bd=3, show='*')
+password_entry.grid(row=2, column=2, columnspan=2)
+
+login_button = Button(frame, text="Login", bg='#7f7fff', pady=10, width=23,
+                      fg='white', font=('Calibre', 14),
+                      cursor='hand2', border=0, borderwidth=5)
 windows.mainloop()
