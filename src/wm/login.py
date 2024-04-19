@@ -17,6 +17,6 @@ users_image = PhotoImage(file='src/assets/users.png')
 user_label = Label(frame, text="Username: ", fg='#97ffff',
                    image=users_image, compound='left', bg='black',
                    font=('Calibre', 14))
-user_label.grid(row=0, column=0, padx=3, pady=20)
+user_label.grid(row=1, column=0, padx=3, pady=20)
 
 windows.mainloop()
