@@ -29,7 +29,7 @@ class sport_event_navigation:
         if command:
             button = Button(parent, text=text, bg=background, fg="white",
                             font=("Inter", 13, "bold"),
-                            justify="center", wraplength=width, command=command)
+                            justify="center", wraplength=width, command=command, cursor="hand2")
             button.place(x=left, y=top, anchor="nw", width=width, height=height)
         else:
             widget = Frame(parent, width=width, height=height, bg=background)
