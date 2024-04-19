@@ -35,7 +35,7 @@ password_entry = Entry(frame, width=39, bd=3, show='*')
 password_entry.grid(row=2, column=2, columnspan=2)
 
 # Login
-login_button = Button(frame, text="Login", bg='#7f7fff', pady=10, width=23,
+login_button = Button(frame, text="LOGIN", bg='#7f7fff', pady=10, width=23,
                       fg='white', font=('Calibre', 14),
                       cursor='hand2', border=0, borderwidth=5)
 login_button.grid(row=9, columnspan=5, pady=30)
