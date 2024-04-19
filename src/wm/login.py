@@ -4,7 +4,8 @@ from tkinter import Frame, Label, Tk, PhotoImage
 
 # Window
 windows = Tk()
-windows.title("WellnessMate")
+windows.wm_title("WellnessMate")
+windows.wm_iconbitmap('src/assets/wd_logo.ico')
 windows.resizable(0, 0)
 windows.geometry("490x240+200+200")
 
@@ -12,7 +13,10 @@ windows.geometry("490x240+200+200")
 frame = Frame(windows, width=700, height=400, bg='black')
 frame.place(x=0, y=0)
 
-logo_image = PhotoImage(file='src/assets/logo.png')
-user_label = Label(frame, text="Username", fg='white', bg='white')
+users_image = PhotoImage(file='src/assets/users.png')
+user_label = Label(frame, text="Username: ", fg='#97ffff',
+                   image=users_image, compound='left', bg='black',
+                   font=('Calibre', 14))
+user_label.grid(row=0, column=0, padx=3, pady=20)
 
 windows.mainloop()
