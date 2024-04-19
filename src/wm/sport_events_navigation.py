@@ -24,13 +24,16 @@ class sport_event_navigation:
     main_container.pack(expand=True, fill="both")
 
     # Defining/customizing widget 
-    def create_widget(parent, width, height, left, top, background, text=None, command=None):
+    def create_widget(parent, width, height, left, top,
+                      background, text=None, command=None):
         """Create parameters for widget."""
         if command:
             button = Button(parent, text=text, bg=background, fg="white",
                             font=("Inter", 13, "bold"),
-                            justify="center", wraplength=width, command=command, cursor="hand2")
-            button.place(x=left, y=top, anchor="nw", width=width, height=height)
+                            justify="center", wraplength=width,
+                            command=command, cursor="hand2")
+            button.place(x=left, y=top, anchor="nw",
+                         width=width, height=height)
         else:
             widget = Frame(parent, width=width, height=height, bg=background)
             widget.place(x=left, y=top, anchor="nw")
@@ -57,10 +60,16 @@ class sport_event_navigation:
         print(" ")
 
     create_widget(main_container, 490, 300, 0, 0, "#82AACF")
-    create_widget(main_container, 267, 17, 116, 24, "#1165A1", "Sporting events in Sweden")
-    create_widget(main_container, 293, 35, 103, 95, "#1165A1", "Open to everyone", command=open_to_everyone)
-    create_widget(main_container, 106, 22, 192, 260, "#1165A1", "Return", command=return_function)
-    create_widget(main_container, 293, 35, 103, 205, "#1165A1", "National leagues, cups and tours", command=national_lct_function)
-    create_widget(main_container, 293, 35, 103, 150, "#1165A1", "Elites only", command=elites_only_function)
+    create_widget(main_container, 267, 17, 116, 24,
+                  "#1165A1", "Sporting events in Sweden")
+    create_widget(main_container, 293, 35, 103, 95,
+                  "#1165A1", "Open to everyone", command=open_to_everyone)
+    create_widget(main_container, 106, 22, 192, 260,
+                  "#1165A1", "Return", command=return_function)
+    create_widget(main_container, 293, 35, 103, 205,
+                  "#1165A1", "National leagues, cups and tours",
+                  command=national_lct_function)
+    create_widget(main_container, 293, 35, 103, 150,
+                  "#1165A1", "Elites only", command=elites_only_function)
 
     window.mainloop()
