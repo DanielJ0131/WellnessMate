@@ -41,6 +41,23 @@ class sport_event_navigation:
         #     label.pack(expand=True, fill="both", padx=10, pady=10)
 
     # create widget/buttons
+
+    def open_to_everyone():
+        """Display specific sport events."""
+        print(" ")
+
+    def return_function():
+        """Return."""
+        # pass
+
+    def national_lct_function():
+        """Display sport leagues, cups and tours."""
+        print(" ")
+
+    def elites_only_function():
+        """Display event on elite level."""
+        print(" ")
+
     create_widget(main_container, 490, 300, 0, 0, "#82AACF")
     create_widget(main_container, 267, 17, 116, 24, "#1165A1", "Sporting events in Sweden")
     create_widget(main_container, 293, 35, 103, 95, "#1165A1", "Open to everyone", command=open_to_everyone)
@@ -49,3 +66,5 @@ class sport_event_navigation:
     create_widget(main_container, 293, 35, 103, 150, "#1165A1", "Elites only", command=elites_only_function)
 
     window.mainloop()
+
+    
