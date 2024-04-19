@@ -6,10 +6,10 @@ class sport_event_navigation:
     """Sport event class for the application."""
 
     root = tk.Tk()
-    root.geometry("500x500")
+    root.geometry("490x300")
 
     # Create main container
-    container = tk.Frame(root, width=500, height=500)
+    container = tk.Frame(root)
     container.pack(expand=True, fill="both")
 
     # Container style
@@ -20,7 +20,7 @@ class sport_event_navigation:
         }
 
     # Main container
-    main_container = tk.Frame(container, **container_style)
+    main_container = tk.Frame(container)
     main_container.pack(expand=True, fill="both")
 
     # Defining/customizing widget 
@@ -37,7 +37,7 @@ class sport_event_navigation:
 
     # create widget/buttons
     create_widget(main_container, 490, 300, 0, 0, "#82AACF")
-    create_widget(main_container, 267, 17, 116, 24, None, "Sporting events in Sweden")
+    create_widget(main_container, 267, 17, 116, 24, "#1165A1", "Sporting events in Sweden")
     create_widget(main_container, 293, 35, 103, 95, "#1165A1", "Open to everyone")
     create_widget(main_container, 106, 22, 192, 260, "#1165A1", "Return")
     create_widget(main_container, 293, 35, 103, 205, "#1165A1", "National leagues, cups and tours")
