@@ -5,8 +5,7 @@ from login import Login  # type: ignore
 
 def main():
     """Is the main function of the application."""
-    login = Login()
-    login.run()
+    Login()
 
 
 if __name__ == "__main__":

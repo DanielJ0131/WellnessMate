@@ -7,10 +7,6 @@ class Login:
 
     def __init__(self):
         """Initializes the class."""
-
-    def run():
-        """Runs the login window."""
-
         # Window
         windows = Tk()
         windows.wm_title("WellnessMate")
