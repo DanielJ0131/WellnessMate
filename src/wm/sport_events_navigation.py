@@ -1,5 +1,5 @@
 """Sport events navigation module."""
-from tkinter import Frame, Button, Tk
+from tkinter import Frame, Button, Tk, Label
 
 
 class sport_event_navigation:
@@ -26,22 +26,20 @@ class sport_event_navigation:
     # Defining/customizing widget 
     def create_widget(parent, width, height, left, top, background, text=None, command=None):
         """Create parameters for widget."""
-        button = Button(parent, text=text, bg=background, fg="white",
-                        font=("Inter", 14, "bold"),
-                        justify="center", wraplength=width, command=command)
-        button.place(x=left, y=top, anchor="nw", width=width, height=height)
-
-        # widget = Frame(parent, width=width, height=height, bg=background)
-        # widget.place(x=left, y=top, anchor="nw")
+        if command:
+            button = Button(parent, text=text, bg=background, fg="white",
+                            font=("Inter", 13, "bold"),
+                            justify="center", wraplength=width, command=command)
+            button.place(x=left, y=top, anchor="nw", width=width, height=height)
+        else:
+            widget = Frame(parent, width=width, height=height, bg=background)
+            widget.place(x=left, y=top, anchor="nw")
+            if text:
+                label = Label(widget, text=text, bg=background, fg="white",
+                              font=("Inter", 14, "bold"),
+                              justify="center", wraplength=width)
+                label.pack(expand=True, fill="both", padx=10, pady=10)
       
-        # if text:
-        #     label = Label(widget, text=text, bg=background, fg="white",
-        #                   font=("Inter", 14, "bold"),
-        #                   justify="center", wraplength=width)
-        #     label.pack(expand=True, fill="both", padx=10, pady=10)
-
-    # create widget/buttons
-
     def open_to_everyone():
         """Display specific sport events."""
         print(" ")
@@ -66,5 +64,3 @@ class sport_event_navigation:
     create_widget(main_container, 293, 35, 103, 150, "#1165A1", "Elites only", command=elites_only_function)
 
     window.mainloop()
-
-    
