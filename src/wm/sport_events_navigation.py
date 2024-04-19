@@ -1,15 +1,15 @@
 """Sport events navigation module."""
-import tkinter as tk
+from tkinter import Frame, Button, Tk
 
 
 class sport_event_navigation:
     """Sport event class for the application."""
 
-    root = tk.Tk()
-    root.geometry("490x300")
+    window = Tk()
+    window.geometry("490x300")
 
     # Create main container
-    container = tk.Frame(root)
+    container = Frame(window)
     container.pack(expand=True, fill="both")
 
     # Container style
@@ -20,27 +20,32 @@ class sport_event_navigation:
         }
 
     # Main container
-    main_container = tk.Frame(container)
+    main_container = Frame(container)
     main_container.pack(expand=True, fill="both")
 
     # Defining/customizing widget 
-    def create_widget(parent, width, height, left, top, background, text=None):
+    def create_widget(parent, width, height, left, top, background, text=None, command=None):
         """Create parameters for widget."""
-        widget = tk.Frame(parent, width=width, height=height, bg=background)
-        widget.place(x=left, y=top, anchor="nw")
+        button = Button(parent, text=text, bg=background, fg="white",
+                        font=("Inter", 14, "bold"),
+                        justify="center", wraplength=width, command=command)
+        button.place(x=left, y=top, anchor="nw", width=width, height=height)
+
+        # widget = Frame(parent, width=width, height=height, bg=background)
+        # widget.place(x=left, y=top, anchor="nw")
       
-        if text:
-            label = tk.Label(widget, text=text, bg=background, fg="white",
-                             font=("Inter", 14, "bold"),
-                             justify="center", wraplength=width)
-            label.pack(expand=True, fill="both", padx=10, pady=10)
+        # if text:
+        #     label = Label(widget, text=text, bg=background, fg="white",
+        #                   font=("Inter", 14, "bold"),
+        #                   justify="center", wraplength=width)
+        #     label.pack(expand=True, fill="both", padx=10, pady=10)
 
     # create widget/buttons
     create_widget(main_container, 490, 300, 0, 0, "#82AACF")
     create_widget(main_container, 267, 17, 116, 24, "#1165A1", "Sporting events in Sweden")
-    create_widget(main_container, 293, 35, 103, 95, "#1165A1", "Open to everyone")
-    create_widget(main_container, 106, 22, 192, 260, "#1165A1", "Return")
-    create_widget(main_container, 293, 35, 103, 205, "#1165A1", "National leagues, cups and tours")
-    create_widget(main_container, 293, 35, 103, 150, "#1165A1", "Elites only")
+    create_widget(main_container, 293, 35, 103, 95, "#1165A1", "Open to everyone", command=open_to_everyone)
+    create_widget(main_container, 106, 22, 192, 260, "#1165A1", "Return", command=return_function)
+    create_widget(main_container, 293, 35, 103, 205, "#1165A1", "National leagues, cups and tours", command=national_lct_function)
+    create_widget(main_container, 293, 35, 103, 150, "#1165A1", "Elites only", command=elites_only_function)
 
-    root.mainloop()
+    window.mainloop()
