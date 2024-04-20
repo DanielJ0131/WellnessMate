@@ -47,24 +47,26 @@ class Registration:
 
         def show_pass1():
             """Shows the password."""
-            pass_entry.configure(show='*')
+            pass_entry.configure(show='')
             check_button_1.configure(command=hide_pass1)
 
         def hide_pass1():
             """Hides the password."""
-            pass_entry.configure(show='')
+            pass_entry.configure(show='*')
             check_button_1.configure(command=show_pass1)
 
         def show_pass2():
             """Shows the confirm password."""
-            confirm_pass_entry.configure(show='*')
+            confirm_pass_entry.configure(show='')
             check_button_2.configure(command=hide_pass2)
 
         def hide_pass2():
             """Hides the confirm password."""
-            confirm_pass_entry.configure(show='')
+            confirm_pass_entry.configure(show='*')
             check_button_2.configure(command=show_pass2)
 
+        pass_entry.configure(show='*')
+        confirm_pass_entry.configure(show='*')
         check_button_1 = Checkbutton(frame, text='', bg='black',
                                      command=show_pass1)
         check_button_1.place(x=390, y=105)
