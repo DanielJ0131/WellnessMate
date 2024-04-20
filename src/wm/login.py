@@ -1,5 +1,5 @@
 """Login module for the application."""
-from tkinter import Frame, Label, Tk, PhotoImage, Entry, Button
+from tkinter import Frame, Label, Tk, PhotoImage, Entry, Button, Checkbutton
 
 
 class Login:
@@ -15,13 +15,13 @@ class Login:
         windows.geometry("490x300")
 
         # Frame
-        frame = Frame(windows, width=700, height=400, bg='black')
+        frame = Frame(windows, width=700, height=400, bg='#1165A1')
         frame.place(x=0, y=0)
 
         # Username
         user_image = PhotoImage(file='src/assets/user.png')
         user_label = Label(frame, text="Username: ", fg='#97ffff',
-                           image=user_image, compound='left', bg='black',
+                           image=user_image, compound='left', bg='#1165A1',
                            font=('Calibre', 14))
         user_label.grid(row=1, column=0, padx=3, pady=20)
 
@@ -29,15 +29,29 @@ class Login:
         password_image = PhotoImage(file='src/assets/password.png')
         password_label = Label(frame, text="Password: ", fg='#97ffff',
                                image=password_image, compound='left',
-                               bg='black', font=('Calibre', 14))
+                               bg='#1165A1', font=('Calibre', 14))
         password_label.grid(row=2, column=0, padx=3, pady=20)
 
         # Entries
         user_entry = Entry(frame, width=39, bd=3)
         user_entry.grid(row=1, column=2, columnspan=2, padx=57)
 
-        password_entry = Entry(frame, width=39, bd=3, show='*')
-        password_entry.grid(row=2, column=2, columnspan=2)
+        pass_entry = Entry(frame, width=39, bd=3, show='*')
+        pass_entry.grid(row=2, column=2, columnspan=2)
+
+        def show_pass1():
+            """Shows the password."""
+            pass_entry.configure(show='')
+            check_button_1.configure(command=hide_pass1)
+
+        def hide_pass1():
+            """Hides the password."""
+            pass_entry.configure(show='*')
+            check_button_1.configure(command=show_pass1)
+
+        check_button_1 = Checkbutton(frame, text='', bg='#1165A1',
+                                     command=show_pass1)
+        check_button_1.place(x=4, y=140)
 
         # Login
         login_button = Button(frame, text="LOGIN", bg='#7f7fff', pady=10,
@@ -47,11 +61,11 @@ class Login:
 
         # Create Account
         noaccount_label = Label(frame, text="No account?",
-                                fg='#97ffff', bg='black', font=('Calibre', 10),
-                                padx=4)
-        noaccount_label.place(x=0, y=230)
+                                fg='#97ffff', bg='#1165A1',
+                                font=('Calibre', 10), padx=4)
+        noaccount_label.place(x=0, y=235)
 
-        create_button = Button(frame, text="Create Account", bg='white',
+        create_button = Button(frame, text="Create Account", bg='#1165A1',
                                font=('Calibre', 8), width=15,
                                cursor='hand2', border=0)
         create_button.place(x=0, y=260)
