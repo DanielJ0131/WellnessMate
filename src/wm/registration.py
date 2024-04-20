@@ -15,17 +15,17 @@ class Registration:
         windows.resizable(0, 0)
 
         # Frame
-        frame = Frame(windows, width=610, height=640, bg='black', bd=8)
+        frame = Frame(windows, width=610, height=640, bg='#1165A1', bd=8)
         frame.place(x=0, y=0)
 
         # Labels and Entry Fields
         heading = Label(frame, text='Account Creation', fg='#97ffff',
-                        bg='black', font=('Calibre', 20, 'bold'))
+                        bg='#1165A1', font=('Calibre', 20, 'bold'))
         heading.place(x=150, y=3)
 
         # User
         user_label = Label(frame, text='Username: ', fg='#97ffff',
-                           bg='black', font=('Calibre', 14))
+                           bg='#1165A1', font=('Calibre', 14))
         user_label.place(x=20, y=70)
 
         user_entry = Entry(frame, width=30, borderwidth=2)
@@ -33,7 +33,7 @@ class Registration:
 
         # Pass
         pass_label = Label(frame, text='Password: ', fg='#97ffff',
-                           bg='black', font=('Calibre', 14))
+                           bg='#1165A1', font=('Calibre', 14))
         pass_label.place(x=20, y=100)
 
         pass_entry = Entry(frame, width=30, borderwidth=2)
@@ -41,7 +41,7 @@ class Registration:
 
         # Confirm Pass
         confirm_pass_label = Label(frame, text='Confirm Password: ',
-                                   fg='#97ffff', bg='black',
+                                   fg='#97ffff', bg='#1165A1',
                                    font=('Calibre', 14))
         confirm_pass_label.place(x=20, y=130)
         confirm_pass_entry = Entry(frame, width=30, borderwidth=2)
@@ -106,15 +106,15 @@ class Registration:
 
         pass_entry.configure(show='*')
         confirm_pass_entry.configure(show='*')
-        check_button_1 = Checkbutton(frame, text='', bg='black',
+        check_button_1 = Checkbutton(frame, text='', bg='#1165A1',
                                      command=show_pass1)
         check_button_1.place(x=390, y=105)
 
-        check_button_2 = Checkbutton(frame, text='', bg='black',
+        check_button_2 = Checkbutton(frame, text='', bg='#1165A1',
                                      command=show_pass2)
         check_button_2.place(x=390, y=135)
 
-        submit_button = Button(frame, text='Submit', bg='#7f7fff',
+        submit_button = Button(frame, text='Submit', bg='white',
                                width=15, borderwidth=5, height=2,
                                command=submit)
         submit_button.place(x=200, y=200)
