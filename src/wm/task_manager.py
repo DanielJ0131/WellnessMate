@@ -10,7 +10,7 @@ class TaskManager:
         self.master = master
         master.title("Task Manager")
 
-        # dict to store tasks and their completion status, value is False if not completed
+        # dict to store tasks and their status, value is False if not completed
         self.tasks = {}
 
         # Active tasks
@@ -23,7 +23,7 @@ class TaskManager:
         self.active_habit_listbox.grid(row=1, column=0, padx=10, pady=5)
         self.active_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
 
-        # entry for adding new task, might make it to be hidden and only shown when add new task button is clicked
+        # entry for adding new task  
         self.new_task_entry = tk.Entry(master, width=40)
         self.new_task_entry.grid(row=2, column=0, padx=10, pady=5)
 
@@ -98,7 +98,7 @@ class TaskManager:
         if new_task:
             # Add the new task to the tasks dictionary
             self.tasks[new_task] = False  # Mark task as not completed
-            self.populate_active_habit_list()  # Update the active tasks listbox
+            self.populate_active_habit_list()  # Update the active tasks
             self.new_task_entry.delete(0, tk.END)  # Clear the entry widget
             self.update_task_counts()  # Update task counts labels
         else:
