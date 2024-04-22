@@ -1,5 +1,6 @@
-"""User module for the application."""
-
+"""
+Class definition for the habit model.
+"""
 
 class User:
     """Represent user in the application."""

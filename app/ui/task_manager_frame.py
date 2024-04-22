@@ -16,18 +16,22 @@ class TaskManager:
         self.tasks = {}
 
         # Active tasks
-        self.active_label = tk.Label(master, text="Active Tasks: 0",
-                                     bg="#82AACF", fg="black")
+        self.active_label = tk.Label(
+            master, text="Active Tasks: 0", bg="#82AACF", fg="black"
+        )
         self.active_label.grid(row=0, column=0, padx=10, pady=5)
 
         # Active tasks box
-        self.active_habit_listbox = tk.Listbox(master, width=50,
-                                               highlightbackground="#82AACF",
-                                               highlightcolor="#82AACF", 
-                                               bg="white", fg="black")
+        self.active_habit_listbox = tk.Listbox(
+            master,
+            width=50,
+            highlightbackground="#82AACF",
+            highlightcolor="#82AACF",
+            bg="white",
+            fg="black",
+        )
         self.active_habit_listbox.grid(row=1, column=0, padx=10, pady=5)
-        self.active_habit_listbox.bind("<<ListboxSelect>>",
-                                       self.on_habit_selected)
+        self.active_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
 
         # entry for adding new task with placeholder text
         self.new_task_entry = tk.Entry(master, width=40)
@@ -38,9 +42,9 @@ class TaskManager:
         self.new_task_entry.grid(row=2, column=0, padx=10, pady=5)
 
         # button to add new task
-        self.add_task_button = tk.Button(master, text="Add Task",
-                                         command=self.add_task,
-                                         bg="#1165A1", fg="white")
+        self.add_task_button = tk.Button(
+            master, text="Add Task", command=self.add_task, bg="#1165A1", fg="white"
+        )
         self.add_task_button.grid(row=2, column=1, padx=10, pady=5)
 
         # separate the active and completed tasks
@@ -48,22 +52,31 @@ class TaskManager:
         self.separator.grid(row=0, column=1, padx=5, pady=10, sticky="ns")
 
         # completed tasks
-        self.completed_label = tk.Label(master, text="Completed Tasks: 0",
-                                        bg="#82AACF", fg="black")
+        self.completed_label = tk.Label(
+            master, text="Completed Tasks: 0", bg="#82AACF", fg="black"
+        )
         self.completed_label.grid(row=0, column=2, padx=10, pady=5)
 
         # completed tasks box
-        self.completed_habit_listbox = tk.Listbox(master, width=50, highlightbackground="#82AACF",
-                                                  highlightcolor="#82AACF", 
-                                                  bg="white", fg="black")
+        self.completed_habit_listbox = tk.Listbox(
+            master,
+            width=50,
+            highlightbackground="#82AACF",
+            highlightcolor="#82AACF",
+            bg="white",
+            fg="black",
+        )
         self.completed_habit_listbox.grid(row=1, column=2, padx=10, pady=5)
-        self.completed_habit_listbox.bind("<<ListboxSelect>>",
-                                          self.on_habit_selected)
+        self.completed_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
 
         # Task Completed Button
-        self.task_completed_button = tk.Button(master, text="Task Completed",
-                                               command=self.mark_completed,
-                                               bg="#1165A1", fg="white")
+        self.task_completed_button = tk.Button(
+            master,
+            text="Task Completed",
+            command=self.mark_completed,
+            bg="#1165A1",
+            fg="white",
+        )
         self.task_completed_button.grid(row=3, column=0, columnspan=3, pady=5)
 
         # Initialize counts
@@ -112,8 +125,12 @@ class TaskManager:
         if selected_index:
             task = self.active_habit_listbox.get(selected_index)
             self.tasks[task] = True  # Mark task as completed
-            self.active_habit_listbox.delete(selected_index)  # Remove task from active list
-            self.completed_habit_listbox.insert(tk.END, task)  # Add task to completed list
+            self.active_habit_listbox.delete(
+                selected_index
+            )  # Remove task from active list
+            self.completed_habit_listbox.insert(
+                tk.END, task
+            )  # Add task to completed list
             self.update_task_counts()
         else:
             # No task selected, display an error message
@@ -140,8 +157,12 @@ class TaskManager:
 
     def update_task_counts(self):
         # update the active and completed task counts
-        self.active_tasks = sum(1 for _, completed in self.tasks.items() if not completed)
-        self.completed_tasks = sum(1 for _, completed in self.tasks.items() if completed)
+        self.active_tasks = sum(
+            1 for _, completed in self.tasks.items() if not completed
+        )
+        self.completed_tasks = sum(
+            1 for _, completed in self.tasks.items() if completed
+        )
         self.active_label.config(text=f"Active Tasks: {self.active_tasks}")
         self.completed_label.config(text=f"Completed Tasks: {self.completed_tasks}")
 

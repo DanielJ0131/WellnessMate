@@ -1,6 +1,7 @@
 from tkinter import Tk, Button, Frame
-from login_frame import LoginFrame
-from signup_frame import SignupFrame
+from ui.login_frame import LoginFrame
+from ui.signup_frame import SignupFrame
+
 
 class UserInterface:
     def __init__(self, master):
@@ -13,9 +14,13 @@ class UserInterface:
         self.nav_frame.grid(row=0, column=0, columnspan=2)
 
         # Create navigation buttons
-        self.login_button = Button(self.nav_frame, text="Login", command=self.show_login_frame)
+        self.login_button = Button(
+            self.nav_frame, text="Login", command=self.show_login_frame
+        )
         self.login_button.grid(row=0, column=0, padx=10, sticky="ew")
-        self.signup_button = Button(self.nav_frame, text="Signup", command=self.show_signup_frame)
+        self.signup_button = Button(
+            self.nav_frame, text="Signup", command=self.show_signup_frame
+        )
         self.signup_button.grid(row=0, column=1, padx=10)
 
         # Create frames for login and signup
@@ -38,6 +43,7 @@ class UserInterface:
         # Show signup frame and hide login frame
         self.login_frame.grid_remove()
         self.signup_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
+
 
 if __name__ == "__main__":
     root = Tk()

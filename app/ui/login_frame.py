@@ -1,3 +1,6 @@
+"""
+Tkinter GUI for user login form.
+"""
 
 from tkinter import Frame, Label, PhotoImage, Entry, Button
 
@@ -5,8 +8,12 @@ class LoginFrame(Frame):
     def __init__(self, master):
         super().__init__(master, bg="#82AACF")
         self.master = master
-        self.show_pass_image = PhotoImage(file="src/assets/show_pass.png").subsample(25, 25) 
-        self.hide_pass_image = PhotoImage(file="src/assets/hide_pass.png").subsample(25, 25) 
+        self.show_pass_image = PhotoImage(file="app/assets/show_pass.png").subsample(
+            25, 25
+        )
+        self.hide_pass_image = PhotoImage(file="app/assets/hide_pass.png").subsample(
+            25, 25
+        )
         self.create_widgets()
 
     def create_widgets(self):
@@ -30,18 +37,33 @@ class LoginFrame(Frame):
         self.pass_entry.pack(side="left", padx=10)
 
         # Create a button to toggle password visibility
-        self.show_pass_button = Button(self.pass_frame, image=self.show_pass_image, bg="#82AACF", bd=0, command=self.toggle_password)
+        self.show_pass_button = Button(
+            self.pass_frame,
+            image=self.show_pass_image,
+            bg="#82AACF",
+            bd=0,
+            command=self.toggle_password,
+        )
         self.show_pass_button.pack(side="left", padx=5)
 
         # Create a button to submit data
-        self.submit_button = Button(self, text='Login', bg='white', width=15, borderwidth=1, height=2, cursor='hand2', command=self.submit)
+        self.submit_button = Button(
+            self,
+            text="Login",
+            bg="white",
+            width=15,
+            borderwidth=1,
+            height=2,
+            cursor="hand2",
+            command=self.submit,
+        )
         self.submit_button.pack(pady=20)
-    
+
     def toggle_password(self):
         """
         Toggle visibility of password in the password entry.
         """
-        pass_state = self.pass_entry.cget('show')
+        pass_state = self.pass_entry.cget("show")
         if pass_state:
             # If password is hidden, show it
             self.pass_entry.configure(show="")
