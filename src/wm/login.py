@@ -1,5 +1,5 @@
 """Login module for the application."""
-from tkinter import Frame, Label, Tk, PhotoImage, Entry, Button, Checkbutton
+from tkinter import Frame, Label, Tk, Entry, Button, Checkbutton
 
 
 class Login:
@@ -10,7 +10,6 @@ class Login:
         # Window
         windows = Tk()
         windows.wm_title("WellnessMate")
-        windows.wm_iconbitmap('src/assets/wd_logo.ico')
         windows.resizable(0, 0)
         windows.geometry("490x300")
 
@@ -19,16 +18,14 @@ class Login:
         frame.place(x=0, y=0)
 
         # Username
-        user_image = PhotoImage(file='src/assets/user.png')
         user_label = Label(frame, text="Username: ", fg='#97ffff',
-                           image=user_image, compound='left', bg='#1165A1',
+                           compound='left', bg='#1165A1',
                            font=('Calibre', 14))
         user_label.grid(row=1, column=0, padx=3, pady=20)
 
         # Password
-        password_image = PhotoImage(file='src/assets/password.png')
         password_label = Label(frame, text="Password: ", fg='#97ffff',
-                               image=password_image, compound='left',
+                               compound='left',
                                bg='#1165A1', font=('Calibre', 14))
         password_label.grid(row=2, column=0, padx=3, pady=20)
 
