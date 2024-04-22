@@ -1,7 +1,9 @@
+"""User module for the application."""
+
+
 class User:
-    """
-    Represents a user in the application.
-    """
+    """Represent user in the application."""
+
     def __init__(self, username, password, firstname, lastname, email):
         """
         Initialize a new User object.

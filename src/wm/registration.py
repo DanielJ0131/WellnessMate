@@ -7,7 +7,7 @@ class Registration:
     """Registration class for the application."""
 
     def __init__(self):
-        """Initializes the class."""
+        """Initialize the class."""
         # Window
         windows = Tk()
         windows.wm_title('WellnessMate')
@@ -49,7 +49,7 @@ class Registration:
 
         # Database Section
         def submit():
-            """Submits the data to the database."""
+            """Submit the data to the database."""
             if user_entry.get() == '':
                 messagebox.showerror('Error', 'Username is required!')
             elif pass_entry.get() == '':
@@ -85,7 +85,7 @@ class Registration:
                                         'Account created successfully!')
 
         def show_pass1():
-            """Shows the password."""
+            """Show the password."""
             pass_entry.configure(show='')
             check_button_1.configure(command=hide_pass1)
 
@@ -95,7 +95,7 @@ class Registration:
             check_button_1.configure(command=show_pass1)
 
         def show_pass2():
-            """Shows the confirm password."""
+            """Show the confirmed password."""
             confirm_pass_entry.configure(show='')
             check_button_2.configure(command=hide_pass2)
 
