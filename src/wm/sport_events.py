@@ -6,7 +6,7 @@ class SportEvents:
     """Sport event class for the application."""
 
     def __init__(self):
-        """Initializes the class."""
+        """Initialize the class."""
         # Window
         window = Tk()
         window.geometry("490x300")
