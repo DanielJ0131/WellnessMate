@@ -1,14 +1,15 @@
 import tkinter as tk
 from tkinter import messagebox
 
+
 class TaskManager:
     """Task Manager class for the application."""
-    
+
     def __init__(self, master):
         """Initialize the Task Manager with the given master window."""
         self.master = master
         master.title("Task Manager")
-        
+
         # dict to store tasks and their completion status, value is False if not completed
         self.tasks = {}
 
@@ -16,8 +17,9 @@ class TaskManager:
         self.active_label = tk.Label(master, text="Active Tasks: 0")
         self.active_label.grid(row=0, column=0, padx=10, pady=5)
 
-        # Active tasks box 
-        self.active_habit_listbox = tk.Listbox(master, width=50, highlightbackground="white", highlightcolor="white")
+        # Active tasks box
+        self.active_habit_listbox = tk.Listbox(master, width=50, highlightbackground="white",
+                                               highlightcolor="white")
         self.active_habit_listbox.grid(row=1, column=0, padx=10, pady=5)
         self.active_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
 
@@ -38,14 +40,14 @@ class TaskManager:
         self.completed_label.grid(row=0, column=2, padx=10, pady=5)
 
         # completed tasks box
-        self.completed_habit_listbox = tk.Listbox(master, width=50, highlightbackground="white", highlightcolor="white")
+        self.completed_habit_listbox = tk.Listbox(master, width=50, highlightbackground="white",
+                                                  highlightcolor="white")
         self.completed_habit_listbox.grid(row=1, column=2, padx=10, pady=5)
         self.completed_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
 
         # Task Completed Button
         self.task_completed_button = tk.Button(master, text="Task Completed", command=self.mark_completed)
         self.task_completed_button.grid(row=3, column=0, columnspan=3, pady=5)
-
 
         # Initialize counts
         self.update_task_counts()
@@ -66,7 +68,7 @@ class TaskManager:
             if completed:
                 self.completed_habit_listbox.insert(tk.END, task)
 
-    def on_habit_selected(self, event):
+    def on_habit_selected(self):
         # Clear the selection in the other listbox when a task is selected
         self.completed_habit_listbox.selection_clear(0, tk.END)
         # Also clear selection in the entry widget
@@ -105,10 +107,11 @@ class TaskManager:
 
     def update_task_counts(self):
         # update the active and completed task counts
-        self.active_tasks = sum(1 for task, completed in self.tasks.items() if not completed)
-        self.completed_tasks = sum(1 for task, completed in self.tasks.items() if completed)
+        self.active_tasks = sum(1 for _, completed in self.tasks.items() if not completed)
+        self.completed_tasks = sum(1 for _, completed in self.tasks.items() if completed)
         self.active_label.config(text=f"Active Tasks: {self.active_tasks}")
         self.completed_label.config(text=f"Completed Tasks: {self.completed_tasks}")
+
 
 root = tk.Tk()
 TaskManager = TaskManager(root)
