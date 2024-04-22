@@ -14,21 +14,25 @@ class TaskManager:
         self.tasks = {}
 
         # Active tasks
-        self.active_label = tk.Label(master, text="Active Tasks: 0")
+        self.active_label = tk.Label(master, text="Active Tasks: 0", bg="#82AACF", fg="black")
         self.active_label.grid(row=0, column=0, padx=10, pady=5)
 
         # Active tasks box
-        self.active_habit_listbox = tk.Listbox(master, width=50, highlightbackground="white",
-                                               highlightcolor="white")
+        self.active_habit_listbox = tk.Listbox(master, width=50, highlightbackground="#82AACF",
+                                               highlightcolor="#82AACF", bg="white", fg="black")
         self.active_habit_listbox.grid(row=1, column=0, padx=10, pady=5)
         self.active_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
 
-        # entry for adding new task  
+        # entry for adding new task with placeholder text
         self.new_task_entry = tk.Entry(master, width=40)
+        self.new_task_entry.insert(0, "Enter a new task...")
+        self.new_task_entry.config(fg="grey")
+        self.new_task_entry.bind("<FocusIn>", self.clear_placeholder)
+        self.new_task_entry.bind("<FocusOut>", self.restore_placeholder)
         self.new_task_entry.grid(row=2, column=0, padx=10, pady=5)
 
         # button to add new task
-        self.add_task_button = tk.Button(master, text="Add Task", command=self.add_task)
+        self.add_task_button = tk.Button(master, text="Add Task", command=self.add_task, bg="#1165A1", fg="white")
         self.add_task_button.grid(row=2, column=1, padx=10, pady=5)
 
         # separate the active and completed tasks
@@ -36,21 +40,33 @@ class TaskManager:
         self.separator.grid(row=0, column=1, padx=5, pady=10, sticky="ns")
 
         # completed tasks
-        self.completed_label = tk.Label(master, text="Completed Tasks: 0")
+        self.completed_label = tk.Label(master, text="Completed Tasks: 0", bg="#82AACF", fg="black")
         self.completed_label.grid(row=0, column=2, padx=10, pady=5)
 
         # completed tasks box
-        self.completed_habit_listbox = tk.Listbox(master, width=50, highlightbackground="white",
-                                                  highlightcolor="white")
+        self.completed_habit_listbox = tk.Listbox(master, width=50, highlightbackground="#82AACF",
+                                                  highlightcolor="#82AACF", bg="white", fg="black")
         self.completed_habit_listbox.grid(row=1, column=2, padx=10, pady=5)
         self.completed_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
 
         # Task Completed Button
-        self.task_completed_button = tk.Button(master, text="Task Completed", command=self.mark_completed)
+        self.task_completed_button = tk.Button(master, text="Task Completed", command=self.mark_completed, bg="#1165A1", fg="white")
         self.task_completed_button.grid(row=3, column=0, columnspan=3, pady=5)
 
         # Initialize counts
         self.update_task_counts()
+
+    def clear_placeholder(self, event):
+        """Clear placeholder text when entry is in focus."""
+        if self.new_task_entry.get() == "Enter a new task...":
+            self.new_task_entry.delete(0, tk.END)
+            self.new_task_entry.config(fg="black")
+
+    def restore_placeholder(self, event):
+        """Restore placeholder text when entry loses focus."""
+        if not self.new_task_entry.get():
+            self.new_task_entry.insert(0, "Enter a new task...")
+            self.new_task_entry.config(fg="grey")
 
     def populate_active_habit_list(self):
         # Clear existing items in the listbox
@@ -68,11 +84,13 @@ class TaskManager:
             if completed:
                 self.completed_habit_listbox.insert(tk.END, task)
 
-    def on_habit_selected(self):
+    def on_habit_selected(self, event=None):
         # Clear the selection in the other listbox when a task is selected
         self.completed_habit_listbox.selection_clear(0, tk.END)
         # Also clear selection in the entry widget
         self.new_task_entry.delete(0, tk.END)
+        self.new_task_entry.insert(0, "Enter a new task...")
+        self.new_task_entry.config(fg="grey")
 
     def mark_completed(self):
         # Get the index of the selected task
@@ -95,11 +113,13 @@ class TaskManager:
     def add_task(self):
         # Get the task entered by the user
         new_task = self.new_task_entry.get()
-        if new_task:
+        if new_task and new_task != "Enter a new task...":
             # Add the new task to the tasks dictionary
             self.tasks[new_task] = False  # Mark task as not completed
             self.populate_active_habit_list()  # Update the active tasks
             self.new_task_entry.delete(0, tk.END)  # Clear the entry widget
+            self.new_task_entry.insert(0, "Enter a new task...")
+            self.new_task_entry.config(fg="grey")
             self.update_task_counts()  # Update task counts labels
         else:
             # if entry is empty, show an error message
@@ -115,4 +135,5 @@ class TaskManager:
 
 root = tk.Tk()
 TaskManager = TaskManager(root)
+root.configure(bg="#82AACF")  # Set the background colour to match the theme
 root.mainloop()
