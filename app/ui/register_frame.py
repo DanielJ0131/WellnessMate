@@ -6,14 +6,15 @@ from tkinter import Frame, Label, Entry, Button, messagebox, PhotoImage
 import pymysql
 
 
-class SignupFrame(Frame):
+class RegisterFrame(Frame):
     """
     Sign up frame for the application.
     """
 
-    def __init__(self, master):
+    def __init__(self, master, main_ui):
         super().__init__(master, bg="#82AACF")
         self.master = master
+        self.main_ui = main_ui
         self.show_pass_image = PhotoImage(file="app/assets/" +
                                           "show_pass.png").subsample(
             25, 25
