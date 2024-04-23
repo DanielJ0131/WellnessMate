@@ -1,51 +1,60 @@
 from tkinter import Tk, Button, Frame
 from ui.login_frame import LoginFrame
-from ui.signup_frame import SignupFrame
+from ui.register_frame import RegisterFrame
+from ui.dashboard import DashboardFrame
 
 
-class UserInterface:
+class MainUI:
     def __init__(self, master):
         self.master = master
         master.title("WellnessMate")
         master.geometry("1024x700")
+        self.load_app()
 
+        
+    def load_app(self):
         # Create a frame to contain the navigation buttons
-        self.nav_frame = Frame(master, pady=20)
+        self.nav_frame = Frame(self.master, pady=20)
         self.nav_frame.grid(row=0, column=0, columnspan=2)
 
         # Create navigation buttons
-        self.login_button = Button(
+        login_button = Button(
             self.nav_frame, text="Login", command=self.show_login_frame
         )
-        self.login_button.grid(row=0, column=0, padx=10, sticky="ew")
-        self.signup_button = Button(
-            self.nav_frame, text="Signup", command=self.show_signup_frame
+        login_button.grid(row=0, column=0, padx=10, sticky="ew")
+        register_button = Button(
+            self.nav_frame, text="Register", command=self.show_register_frame
         )
-        self.signup_button.grid(row=0, column=1, padx=10)
+        register_button.grid(row=0, column=1, padx=10)
 
-        # Create frames for login and signup
-        self.login_frame = LoginFrame(master)
-        self.signup_frame = SignupFrame(master)
+        # Create frames for login, register, and dashboard
+        self.login_frame = LoginFrame(self.master, self)
+        self.register_frame = RegisterFrame(self.master, self)
+
 
         # Configure column 0 to expand horizontally
-        master.rowconfigure(1, weight=1)
-        master.columnconfigure(0, weight=1)
+        self.master.rowconfigure(1, weight=1)
+        self.master.columnconfigure(0, weight=1)
 
         # Initially show login frame
         self.show_login_frame()
 
     def show_login_frame(self):
         # Show login frame and hide signup frame
-        self.signup_frame.grid_remove()
+        self.register_frame.grid_remove()
         self.login_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
 
-    def show_signup_frame(self):
-        # Show signup frame and hide login frame
+    def show_register_frame(self):
+        # Show register frame and hide login frame
         self.login_frame.grid_remove()
-        self.signup_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
+        self.register_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
 
+    def show_dashboard_frame(self, user_info):
+        # Hide login and register frames
+        self.login_frame.grid_remove()
+        self.register_frame.grid_remove()
+        self.nav_frame.grid_remove()
 
-if __name__ == "__main__":
-    root = Tk()
-    app = UserInterface(root)
-    root.mainloop()
+        # Show dashboard frame with user_info
+        self.dashboard_frame = DashboardFrame(self.master, user_info)
+        self.dashboard_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")

@@ -6,30 +6,23 @@ from tkinter import Frame, Label, PhotoImage, Entry, Button, messagebox
 import pymysql
 
 class LoginFrame(Frame):
-    def __init__(self, master):
+    def __init__(self, master, main_ui):
         super().__init__(master, bg="#82AACF")
         self.master = master
-        self.show_pass_image = PhotoImage(file="app/assets/" +
-                                          "show_pass.png").subsample(
-            25, 25
-        )
-        self.hide_pass_image = PhotoImage(file="app/assets" +
-                                          "/hide_pass.png").subsample(
-            25, 25
-        )
+        self.main_ui = main_ui
+        self.show_pass_image = PhotoImage(file="app/assets/show_pass.png").subsample(25, 25)
+        self.hide_pass_image = PhotoImage(file="app/assets/hide_pass.png").subsample(25, 25)
         self.create_widgets()
 
     def create_widgets(self):
         # Add login form elements here
-        Label(self, text="Login", font=("Helvetica", 26),
-              bg="#82AACF").pack(pady=20)
+        Label(self, text="Login", font=("Helvetica", 26), bg="#82AACF").pack(pady=20)
 
         # Create a frame to input the username
         self.username_frame = Frame(self, bg="#82AACF")
         self.username_frame.pack(pady=10)
 
-        Label(self.username_frame, text="Username:",
-              bg="#82AACF").pack(side="left")
+        Label(self.username_frame, text="Username:", bg="#82AACF").pack(side="left")
         self.user_entry = Entry(self.username_frame, width=30)
         self.user_entry.pack(side="left", padx=10)
 
@@ -92,7 +85,7 @@ class LoginFrame(Frame):
         else:
             # Connect to MySQL database
             db = pymysql.connect(
-                host="MacBook-Pro-som-tillhor-Johan.local", user="root", password="hyT9mon#", 
+                host="localhost", user="root", password="wellnessmate1234", 
                 database="wm_db"
             )
             
@@ -104,6 +97,7 @@ class LoginFrame(Frame):
 
             if user:
                 messagebox.showinfo("Success", "Login successful!")
+                self.main_ui.show_dashboard_frame({'username': username})
                 # Call a method in the main application to load the dashboard frame, for example: self.master.load_dashboard_frame()
             else:
                 messagebox.showerror("Error", "Invalid username or password")
