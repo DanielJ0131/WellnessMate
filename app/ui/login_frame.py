@@ -2,8 +2,8 @@
 Tkinter GUI for user login form.
 """
 
-from tkinter import Frame, Label, PhotoImage, Entry, Button
-
+from tkinter import Frame, Label, PhotoImage, Entry, Button, messagebox
+import pymysql
 
 class LoginFrame(Frame):
     def __init__(self, master):
@@ -81,3 +81,29 @@ class LoginFrame(Frame):
 
     def submit(self):
         """Submits the data to the database."""
+        username = self.user_entry.get()
+        password = self.pass_entry.get()
+
+        # Validate input data
+        if self.user_entry.get() == "":
+            messagebox.showerror("Error", "Username is required!")
+        elif self.pass_entry.get() == "":
+            messagebox.showerror("Error", "Password is required!")
+        else:
+            # Connect to MySQL database
+            db = pymysql.connect(
+                host="MacBook-Pro-som-tillhor-Johan.local", user="root", password="hyT9mon#", 
+                database="wm_db"
+            )
+            
+            cur = db.cursor()
+
+            # Check if user exists in the database
+            cur.execute("SELECT * FROM login WHERE user = %s AND pass = %s", (username, password))
+            user = cur.fetchone()
+
+            if user:
+                messagebox.showinfo("Success", "Login successful!")
+                # Call a method in the main application to load the dashboard frame, for example: self.master.load_dashboard_frame()
+            else:
+                messagebox.showerror("Error", "Invalid username or password")
