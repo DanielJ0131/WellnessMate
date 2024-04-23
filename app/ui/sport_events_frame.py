@@ -9,11 +9,11 @@ class SportEvents:
     def __init__(self):
         """Initialize the class."""
         # Window
-        window = Tk()
-        window.geometry("490x300")
+        self.window = Tk()
+        self.window.geometry("490x300")
 
         # Create main container
-        container = Frame(window)
+        container = Frame(self.window)
         container.pack(expand=True, fill="both")
 
         # Container style
@@ -172,4 +172,7 @@ class SportEvents:
             command=elites_only_function,
         )
 
-        window.mainloop()
+        self.window.mainloop()
+
+
+SportEvents()
