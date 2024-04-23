@@ -17,7 +17,8 @@ class SportEvents:
         container.pack(expand=True, fill="both")
 
         # Container style
-        container.style = {"width": "100%", "height": "100%", "position": "relative"}
+        container.style = {"width": "100%", "height": "100%",
+                           "position": "relative"}
 
         # Main container
         main_container = Frame(container)
@@ -25,7 +26,8 @@ class SportEvents:
 
         # Defining/customizing widget
         def create_widget(
-            parent, width, height, left, top, background, text=None, command=None
+            parent, width, height, left, top, background,
+            text=None, command=None
         ):
             """Create parameters for widget."""
             if command:
@@ -40,9 +42,11 @@ class SportEvents:
                     command=command,
                     cursor="hand2",
                 )
-                button.place(x=left, y=top, anchor="nw", width=width, height=height)
+                button.place(x=left, y=top, anchor="nw", width=width,
+                             height=height)
             else:
-                widget = Frame(parent, width=width, height=height, bg=background)
+                widget = Frame(parent, width=width, height=height,
+                               bg=background)
                 widget.place(x=left, y=top, anchor="nw")
                 if text:
                     label = Label(

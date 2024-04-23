@@ -4,27 +4,32 @@ Tkinter GUI for user login form.
 
 from tkinter import Frame, Label, PhotoImage, Entry, Button
 
+
 class LoginFrame(Frame):
     def __init__(self, master):
         super().__init__(master, bg="#82AACF")
         self.master = master
-        self.show_pass_image = PhotoImage(file="app/assets/show_pass.png").subsample(
+        self.show_pass_image = PhotoImage(file="app/assets/" +
+                                          "show_pass.png").subsample(
             25, 25
         )
-        self.hide_pass_image = PhotoImage(file="app/assets/hide_pass.png").subsample(
+        self.hide_pass_image = PhotoImage(file="app/assets" +
+                                          "/hide_pass.png").subsample(
             25, 25
         )
         self.create_widgets()
 
     def create_widgets(self):
         # Add login form elements here
-        Label(self, text="Login", font=("Helvetica", 26), bg="#82AACF").pack(pady=20)
+        Label(self, text="Login", font=("Helvetica", 26),
+              bg="#82AACF").pack(pady=20)
 
         # Create a frame to input the username
         self.username_frame = Frame(self, bg="#82AACF")
         self.username_frame.pack(pady=10)
 
-        Label(self.username_frame, text="Username:", bg="#82AACF").pack(side="left")
+        Label(self.username_frame, text="Username:",
+              bg="#82AACF").pack(side="left")
         self.user_entry = Entry(self.username_frame, width=30)
         self.user_entry.pack(side="left", padx=10)
 
@@ -32,7 +37,8 @@ class LoginFrame(Frame):
         self.pass_frame = Frame(self, bg="#82AACF")
         self.pass_frame.pack(pady=10)
 
-        Label(self.pass_frame, text="Password:", bg="#82AACF").pack(side="left")
+        Label(self.pass_frame, text="Password:",
+              bg="#82AACF").pack(side="left")
         self.pass_entry = Entry(self.pass_frame, width=30, show="*")
         self.pass_entry.pack(side="left", padx=10)
 
