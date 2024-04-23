@@ -92,7 +92,7 @@ class LoginFrame(Frame):
         else:
             # Connect to MySQL database
             db = pymysql.connect(
-                host="MacBook-Pro-som-tillhor-Johan.local", user="root", password="hyT9mon#", 
+                host="localhost", user="root", password="Wellness1234", 
                 database="wm_db"
             )
             
