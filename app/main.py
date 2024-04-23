@@ -5,7 +5,7 @@ from ui.main_ui import UserInterface
 def main():
     """Main function to launch the application."""
     root = Tk()
-    app = UserInterface(root)
+    UserInterface(root)
     root.mainloop()
 
 
