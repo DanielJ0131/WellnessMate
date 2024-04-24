@@ -65,10 +65,32 @@ class MyHabits(Frame):
             if self.habit_list_frame:
                 if self.empty_list_label:
                     self.empty_list_label.grid_remove()
-                habit_item = Label(self.habit_list_frame, text=f"{habit_description}", font=("Helvetica", 14), bg="#8789C0", anchor="w", padx=10, pady=10)
+                
+                habit_item = Frame(self.habit_list_frame, bg="#D9EAD3")
                 habit_item.grid(row=self.habit_list_frame.grid_size()[1], column=0, sticky='nsew', padx=10, pady=10)  
                 habit_item.grid_columnconfigure(0, weight=1)  
+                
+                habit_item_label = Label(habit_item, text=f"{habit_description}", font=("Helvetica", 14), bg="#8789C0", anchor="w", padx=10, pady=10)
+                habit_item_label.grid(row=0, column=0, sticky='nsew', padx=10, pady=10)  
+                habit_item_label.grid_columnconfigure(0, weight=1)  
+
+                # Create edit button
+                edit_button = Button(habit_item, text="Edit", command=lambda: self.edit_habit(habit_item))
+                edit_button.grid(row=0, column=1, sticky='nsew', padx=5, pady=5)
+
+                # Create delete button
+                delete_button = Button(habit_item, text="Delete", command=lambda: self.delete_habit(habit_item))
+                delete_button.grid(row=0, column=2, sticky='nsew', padx=5, pady=5)
+                
             else:
                 print("Error creating new habit: habit_list_frame is not initialized")
         except Exception as e:
             print(f"An error occurred while creating a new habit: {e}")
+    
+    def delete_habit(self, habit_item):
+        # Delete the habit item
+        habit_item.destroy()
+
+    def edit_habit(self, habit_item):
+        # Implement edit habit functionality here
+        pass
