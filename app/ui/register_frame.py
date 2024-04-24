@@ -126,7 +126,7 @@ class RegisterFrame(Frame):
         """
         try:
             db = pymysql.connect(
-                host="localhost", user="root", password="wellnessmate1234", database="wm_db"
+                host="localhost", user="root", password="hyT9mon#", database="wm_db"
             )
             cur = db.cursor()
             query = "SELECT * FROM login WHERE user=%s"

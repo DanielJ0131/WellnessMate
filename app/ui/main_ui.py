@@ -57,4 +57,4 @@ class MainUI:
 
         # Show dashboard frame with user_info
         self.dashboard_frame = DashboardFrame(self.master, user_info)
-        self.dashboard_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
+        self.dashboard_frame.grid(row=0, column=0, columnspan=2, rowspan=2, sticky="nsew")
