@@ -11,7 +11,6 @@ class MainUI:
         master.geometry("1024x700")
         self.load_app()
 
-        
     def load_app(self):
         # Create a frame to contain the navigation buttons
         self.nav_frame = Frame(self.master, pady=20)

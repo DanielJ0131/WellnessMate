@@ -5,6 +5,7 @@ Tkinter GUI for user login form.
 from tkinter import Frame, Label, PhotoImage, Entry, Button, messagebox
 import pymysql
 
+
 class LoginFrame(Frame):
     def __init__(self, master, main_ui):
         super().__init__(master, bg="#82AACF")
@@ -85,10 +86,10 @@ class LoginFrame(Frame):
         else:
             # Connect to MySQL database
             db = pymysql.connect(
-                host="localhost", user="root", password="wellnessmate1234", 
+                host="localhost", user="root", password="wellnessmate1234",
                 database="wm_db"
             )
-            
+
             cur = db.cursor()
 
             # Check if user exists in the database

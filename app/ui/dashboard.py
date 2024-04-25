@@ -5,6 +5,7 @@ Tkinter GUI for user dashboard.
 from tkinter import Frame, Label, Button
 from ui.my_habits_frame import MyHabits
 
+
 class DashboardFrame(Frame):
     def __init__(self, master, user_info):
         super().__init__(master)
@@ -27,19 +28,19 @@ class DashboardFrame(Frame):
         # Create and add buttons to the sidebar
         self.profile_button = Button(sidebar_frame, text="Profile", bg="#111D4A", bd=0)
         self.profile_button.grid(row=0, column=0, sticky='ew', padx=10, pady=10)
-        
+
         self.tasks_button = Button(sidebar_frame, text="My Habits", bg="#111D4A", bd=0)
         self.tasks_button.grid(row=1, column=0, sticky='ew', padx=10, pady=10)
-        
+
         self.sport_events_button = Button(sidebar_frame, text="Sport Events", bg="#111D4A", bd=0)
         self.sport_events_button.grid(row=2, column=0, sticky='ew', padx=10, pady=10)
-        
+
         self.discover_button = Button(sidebar_frame, text="Discover", bg="#111D4A", bd=0)
         self.discover_button.grid(row=3, column=0, sticky='ew', padx=10, pady=10)
-    
+
     def mount_my_habits(self):
         # Display user information on the right side
         welcome_label = Label(self, text=f"Welcome, {self.user_info['username']}", font=("Helvetica", 26))
         welcome_label.grid(row=0, column=1, sticky='ew', padx=10, pady=10)
-        
+
         my_habits_frame = MyHabits(self).grid(row=1, column=1, sticky="ew")
