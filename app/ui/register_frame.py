@@ -133,7 +133,7 @@ class RegisterFrame(Frame):
             cur.execute(query, (username))
             result = cur.fetchone()
             if result:
-                return True 
+                return True
             else:
                 return False
         except Exception as e:

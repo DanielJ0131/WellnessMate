@@ -6,14 +6,15 @@ from tkinter import Frame, Button, Tk, Label
 class SportEvents:
     """Sport event class for the application."""
 
-    def __init__(self):
+    def __init__(self,parent = None):
         """Initialize the class."""
-        # Window
-        self.window = Tk()
-        self.window.geometry("490x300")
+        if parent is None:
+            self.window = Tk()
+        else:
+            self.window = parent
 
         # Create main container
-        container = Frame(self.window)
+        container = Frame(parent)
         container.pack(expand=True, fill="both")
 
         # Container style
@@ -179,4 +180,3 @@ class SportEvents:
         self.window.mainloop()
 
 
-SportEvents()

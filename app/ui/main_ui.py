@@ -11,7 +11,6 @@ class MainUI:
         master.geometry("1024x700")
         self.load_app()
 
-        
     def load_app(self):
         # Create a frame to contain the navigation buttons
         self.nav_frame = Frame(self.master, pady=20)
@@ -57,4 +56,4 @@ class MainUI:
 
         # Show dashboard frame with user_info
         self.dashboard_frame = DashboardFrame(self.master, user_info)
-        self.dashboard_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
+        self.dashboard_frame.grid(row=0, column=0, columnspan=2, rowspan=2, sticky="nsew")
