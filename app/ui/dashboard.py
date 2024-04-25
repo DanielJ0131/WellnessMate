@@ -46,14 +46,15 @@ class DashboardFrame(Frame):
         welcome_label.grid(row=0, column=1, sticky='ew', padx=10, pady=10)
 
         my_habits_frame = MyHabits(self).grid(row=1, column=1, sticky="ew")
+        
 
     def open_sport_events(self):
         # Create a new window for Sport Events using Toplevel
         sport_events_window = Toplevel(self)
         sport_events_window.title("Sport Events")
-        sport_events_window.geometry("500x400")
+        sport_events_window.geometry("490x300")
         # Instantiate the SportEvents class in the new window
-        sport_events = SportEvents(sport_events_window)
+        SportEvents(sport_events_window)
 
         # Main loop for the new window
-        sport_events_window.mainloop()
+        SportEvents.mainloop()

@@ -6,7 +6,7 @@ from tkinter import Frame, Button, Tk, Label
 class SportEvents:
     """Sport event class for the application."""
 
-    def __init__(self,parent = None):
+    def __init__(self, parent=None):
         """Initialize the class."""
         if parent is None:
             self.window = Tk()
