@@ -146,7 +146,7 @@ radon-cc:
 
 radon-mi:
 	@$(call MESSAGE,$@)
-	radon mi --show .
+	radon mi --show targets app/*.py app/src/*.py app/ui/*.py
 
 radon-raw:
 	@$(call MESSAGE,$@)
@@ -169,4 +169,4 @@ metrics: radon-cc radon-mi radon-raw radon-hal cohesion
 #
 bandit:
 	@$(call MESSAGE,$@)
-	bandit --recursive .
+	bandit --recursive targets app/*.py app/src/*.py app/ui/*.py
