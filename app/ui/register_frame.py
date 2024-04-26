@@ -1,17 +1,14 @@
-"""
-Tkinter GUI for user registration form.
-"""
+"""Tkinter GUI for user registration form."""
 
 from tkinter import Frame, Label, Entry, Button, messagebox, PhotoImage
 import pymysql
 
 
 class RegisterFrame(Frame):
-    """
-    Sign up frame for the application.
-    """
+    """Sign up frame for the application."""
 
     def __init__(self, master, main_ui):
+        """Init method for the RegisterFrame class."""
         super().__init__(master, bg="#82AACF")
         self.master = master
         self.main_ui = main_ui
@@ -26,7 +23,7 @@ class RegisterFrame(Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        # Add signup form elements here
+        """Create the widgets for the sign up frame."""
         Label(self, text="Sign Up", font=("Helvetica", 26),
               bg="#82AACF").pack(pady=20)
 
@@ -93,9 +90,7 @@ class RegisterFrame(Frame):
         self.submit_button.pack(pady=10)
 
     def toggle_password(self):
-        """
-        Toggle visibility of password in the password entry.
-        """
+        """Toggle visibility of password in the password entry."""
         pass_state = self.pass_entry.cget("show")
         if pass_state:
             # If password is hidden, show it
@@ -107,9 +102,7 @@ class RegisterFrame(Frame):
             self.show_pass_button.configure(image=self.show_pass_image)
 
     def toggle_confirm_password(self):
-        """
-        Toggle visibility of password in the confirm password entry.
-        """
+        """Toggle visibility of password in the confirm password entry."""
         pass_state = self.confirm_pass_entry.cget("show")
         if pass_state:
             # If password is hidden, show it
@@ -121,12 +114,11 @@ class RegisterFrame(Frame):
             self.show_confirm_pass_button.configure(image=self.show_pass_image)
 
     def check_username(self, username):
-        """
-        Check if the username already exists in the database.
-        """
+        """Check if the username already exists in the database."""
         try:
             db = pymysql.connect(
-                host="localhost", user="root", password="wellnessmate1234", database="wm_db"
+                host="localhost", user="root", password="wellnessmate1234",
+                database="wm_db"
             )
             cur = db.cursor()
             query = "SELECT * FROM login WHERE user=%s"
@@ -142,12 +134,11 @@ class RegisterFrame(Frame):
             db.close()
 
     def create_account(self, username, password):
-        """
-        Create a new account in the database.
-        """
+        """Create a new account in the database."""
         try:
             db = pymysql.connect(
-                host="localhost", user="root", password="wellnessmate1234", database="wm_db"
+                host="localhost", user="root", password="wellnessmate1234",
+                database="wm_db"
             )
             cur = db.cursor()
             if self.check_username(username):
@@ -164,7 +155,7 @@ class RegisterFrame(Frame):
             db.close()
 
     def submit(self):
-        """Submits the data to the database."""
+        """Submit the data to the database."""
         if self.user_entry.get() == "":
             messagebox.showerror("Error", "Username is required!")
         elif self.pass_entry.get() == "":

@@ -1,9 +1,10 @@
+"""Main module to launch the application."""
 from tkinter import Tk
 from ui.main_ui import MainUI
 
 
 def main():
-    """Main function to launch the application."""
+    """Launch the main application."""
     root = Tk()
     MainUI(root)
     root.mainloop()

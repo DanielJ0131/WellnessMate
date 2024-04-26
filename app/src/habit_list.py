@@ -1,3 +1,1 @@
-"""
-Class definition for a list of habits.
-"""
+"""Class definition for a list of habits."""

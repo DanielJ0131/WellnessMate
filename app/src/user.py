@@ -1,6 +1,4 @@
-"""
-Class definition for the habit model.
-"""
+"""Class definition for the habit model."""
 
 
 class User:

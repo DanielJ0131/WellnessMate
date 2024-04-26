@@ -31,7 +31,8 @@ class TaskManager:
             fg="black",
         )
         self.active_habit_listbox.grid(row=1, column=0, padx=10, pady=5)
-        self.active_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
+        self.active_habit_listbox.bind("<<ListboxSelect>>",
+                                       self.on_habit_selected)
 
         # entry for adding new task with placeholder text
         self.new_task_entry = tk.Entry(master, width=40)
@@ -43,7 +44,8 @@ class TaskManager:
 
         # button to add new task
         self.add_task_button = tk.Button(
-            master, text="Add Task", command=self.add_task, bg="#1165A1", fg="white"
+            master, text="Add Task", command=self.add_task,
+            bg="#1165A1", fg="white"
         )
         self.add_task_button.grid(row=2, column=1, padx=10, pady=5)
 
@@ -67,7 +69,8 @@ class TaskManager:
             fg="black",
         )
         self.completed_habit_listbox.grid(row=1, column=2, padx=10, pady=5)
-        self.completed_habit_listbox.bind("<<ListboxSelect>>", self.on_habit_selected)
+        self.completed_habit_listbox.bind("<<ListboxSelect>>",
+                                          self.on_habit_selected)
 
         # Task Completed Button
         self.task_completed_button = tk.Button(
@@ -95,6 +98,7 @@ class TaskManager:
             self.new_task_entry.config(fg="grey")
 
     def populate_active_habit_list(self):
+        """Populate the active habit listbox with tasks."""
         # Clear existing items in the listbox
         self.active_habit_listbox.delete(0, tk.END)
         # Add tasks to the listbox
@@ -103,6 +107,7 @@ class TaskManager:
                 self.active_habit_listbox.insert(tk.END, task)
 
     def populate_completed_habit_list(self):
+        """Populate the completed habit listbox with tasks."""
         # Clear existing items in the listbox
         self.completed_habit_listbox.delete(0, tk.END)
         # Add completed tasks to the listbox
@@ -111,6 +116,7 @@ class TaskManager:
                 self.completed_habit_listbox.insert(tk.END, task)
 
     def on_habit_selected(self, event=None):
+        """Handle selection of a task in the listbox."""
         # Clear the selection in the other listbox when a task is selected
         self.completed_habit_listbox.selection_clear(0, tk.END)
         # Also clear selection in the entry widget
@@ -119,6 +125,7 @@ class TaskManager:
         self.new_task_entry.config(fg="grey")
 
     def mark_completed(self):
+        """Mark the selected task as completed and move to completed list."""
         # Get the index of the selected task
         selected_index = self.active_habit_listbox.curselection()
         # Check if a task is selected
@@ -134,13 +141,16 @@ class TaskManager:
             self.update_task_counts()
         else:
             # No task selected, display an error message
-            messagebox.showerror("Error", "Please select a task to mark as completed.")
+            messagebox.showerror("Error",
+                                 "Please select a task to mark as completed.")
 
     def edit_habit(self):
+        """Edit the selected task."""
         # implement code to edit a task, change name or description
         pass
 
     def add_task(self):
+        """Add a new task to the task list."""
         # Get the task entered by the user
         new_task = self.new_task_entry.get()
         if new_task and new_task != "Enter a new task...":
@@ -156,6 +166,7 @@ class TaskManager:
             messagebox.showerror("Error", "Please enter a task.")
 
     def update_task_counts(self):
+        """Update the active and completed task counts."""
         # update the active and completed task counts
         self.active_tasks = sum(
             1 for _, completed in self.tasks.items() if not completed
@@ -164,7 +175,8 @@ class TaskManager:
             1 for _, completed in self.tasks.items() if completed
         )
         self.active_label.config(text=f"Active Tasks: {self.active_tasks}")
-        self.completed_label.config(text=f"Completed Tasks: {self.completed_tasks}")
+        self.completed_label.config(text="Completed Tasks: " +
+                                    f"{self.completed_tasks}")
 
 
 root = tk.Tk()

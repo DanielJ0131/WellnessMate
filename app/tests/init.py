@@ -1,3 +1,1 @@
-"""
-Package containing unit tests.
-"""
+"""Package containing unit tests."""

@@ -1,12 +1,8 @@
-"""
-Class definition for the habit model.
-"""
+"""Class definition for the habit model."""
 
 
 class Habit:
-    """
-    Represents a habit in the application.
-    """
+    """Represents a habit in the application."""
 
     def __init__(self, title, category, frequency, reminder_time=None):
         """
