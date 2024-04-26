@@ -1,3 +1,1 @@
-"""
-Database integration methods.
-"""
+"""Database integration methods."""

@@ -1,3 +1,1 @@
-"""
-Package containing UI components and logic.
-"""
+"""Package containing UI components and logic."""

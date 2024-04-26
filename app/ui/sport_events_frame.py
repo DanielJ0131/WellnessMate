@@ -64,27 +64,6 @@ class SportEvents:
         def open_to_everyone():
             """Display specific sport events."""
             # >>> This is only saved temporary to later be put in database <<<
-
-            # Alliansloppet - 16, 32 & 48km roller skiing event in Trollhättan World biggest rollerski race
-            # Broloppet - Swedish/Danish road running (half marathon) event across the Oresund Bridge
-            # Convinistafetten - A relay race for corporate teams around Laduviken
-            # Engelbrektsloppet - 60 km cross-country skiing event in Västmanland
-            # Gothia Cup - youth football tournament in Gothenburg
-            # Gotland runt - sailing event around the island of Gotland
-            # Göteborgsvarvet - road running (half marathon) event in Gothenburg
-            # Lidingöloppet - 30 km cross country running event in Lidingö
-            # O-Ringen - multiday orienteering race
-            # Partille Cup - youth handball tournament in Gothenburg
-            # Stockholm Marathon - marathon in Stockholm
-            # Tiomila - An orienteering relay event
-            # Tjejmilen - 10 km cross country running event for women in Djurgården, open for girls and women only
-            # Tjejtrampet - 45 km road bicycle racing event for women in northern Stockholm, open for girls and women only
-            # Tjejvasan - 10 km cross country skiing event for women in Dalarna, open for girls and women only
-            # Vansbrosimningen - 3 km swimming event in Vansbro
-            # Vasaloppet - 90 km cross-country skiing event in Dalarna, from Sälen to Mora
-            # Vikingarännet - 80 km ice skating event on Mälaren between Uppsala and Stockholm
-            # Vätternrundan - 300 km cycling event, around the lake Vättern
-            # Ö till ö - a swimrun event in the archipelago of Stockholm.
             print(" ")
 
         def return_function():
@@ -115,26 +94,12 @@ class SportEvents:
         def elites_only_function():
             """Display event on elite level."""
             # >>> This is only saved temporary to later be put in database <<<
-
-            # DN Galan — athletics event at Stockholms Olympiastadion
-            # Finland-Sweden athletics international (Finnkampen) - athletics competition between Sweden and Finland, alternatingly held in Sweden and Finland
-            # Nordea Nordic Light Open - tennis tournament held in Stockholm
-            # Open de Suède Vårgårda - women's road bicycle racing event held in Vårgårda
-            # Scandinavian Masters - golf tournament on the European Tour
-            # speedway events, part of the Speedway Grand Prix Series:
-            # Speedway Grand Prix of Sweden (since 1995)
-            # Speedway Grand Prix of Scandinavia (since 2002)
-            # LG Hockey Games
-            # Swedish Open — tennis competition in Båstad
-            # Swedish Open Championships - annual table tennis tournament
-            # Swedish Rally — rally in Värmland
-            # Swedish Short Course Swimming Championships
-            # Swedish Swimming Championships
             print(" ")
 
         create_widget(main_container, 490, 300, 0, 0, "#82AACF")
         create_widget(
-            main_container, 267, 17, 116, 24, "#1165A1", "Sporting events in Sweden"
+            main_container, 267, 17, 116, 24, "#1165A1",
+            "Sporting events in Sweden"
         )
         create_widget(
             main_container,
@@ -178,5 +143,3 @@ class SportEvents:
         )
 
         self.window.mainloop()
-
-

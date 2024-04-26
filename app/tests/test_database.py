@@ -1,3 +1,1 @@
-"""
-Unit tests for database integration.
-"""
+"""Unit tests for database integration."""

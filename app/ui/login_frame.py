@@ -1,29 +1,35 @@
-"""
-Tkinter GUI for user login form.
-"""
+"""Tkinter GUI for user login form."""
 
 from tkinter import Frame, Label, PhotoImage, Entry, Button, messagebox
 import pymysql
 
 
 class LoginFrame(Frame):
+    """Login frame for the application."""
+
     def __init__(self, master, main_ui):
+        """Init method for the LoginFrame class."""
         super().__init__(master, bg="#82AACF")
         self.master = master
         self.main_ui = main_ui
-        self.show_pass_image = PhotoImage(file="app/assets/show_pass.png").subsample(25, 25)
-        self.hide_pass_image = PhotoImage(file="app/assets/hide_pass.png").subsample(25, 25)
+        self.show_pass_image = PhotoImage(file="app/assets/" +
+                                          "show_pass.png").subsample(25, 25)
+        self.hide_pass_image = PhotoImage(file="app/assets/" +
+                                          "hide_pass.png").subsample(25, 25)
         self.create_widgets()
 
     def create_widgets(self):
+        """Create the widgets for the login frame."""
         # Add login form elements here
-        Label(self, text="Login", font=("Helvetica", 26), bg="#82AACF").pack(pady=20)
+        Label(self, text="Login", font=("Helvetica", 26),
+              bg="#82AACF").pack(pady=20)
 
         # Create a frame to input the username
         self.username_frame = Frame(self, bg="#82AACF")
         self.username_frame.pack(pady=10)
 
-        Label(self.username_frame, text="Username:", bg="#82AACF").pack(side="left")
+        Label(self.username_frame, text="Username:",
+              bg="#82AACF").pack(side="left")
         self.user_entry = Entry(self.username_frame, width=30)
         self.user_entry.pack(side="left", padx=10)
 
@@ -60,9 +66,7 @@ class LoginFrame(Frame):
         self.submit_button.pack(pady=20)
 
     def toggle_password(self):
-        """
-        Toggle visibility of password in the password entry.
-        """
+        """Toggle visibility of password in the password entry."""
         pass_state = self.pass_entry.cget("show")
         if pass_state:
             # If password is hidden, show it
@@ -74,7 +78,7 @@ class LoginFrame(Frame):
             self.show_pass_button.configure(image=self.show_pass_image)
 
     def submit(self):
-        """Submits the data to the database."""
+        """Submit the data to the database."""
         username = self.user_entry.get()
         password = self.pass_entry.get()
 
@@ -93,12 +97,15 @@ class LoginFrame(Frame):
             cur = db.cursor()
 
             # Check if user exists in the database
-            cur.execute("SELECT * FROM login WHERE user = %s AND pass = %s", (username, password))
+            cur.execute("SELECT * FROM login WHERE user = %s AND pass = %s",
+                        (username, password))
             user = cur.fetchone()
 
             if user:
                 messagebox.showinfo("Success", "Login successful!")
                 self.main_ui.show_dashboard_frame({'username': username})
-                # Call a method in the main application to load the dashboard frame, for example: self.master.load_dashboard_frame()
+                # Call a method in the main application to load the
+                # dashboard frame, for example:
+                # self.master.load_dashboard_frame()
             else:
                 messagebox.showerror("Error", "Invalid username or password")

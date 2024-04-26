@@ -1,3 +1,1 @@
-"""
-Unit tests for user model.
-"""
+"""Unit tests for user model."""
