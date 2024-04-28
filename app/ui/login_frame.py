@@ -1,7 +1,6 @@
 """Tkinter GUI for user login form."""
 
 from tkinter import Frame, Label, PhotoImage, Entry, Button, messagebox
-import pymysql
 
 
 class LoginFrame(Frame):
@@ -90,7 +89,7 @@ class LoginFrame(Frame):
             messagebox.showerror("Error", "Password is required!")
         else:
             # Check if user exists in the database
-            user = self.db.check_user_existance(username,password)
+            user = self.db.check_user_existance(username, password)
             if user:
                 messagebox.showinfo("Success", "Login successful!")
                 self.main_ui.show_dashboard_frame({'username': username})

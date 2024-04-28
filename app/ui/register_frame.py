@@ -7,7 +7,7 @@ import pymysql
 class RegisterFrame(Frame):
     """Sign up frame for the application."""
 
-    def __init__(self, master, main_ui,db):
+    def __init__(self, master, main_ui, db):
         """Init method for the RegisterFrame class."""
         super().__init__(master, bg="#82AACF")
         self.master = master
@@ -121,7 +121,8 @@ class RegisterFrame(Frame):
             if user_name:
                 messagebox.showerror("Error", "Username already exists!")
             else:
-                self.db.execute("INSERT INTO login(user, pass) values(%s, %s)", (username, password))
+                self.db.execute("INSERT INTO login(user, pass) values(%s, %s)",
+                                (username, password))
                 messagebox.showinfo("Success", "Account created successfully!")
         except Exception as e:
             print(e)
@@ -143,7 +144,8 @@ class RegisterFrame(Frame):
                 user_name = self.db.check_username(user)
                 if not user_name:
                     self.db.create_account(user, password)
-                    messagebox.showinfo("Success", "Account created successfully!")
+                    messagebox.showinfo("Success",
+                                        "Account created successfully!")
                 else:
                     messagebox.showerror("Error", "Username already exists!")
             except pymysql.Error:
