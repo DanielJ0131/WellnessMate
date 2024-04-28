@@ -8,9 +8,10 @@ from ui.dashboard import DashboardFrame
 class MainUI:
     """Main UI class for the WellnessMate application."""
 
-    def __init__(self, master):
+    def __init__(self, master, db):
         """Initialize the main UI for the application."""
         self.master = master
+        self.db = db
         master.title("WellnessMate")
         master.geometry("1024x700")
         self.load_app()
@@ -32,8 +33,8 @@ class MainUI:
         register_button.grid(row=0, column=1, padx=10)
 
         # Create frames for login, register, and dashboard
-        self.login_frame = LoginFrame(self.master, self)
-        self.register_frame = RegisterFrame(self.master, self)
+        self.login_frame = LoginFrame(self.master, self, self.db)
+        self.register_frame = RegisterFrame(self.master, self, self.db)
 
         # Configure column 0 to expand horizontally
         self.master.rowconfigure(1, weight=1)
