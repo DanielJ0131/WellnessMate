@@ -3,11 +3,12 @@
 from tkinter import Frame, Button, Tk, Label
 
 
-class SportEvents:
+#class SportEventsFrame:
     """Sport event class for the application."""
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, return_callback=None):
         """Initialize the class."""
+        self.return_callback = return_callback
         if parent is None:
             self.window = Tk()
         else:
@@ -15,7 +16,7 @@ class SportEvents:
 
         # Create main container
         container = Frame(parent)
-        container.pack(expand=True, fill="both")
+        container.grid(row=0, column=1, sticky='nsew')
 
         # Container style
         container.style = {"width": "100%", "height": "100%",
@@ -23,7 +24,7 @@ class SportEvents:
 
         # Main container
         main_container = Frame(container)
-        main_container.pack(expand=True, fill="both")
+        main_container.grid(row=0, column=1, sticky='nsew') 
 
         # Defining/customizing widget
         def create_widget(
@@ -31,6 +32,7 @@ class SportEvents:
             text=None, command=None
         ):
             """Create parameters for widget."""
+            label = None
             if command:
                 button = Button(
                     parent,
@@ -43,12 +45,13 @@ class SportEvents:
                     command=command,
                     cursor="hand2",
                 )
-                button.place(x=left, y=top, anchor="nw", width=width,
-                             height=height)
+                button.grid(row=top, column=left, sticky='nsew')
+                return button
+
             else:
                 widget = Frame(parent, width=width, height=height,
                                bg=background)
-                widget.place(x=left, y=top, anchor="nw")
+                widget.grid(row=top, column=left, sticky='nsew')
                 if text:
                     label = Label(
                         widget,
@@ -59,16 +62,20 @@ class SportEvents:
                         justify="center",
                         wraplength=width,
                     )
-                    label.pack(expand=True, fill="both", padx=10, pady=10)
-
+                    print("Created label:", label)  # Debugging line
+                    if label:
+                        label.grid(row=0, column=0, sticky='nsew', padx=10, pady=10)
+                    else:
+                        print("Label is None!")  # Debugging line
+                else:
+                    print("No text provided!")  # Debugging line
+                print("Returning label:", label)  # Debugging line
+                return label
+        
         def open_to_everyone():
             """Display specific sport events."""
             # >>> This is only saved temporary to later be put in database <<<
             print(" ")
-
-        def return_function():
-            """Return."""
-            # pass
 
         def national_lct_function():
             """Display sport leagues, cups and tours."""
@@ -96,37 +103,32 @@ class SportEvents:
             # >>> This is only saved temporary to later be put in database <<<
             print(" ")
 
-        create_widget(main_container, 490, 300, 0, 0, "#82AACF")
+        def return_function():
+            """Return."""
+            if self.return_callback:
+                self.return_callback()
+
+        create_widget(main_container, 1024, 700, 0, 0, "#82AACF")  # main widget
         create_widget(
-            main_container, 267, 17, 116, 24, "#1165A1",
+            main_container, 200, 40, 412, 50, "#1165A1",
             "Sporting events in Sweden"
         )
         create_widget(
             main_container,
-            293,
-            35,
-            103,
-            95,
+            210,
+            80,
+            0,
+            1,
             "#1165A1",
             "Open to everyone",
             command=open_to_everyone,
         )
         create_widget(
             main_container,
-            106,
-            22,
-            192,
-            260,
-            "#1165A1",
-            "Return",
-            command=return_function,
-        )
-        create_widget(
-            main_container,
-            293,
-            35,
-            103,
-            205,
+            210,
+            80,
+            0,
+            2,
             "#1165A1",
             "National leagues, cups and tours",
             command=national_lct_function,
@@ -135,11 +137,24 @@ class SportEvents:
             main_container,
             293,
             35,
-            103,
-            150,
+            0,
+            3,
             "#1165A1",
             "Elites only",
             command=elites_only_function,
         )
-
+        create_widget(
+            main_container,
+            100,
+            100,
+            0,
+            4,
+            "#1165A1",
+            "Return",
+            command=return_function,
+        )
         self.window.mainloop()
+
+
+if __name__ == "__main__":
+    SportEventsFrame()
