@@ -8,32 +8,31 @@ class Database:
         self.__user = "root"
         self.__password = "wellnessmate1234"
         try:
-            self.db = pymysql.connect(
+            self.server = pymysql.connect(
                 host=self.__host,
                 user=self.__user,
-                password=self.__password,
-                database="wm_db"
+                password=self.__password
             )
             self.create_database()  # Create database if it does not exist
-            self.db.close()
+            self.server.close()
             self.db = pymysql.connect(
                 host=self.__host,
                 user=self.__user,
                 password=self.__password,
                 database="wm_db"
             )
-            self.create_tables()  # Create tables if they do not exist
             self.cur = self.db.cursor()
+            self.create_tables()  # Create tables if they do not exist
         except pymysql.Error:
             print("Error: Could not connect to database.")
 
     def create_database(self):
         try:
-            self.cur.execute("""
+            self.server.cursor().execute("""
                 CREATE SCHEMA IF NOT EXISTS `wm_db`
                 DEFAULT CHARACTER SET utf8;
             """)
-            self.db.commit()
+            self.server.commit()
         except pymysql.Error:
             print("Error: Could not create database.")
 
@@ -80,6 +79,15 @@ class Database:
         try:
             self.cur.execute(query)
             self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not execute query.")
+    
+    def check_user_existance(self, username, password):
+        try:
+            self.cur.execute("SELECT * FROM login WHERE user = %s AND pass = %s", (username, password))
+            self.db.commit()
+            return self.cur.fetchone()
+
         except pymysql.Error:
             print("Error: Could not execute query.")
 

@@ -7,11 +7,12 @@ import pymysql
 class LoginFrame(Frame):
     """Login frame for the application."""
 
-    def __init__(self, master, main_ui):
+    def __init__(self, master, main_ui, db):
         """Init method for the LoginFrame class."""
         super().__init__(master, bg="#82AACF")
         self.master = master
         self.main_ui = main_ui
+        self.db = db
         self.show_pass_image = PhotoImage(file="app/assets/" +
                                           "show_pass.png").subsample(25, 25)
         self.hide_pass_image = PhotoImage(file="app/assets/" +
@@ -88,19 +89,8 @@ class LoginFrame(Frame):
         elif self.pass_entry.get() == "":
             messagebox.showerror("Error", "Password is required!")
         else:
-            # Connect to MySQL database
-            db = pymysql.connect(
-                host="localhost", user="root", password="wellnessmate1234",
-                database="wm_db"
-            )
-
-            cur = db.cursor()
-
             # Check if user exists in the database
-            cur.execute("SELECT * FROM login WHERE user = %s AND pass = %s",
-                        (username, password))
-            user = cur.fetchone()
-
+            user = self.db.check_user_existance(username,password)
             if user:
                 messagebox.showinfo("Success", "Login successful!")
                 self.main_ui.show_dashboard_frame({'username': username})
