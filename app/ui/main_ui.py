@@ -34,7 +34,7 @@ class MainUI:
 
         # Create frames for login, register, and dashboard
         self.login_frame = LoginFrame(self.master, self, self.db)
-        self.register_frame = RegisterFrame(self.master, self)
+        self.register_frame = RegisterFrame(self.master, self, self.db)
 
         # Configure column 0 to expand horizontally
         self.master.rowconfigure(1, weight=1)

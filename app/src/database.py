@@ -3,6 +3,7 @@ import pymysql
 
 
 class Database:
+    """Database class to interact with the database."""
     def __init__(self):
         self.__host = "localhost"
         self.__user = "root"
@@ -27,6 +28,7 @@ class Database:
             print("Error: Could not connect to database.")
 
     def create_database(self):
+        """Create the database if it does not exist."""
         try:
             self.server.cursor().execute("""
                 CREATE SCHEMA IF NOT EXISTS `wm_db`
@@ -37,6 +39,7 @@ class Database:
             print("Error: Could not create database.")
 
     def create_tables(self):
+        """Create tables in the database."""
         try:
             self.cur.execute("""
                 CREATE TABLE IF NOT EXISTS `wm_db`.`login` (
@@ -70,28 +73,53 @@ class Database:
             print("Error: Could not create tables.")
 
     def disconnect(self):
+        """Disconnect from the database."""
         try:
             self.db.close()
         except pymysql.Error:
             print("Error: Could not disconnect from database.")
 
     def query(self, query: str):
+        """Execute a query on the database."""
         try:
             self.cur.execute(query)
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not execute query.")
-    
+
     def check_user_existance(self, username, password):
+        """Check if the user exists in the database."""
         try:
             self.cur.execute("SELECT * FROM login WHERE user = %s AND pass = %s", (username, password))
             self.db.commit()
             return self.cur.fetchone()
 
         except pymysql.Error:
-            print("Error: Could not execute query.")
+            print("Error: Could not check user existence query.")
+
+    def check_username(self, username):
+        """Check if the username already exists in the database."""
+        try:
+            self.cur.execute("SELECT * FROM login WHERE user=%s", (username))
+            self.db.commit()
+            result = self.cur.fetchone()
+            if result:
+                return True
+            else:
+                return False
+        except pymysql.Error:
+            print("Error: Could not check username.")
+
+    def create_account(self, username, password):
+        """Create a new account in the database."""
+        try:
+            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)", (username, password))
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not create account.")
 
     def commit(self):
+        """Commit changes to the database."""
         try:
             self.db.commit()
         except pymysql.Error:

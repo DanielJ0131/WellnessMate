@@ -7,11 +7,12 @@ import pymysql
 class RegisterFrame(Frame):
     """Sign up frame for the application."""
 
-    def __init__(self, master, main_ui):
+    def __init__(self, master, main_ui,db):
         """Init method for the RegisterFrame class."""
         super().__init__(master, bg="#82AACF")
         self.master = master
         self.main_ui = main_ui
+        self.db = db
         self.show_pass_image = PhotoImage(file="app/assets/" +
                                           "show_pass.png").subsample(
             25, 25
@@ -113,46 +114,17 @@ class RegisterFrame(Frame):
             self.confirm_pass_entry.configure(show="*")
             self.show_confirm_pass_button.configure(image=self.show_pass_image)
 
-    def check_username(self, username):
-        """Check if the username already exists in the database."""
-        try:
-            db = pymysql.connect(
-                host="localhost", user="root", password="wellnessmate1234",
-                database="wm_db"
-            )
-            cur = db.cursor()
-            query = "SELECT * FROM login WHERE user=%s"
-            cur.execute(query, (username))
-            result = cur.fetchone()
-            if result:
-                return True
-            else:
-                return False
-        except Exception as e:
-            print(e)
-        finally:
-            db.close()
-
     def create_account(self, username, password):
         """Create a new account in the database."""
         try:
-            db = pymysql.connect(
-                host="localhost", user="root", password="wellnessmate1234",
-                database="wm_db"
-            )
-            cur = db.cursor()
-            if self.check_username(username):
+            user_name = self.db.check_username(username)
+            if user_name:
                 messagebox.showerror("Error", "Username already exists!")
-                return
-
-            query = "INSERT INTO login(user, pass) values(%s, %s)"
-            cur.execute(query, (username, password))
-            db.commit()
-            messagebox.showinfo("Success", "Account created successfully!")
+            else:
+                self.db.execute("INSERT INTO login(user, pass) values(%s, %s)", (username, password))
+                messagebox.showinfo("Success", "Account created successfully!")
         except Exception as e:
             print(e)
-        finally:
-            db.close()
 
     def submit(self):
         """Submit the data to the database."""
@@ -166,29 +138,13 @@ class RegisterFrame(Frame):
             messagebox.showerror("Error", "Passwords do not match!")
         else:
             try:
-                db = pymysql.connect(
-                    host="localhost", user="root", password="wellnessmate1234")
-                cur = db.cursor()
-                cur.execute("SHOW DATABASES")
-                databases = cur.fetchall()
-                database_names = [db[0] for db in databases]
-
-                if "wm_db" not in database_names:
-                    cur.execute("CREATE DATABASE wm_db")
-                cur.execute("USE wm_db")
-
-                cur.execute("""
-                    CREATE TABLE IF NOT EXISTS login (
-                        ID INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-                        user VARCHAR(45),
-                        pass VARCHAR(45),
-                        UNIQUE KEY wellnessmate1234 (user)
-                    )
-                """)
                 user = self.user_entry.get()
                 password = self.pass_entry.get()
-                self.create_account(user, password)
-
-            finally:
-                if db:
-                    db.close()
+                user_name = self.db.check_username(user)
+                if not user_name:
+                    self.db.create_account(user, password)
+                    messagebox.showinfo("Success", "Account created successfully!")
+                else:
+                    messagebox.showerror("Error", "Username already exists!")
+            except pymysql.Error:
+                print("Error: Could not create account.")
