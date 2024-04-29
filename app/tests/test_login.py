@@ -1,6 +1,7 @@
 """Test file for the login module."""
 
 import unittest
+# GUI Mocker called TTK, tests GUI without creating one
 from tkinter import ttk
 from app.ui.login_frame import LoginFrame
 
