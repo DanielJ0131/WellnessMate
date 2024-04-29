@@ -43,6 +43,7 @@ class LoginFrame(Frame):
         self.submit_button = Button(self, text="Login", font=("Helvetica", 16, "bold"), fg="#2A2A28", bg="#45B9AC", highlightbackground="#F3F1E7", relief="solid", highlightthickness=0, borderwidth=0, padx=20, pady=10, cursor="hand2", command=self.login)
         self.submit_button.grid(row=3, column=0, sticky='w', pady=20)
 
+
     def toggle_password(self):
         """Toggle visibility of password in the password entry."""
         pass_state = self.pass_entry.cget("show")

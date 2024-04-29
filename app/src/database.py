@@ -121,10 +121,12 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not create account.")
-    
+
     def get_user_id(self, username):
+        """Get the user ID from the database."""
         try:
-            self.cur.execute("SELECT idlogin FROM login WHERE user=%s", (username))
+            self.cur.execute("SELECT idlogin FROM login WHERE user=%s",
+                             (username))
             self.db.commit()
             return self.cur.fetchone()[0]
         except pymysql.Error:
@@ -133,7 +135,8 @@ class Database:
     def get_habits(self, user_id):
         """Get habits from the database."""
         try:
-            self.cur.execute("SELECT name FROM habit WHERE login_idlogin=%s", (user_id))
+            self.cur.execute("SELECT name FROM habit WHERE login_idlogin=%s",
+                             (user_id))
             self.db.commit()
             return self.cur.fetchall()
         except pymysql.Error:
@@ -142,7 +145,8 @@ class Database:
     def add_habit(self, habit_name, user_id):
         """Add a habit to the database."""
         try:
-            self.cur.execute("INSERT INTO habit(name, frequency, login_idlogin) values(%s, %s, %s)",
+            self.cur.execute("INSERT INTO habit(name, frequency," +
+                             "login_idlogin) values(%s, %s, %s)",
                              (habit_name, 0, user_id))
             self.db.commit()
         except pymysql.Error:
@@ -159,7 +163,8 @@ class Database:
     def edit_habit(self, habit_id, habit_name):
         """Edit a habit in the database."""
         try:
-            self.cur.execute("UPDATE habit SET name=%s WHERE idhabit=%s", (habit_name, habit_id))
+            self.cur.execute("UPDATE habit SET name=%s WHERE idhabit=%s",
+                             (habit_name, habit_id))
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not update habit in the database.")
@@ -170,3 +175,21 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not commit changes to database.")
+
+    # Function 1 to delete account to test the database in test_database.py
+    def delete_account(self, username):
+        """Delete an account from the database."""
+        try:
+            self.cur.execute("DELETE FROM login WHERE user=%s", (username))
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not delete account.")
+
+    # Function 2 to drop database to test the database in test_database.py
+    def drop_database(self):
+        """Drop the database."""
+        try:
+            self.server.cursor().execute("DROP DATABASE IF EXISTS wm_db")
+            self.server.commit()
+        except pymysql.Error:
+            print("Error: Could not drop database.")

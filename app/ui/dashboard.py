@@ -2,7 +2,7 @@
 
 from tkinter import Frame, Label, Button, Toplevel, PhotoImage
 from ui.my_habits_frame import MyHabits
-from ui.sport_events_frame import SportEvents
+from ui.sport_events_frame import SportEventsFrame
 
 
 class DashboardFrame(Frame):
@@ -69,13 +69,14 @@ class DashboardFrame(Frame):
 
 
     def open_sport_events(self):
-        """Open the Sport Events window."""
-        # Create a new window for Sport Events using Toplevel
-        sport_events_window = Toplevel(self)
-        sport_events_window.title("Sport Events")
-        sport_events_window.geometry("490x300")
-        # Instantiate the SportEvents class in the new window
-        SportEvents(sport_events_window)
+        """Open the Sport Events frame."""
+        # Remove the dashboard frame
+        self.grid_remove()
 
-        # Main loop for the new window
-        SportEvents.mainloop()
+        # Instantiate the SportEventsFrame class
+        self.sport_events_frame = SportEventsFrame(self.master)
+                                                                     
+        # Configure row and column weights of the main window
+
+
+        
