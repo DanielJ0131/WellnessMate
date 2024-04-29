@@ -8,12 +8,15 @@ from ui.sport_events_frame import SportEvents
 class DashboardFrame(Frame):
     """Represent the user dashboard in the application."""
 
-    def __init__(self, master, user_info):
+    def __init__(self, master, username, user_id, db):
         """Init method for the DashboardFrame class."""
         super().__init__(master, bg="#F3F1EB")
         self.master = master
-        self.user_info = user_info
+        self.username = username
+        self.user_id = user_id
+        self.db = db
         self.create_sidebar()
+        print("sidebar created")
         self.mount_my_habits()
 
         # Configure grid column weights to make the right section
@@ -36,27 +39,29 @@ class DashboardFrame(Frame):
         self.master.grid_columnconfigure(1, weight=1)
 
         # Create and add buttons to the sidebar
-        self.profile_button = Button(self.nav_frame, text="Profile", bg="#111D4A", bd=0)
-        self.profile_button.grid(row=0, column=0, sticky='ew', padx=10, pady=10)
 
-        self.my_habits_button = Button(self.nav_frame, text="My Habits", bg="#111D4A", bd=0)
-        self.tasks_button.grid(row=1, column=0, sticky='ew', padx=10, pady=10)
+        self.my_habits_button = Button(self.nav_frame, text="My Habits", bg="#111D4A", bd=0, command=lambda:self.mount_my_habits())
+        self.my_habits_button.grid(row=1, column=0, sticky='ew', padx=10, pady=10)
 
-        self.sport_events_button = Button(self.nav_frame, text="Sport Events", bg="#111D4A", bd=0, command=self.open_sport_events)
+        self.sport_events_button = Button(self.nav_frame, text="Sport Events", bg="#111D4A", bd=0, command=lambda:self.open_sport_events)
         self.sport_events_button.grid(row=2, column=0, sticky='ew', padx=10, pady=10)
 
         self.discover_button = Button(self.nav_frame, text="Discover", bg="#111D4A", bd=0)
         self.discover_button.grid(row=3, column=0, sticky='ew', padx=10, pady=10)
 
+        self.profile_button = Button(self.nav_frame, text="Profile", bg="#111D4A", bd=0)
+        self.profile_button.grid(row=0, column=0, sticky='ew', padx=10, pady=10)
+
     def mount_my_habits(self):
         """Mount the My Habits frame on the dashboard."""
         # Display user information on the right side
-        welcome_label = Label(self, text="Welcome, " +
-                              f"{self.user_info['username']}",
+        print("mounting habits...")
+        welcome_label = Label(self.content_frame, text="Welcome, " +
+                              f"{self.username}",
                               font=("Helvetica", 26))
         welcome_label.grid(row=0, column=1, sticky='ew', padx=10, pady=10)
 
-        my_habits_frame = MyHabits(self)
+        my_habits_frame = MyHabits(self.content_frame, self.db, self.user_id)
         my_habits_frame.grid(row=1, column=1, sticky="ew")
 
     def open_sport_events(self):

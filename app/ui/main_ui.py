@@ -77,9 +77,9 @@ class MainUI:
         self.login_frame.grid_remove()
         self.register_frame.grid(row=0, column=0, sticky="nsew")
 
-    def show_dashboard_frame(self, user_info):
+    def show_dashboard_frame(self, username, user_id, db):
         """Hide initial frames and show the dashboard frame."""
         self.left_frame.grid_remove()
         self.right_frame.grid_remove()
-        self.dashboard_frame = DashboardFrame(self.master, user_info)
+        self.dashboard_frame = DashboardFrame(self.master, username, user_id, db)
         self.dashboard_frame.grid(row=0, column=0, sticky="nsew")

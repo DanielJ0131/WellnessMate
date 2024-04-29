@@ -7,7 +7,6 @@ class RegisterFrame(Frame):
     """Sign up frame for the application."""
 
     def __init__(self, master, main_ui, db):
-    def __init__(self, master, main_ui, db):
         """Init method for the RegisterFrame class."""
         super().__init__(master, bg="#F3F1EB")
         self.master = master

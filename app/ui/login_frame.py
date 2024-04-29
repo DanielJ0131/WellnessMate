@@ -72,6 +72,8 @@ class LoginFrame(Frame):
             user_exists = self.db.check_user_existance(username, password)
             if user_exists:
                 messagebox.showinfo("Success", "Login successful!")
-                self.main_ui.show_dashboard_frame({'username': username})
+                #find user id
+                user_id = self.db.get_user_id(username)
+                self.main_ui.show_dashboard_frame(username, user_id, self.db)
             else:
                 messagebox.showerror("Error", "Invalid username or password")

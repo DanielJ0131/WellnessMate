@@ -9,7 +9,7 @@ class Database:
         """Initialize the database connection."""
         self.__host = "localhost"
         self.__user = "root"
-        self.__password = "hyT9mon#"
+        self.__password = "wellnessmate1234"
         try:
             self.server = pymysql.connect(
                 host=self.__host,
@@ -121,11 +121,19 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not create account.")
+    
+    def get_user_id(self, username):
+        try:
+            self.cur.execute("SELECT idlogin FROM login WHERE user=%s", (username))
+            self.db.commit()
+            return self.cur.fetchone()[0]
+        except pymysql.Error:
+            print("Error: Could not get user ID.")
 
     def get_habits(self, user_id):
         """Get habits from the database."""
         try:
-            self.cur.execute("SELECT * FROM habit WHERE login_idlogin=%s", (user_id))
+            self.cur.execute("SELECT name FROM habit WHERE login_idlogin=%s", (user_id))
             self.db.commit()
             return self.cur.fetchall()
         except pymysql.Error:
@@ -140,10 +148,10 @@ class Database:
         except pymysql.Error:
             print("Error: Could not add habit to the database.")
 
-    def delete_habit(self, habit_id):
+    def delete_habit(self, habit_name):
         """Delete a habit from the database."""
         try:
-            self.cur.execute("DELETE FROM habit WHERE idhabit=%s", (habit_id))
+            self.cur.execute("DELETE FROM habit WHERE name=%s", (habit_name))
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not delete habit from the database.")
