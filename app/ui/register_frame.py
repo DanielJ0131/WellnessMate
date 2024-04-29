@@ -86,7 +86,7 @@ class RegisterFrame(Frame):
             width=15,
             borderwidth=1,
             height=2,
-            command=self.submit,
+            command=self.create_account,
         )
         self.submit_button.pack(pady=10)
 
@@ -114,20 +114,7 @@ class RegisterFrame(Frame):
             self.confirm_pass_entry.configure(show="*")
             self.show_confirm_pass_button.configure(image=self.show_pass_image)
 
-    def create_account(self, username, password):
-        """Create a new account in the database."""
-        try:
-            user_name = self.db.check_username(username)
-            if user_name:
-                messagebox.showerror("Error", "Username already exists!")
-            else:
-                self.db.execute("INSERT INTO login(user, pass) values(%s, %s)",
-                                (username, password))
-                messagebox.showinfo("Success", "Account created successfully!")
-        except Exception as e:
-            print(e)
-
-    def submit(self):
+    def create_account(self):
         """Submit the data to the database."""
         if self.user_entry.get() == "":
             messagebox.showerror("Error", "Username is required!")
@@ -141,7 +128,7 @@ class RegisterFrame(Frame):
             try:
                 user = self.user_entry.get()
                 password = self.pass_entry.get()
-                user_name = self.db.check_username(user)
+                user_name = self.db.check_username_uniqueness(user)
                 if not user_name:
                     self.db.create_account(user, password)
                     messagebox.showinfo("Success",
