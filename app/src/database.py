@@ -116,10 +116,53 @@ class Database:
     def create_account(self, username, password):
         """Create a new account in the database."""
         try:
-            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)", (username, password))
+            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)",
+                             (username, password))
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not create account.")
+    
+    def get_user_id(self, username):
+        try:
+            self.cur.execute("SELECT idlogin FROM login WHERE user=%s", (username))
+            self.db.commit()
+            return self.cur.fetchone()[0]
+        except pymysql.Error:
+            print("Error: Could not get user ID.")
+
+    def get_habits(self, user_id):
+        """Get habits from the database."""
+        try:
+            self.cur.execute("SELECT name FROM habit WHERE login_idlogin=%s", (user_id))
+            self.db.commit()
+            return self.cur.fetchall()
+        except pymysql.Error:
+            print("Error: Could not get habits from user.")
+
+    def add_habit(self, habit_name, user_id):
+        """Add a habit to the database."""
+        try:
+            self.cur.execute("INSERT INTO habit(name, frequency, login_idlogin) values(%s, %s, %s)",
+                             (habit_name, 0, user_id))
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not add habit to the database.")
+
+    def delete_habit(self, habit_name):
+        """Delete a habit from the database."""
+        try:
+            self.cur.execute("DELETE FROM habit WHERE name=%s", (habit_name))
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not delete habit from the database.")
+
+    def edit_habit(self, habit_id, habit_name):
+        """Edit a habit in the database."""
+        try:
+            self.cur.execute("UPDATE habit SET name=%s WHERE idhabit=%s", (habit_name, habit_id))
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not update habit in the database.")
 
     def commit(self):
         """Commit changes to the database."""
