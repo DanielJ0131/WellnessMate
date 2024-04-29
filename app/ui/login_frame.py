@@ -31,16 +31,16 @@ class LoginFrame(Frame):
         Label(self.username_frame, text="Username:",
               bg="#82AACF").pack(side="left")
         self.user_entry = Entry(self.username_frame, width=30)
-        self.user_entry.pack(side="left", padx=10)
+        self.user_entry.pack(side="left", padx=21)
 
         # Create a frame to input the password
         self.pass_frame = Frame(self, bg="#82AACF")
         self.pass_frame.pack(pady=10)
 
         Label(self.pass_frame, text="Password:",
-              bg="#82AACF").pack(side="left")
+              bg="#82AACF").pack(side="left", padx=18)
         self.pass_entry = Entry(self.pass_frame, width=30, show="*")
-        self.pass_entry.pack(side="left", padx=10)
+        self.pass_entry.pack(side="left", padx=4)
 
         # Create a button to toggle password visibility
         self.show_pass_button = Button(
@@ -63,7 +63,7 @@ class LoginFrame(Frame):
             cursor="hand2",
             command=self.submit,
         )
-        self.submit_button.pack(pady=20)
+        self.submit_button.pack(pady=25)
 
     def toggle_password(self):
         """Toggle visibility of password in the password entry."""

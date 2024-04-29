@@ -1,8 +1,8 @@
 """Tkinter GUI for user dashboard."""
 
-from tkinter import Frame, Label, Button, Toplevel
+from tkinter import Frame, Label, Button
 # from ui.my_habits_frame import MyHabits
-from ui.sport_events_frame import SportEvents
+from ui.sport_events_frame import SportEventsFrame
 
 
 class DashboardFrame(Frame):
@@ -23,30 +23,40 @@ class DashboardFrame(Frame):
         # Configure grid row weights to make the sidebar expand vertically
         self.grid_rowconfigure(0, weight=1)
 
+    def show_dashboard(self):
+        """Show the dashboard frame again."""
+        # Remove the sport events frame
+        self.sport_events_frame.grid_remove()
+
+        # Show the dashboard frame
+        self.master.grid()
+
     def create_sidebar(self):
         """Create the sidebar for the dashboard."""
         # Create the sidebar frame
-        sidebar_frame = Frame(self, bg="#111D4A")
-        sidebar_frame.grid(row=0, column=0, sticky='nswe', rowspan=2)
+        self.sidebar_frame = Frame(self.master, bg="#111D4A")
+        self.sidebar_frame.grid(row=0, column=0, rowspan=2, sticky="nws")
 
         # Create and add buttons to the sidebar
-        self.profile_button = Button(sidebar_frame, text="Profile",
-                                     bg="#111D4A", bd=0)
+        self.profile_button = Button(self.sidebar_frame, text="Profile",
+                                     bg="#111D4A", bd=0, cursor="hand2")
         self.profile_button.grid(row=0, column=0, sticky='ew',
                                  padx=10, pady=10)
 
-        self.tasks_button = Button(sidebar_frame, text="My Habits",
-                                   bg="#111D4A", bd=0)
+        self.tasks_button = Button(self.sidebar_frame, text="My Habits",
+                                   bg="#111D4A", bd=0, cursor="hand2")
         self.tasks_button.grid(row=1, column=0, sticky='ew', padx=10, pady=10)
 
-        self.sport_events_button = Button(sidebar_frame, text="Sport Events",
+        self.sport_events_button = Button(self.sidebar_frame,
+                                          text="Sport Events",
                                           bg="#111D4A", bd=0,
-                                          command=self.open_sport_events)
+                                          command=self.open_sport_events,
+                                          cursor="hand2")
         self.sport_events_button.grid(row=2, column=0, sticky='ew',
                                       padx=10, pady=10)
 
-        self.discover_button = Button(sidebar_frame, text="Discover",
-                                      bg="#111D4A", bd=0)
+        self.discover_button = Button(self.sidebar_frame, text="Discover",
+                                      bg="#111D4A", bd=0, cursor="hand2")
         self.discover_button.grid(row=3, column=0, sticky='ew',
                                   padx=10, pady=10)
 
@@ -61,13 +71,17 @@ class DashboardFrame(Frame):
         # my_habits_frame = MyHabits(self).grid(row=1, column=1, sticky="ew")
 
     def open_sport_events(self):
-        """Open the Sport Events window."""
-        # Create a new window for Sport Events using Toplevel
-        sport_events_window = Toplevel(self)
-        sport_events_window.title("Sport Events")
-        sport_events_window.geometry("490x300")
-        # Instantiate the SportEvents class in the new window
-        SportEvents(sport_events_window)
+        """Open the Sport Events frame."""
+        # Remove the dashboard frame
+        self.grid_remove()
 
-        # Main loop for the new window
-        SportEvents.mainloop()
+        # Instantiate the SportEventsFrame class
+        self.sport_events_frame = SportEventsFrame(self.master)
+
+        # Configure row and column weights of the main window
+        self.master.grid_rowconfigure(0, weight=200)
+
+        # Add the sport events frame to the window
+        self.sport_events_frame.grid(row=0, column=0, sticky="news")
+
+        
