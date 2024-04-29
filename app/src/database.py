@@ -4,7 +4,9 @@ import pymysql
 
 class Database:
     """Database class to interact with the database."""
+
     def __init__(self):
+        """Initialize the database connection."""
         self.__host = "localhost"
         self.__user = "root"
         self.__password = "wellnessmate1234"
@@ -90,7 +92,8 @@ class Database:
     def check_user_existance(self, username, password):
         """Check if the user exists in the database."""
         try:
-            self.cur.execute("SELECT * FROM login WHERE user = %s AND pass = %s", (username, password))
+            self.cur.execute("SELECT * FROM login WHERE " +
+                             "user = %s AND pass = %s", (username, password))
             self.db.commit()
             return self.cur.fetchone()
 
@@ -113,7 +116,8 @@ class Database:
     def create_account(self, username, password):
         """Create a new account in the database."""
         try:
-            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)", (username, password))
+            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)",
+                             (username, password))
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not create account.")
