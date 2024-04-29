@@ -47,7 +47,7 @@ class LoginFrame(Frame):
         self.show_pass_button.grid(row=1, column=1, sticky='ew', padx=5)
 
         # Create a button to submit data
-        self.submit_button = Button(self, text="Login", font=("Helvetica", 18), fg="#2A2A28", bg="#45B9AC", highlightbackground="#F3F1E7", relief="solid", highlightthickness=0, borderwidth=0, padx=20, pady=10, cursor="hand2", command=self.submit)
+        self.submit_button = Button(self, text="Login", font=("Helvetica", 18), fg="#2A2A28", bg="#45B9AC", highlightbackground="#F3F1E7", relief="solid", highlightthickness=0, borderwidth=0, padx=20, pady=10, cursor="hand2", command=self.login)
         self.submit_button.grid(row=3, column=0, sticky='w', pady=20)
 
     def toggle_password(self):
@@ -62,7 +62,7 @@ class LoginFrame(Frame):
             self.pass_entry.configure(show="*")
             self.show_pass_button.configure(image=self.show_pass_image)
 
-    def submit(self):
+    def login(self):
         """Submit the data to the database."""
         username = self.user_entry.get()
         password = self.pass_entry.get()
