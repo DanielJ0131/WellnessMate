@@ -1,4 +1,5 @@
 """Database integration methods."""
+
 import pymysql
 
 
@@ -12,9 +13,7 @@ class Database:
         self.__password = "wellnessmate1234"
         try:
             self.server = pymysql.connect(
-                host=self.__host,
-                user=self.__user,
-                password=self.__password
+                host=self.__host, user=self.__user, password=self.__password
             )
             self.create_database()  # Create database if it does not exist
             self.server.close()
@@ -22,7 +21,7 @@ class Database:
                 host=self.__host,
                 user=self.__user,
                 password=self.__password,
-                database="wm_db"
+                database="wm_db",
             )
             self.cur = self.db.cursor()
             self.create_tables()  # Create tables if they do not exist
@@ -32,10 +31,12 @@ class Database:
     def create_database(self):
         """Create the database if it does not exist."""
         try:
-            self.server.cursor().execute("""
+            self.server.cursor().execute(
+                """
                 CREATE SCHEMA IF NOT EXISTS `wm_db`
                 DEFAULT CHARACTER SET utf8;
-            """)
+            """
+            )
             self.server.commit()
         except pymysql.Error:
             print("Error: Could not create database.")
@@ -43,7 +44,8 @@ class Database:
     def create_tables(self):
         """Create tables in the database."""
         try:
-            self.cur.execute("""
+            self.cur.execute(
+                """
                 CREATE TABLE IF NOT EXISTS `wm_db`.`login` (
                     `idlogin` INT NOT NULL AUTO_INCREMENT,
                     `user` VARCHAR(45) NOT NULL,
@@ -52,8 +54,10 @@ class Database:
                     UNIQUE INDEX `idlogin_UNIQUE` (`idlogin` ASC) VISIBLE,
                     UNIQUE INDEX `user_UNIQUE` (`user` ASC) VISIBLE)
                 ENGINE = InnoDB;
-            """)
-            self.cur.execute("""
+            """
+            )
+            self.cur.execute(
+                """
                 CREATE TABLE IF NOT EXISTS `wm_db`.`habit` (
                     `idhabit` INT NOT NULL AUTO_INCREMENT,
                     `name` VARCHAR(45) NOT NULL,
@@ -69,7 +73,8 @@ class Database:
                         ON DELETE NO ACTION
                         ON UPDATE NO ACTION)
                 ENGINE = InnoDB;
-            """)
+            """
+            )
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not create tables.")
@@ -92,8 +97,10 @@ class Database:
     def check_user_existance(self, username, password):
         """Check if the user exists in the database."""
         try:
-            self.cur.execute("SELECT * FROM login WHERE " +
-                             "user = %s AND pass = %s", (username, password))
+            self.cur.execute(
+                "SELECT * FROM login WHERE " + "user = %s AND pass = %s",
+                (username, password),
+            )
             self.db.commit()
             return self.cur.fetchone()
 
@@ -116,8 +123,10 @@ class Database:
     def create_account(self, username, password):
         """Create a new account in the database."""
         try:
-            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)",
-                             (username, password))
+            self.cur.execute(
+                "INSERT INTO login(user, pass) values(%s, %s)",
+                (username, password)
+            )
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not create account.")
@@ -145,9 +154,11 @@ class Database:
     def add_habit(self, habit_name, user_id):
         """Add a habit to the database."""
         try:
-            self.cur.execute("INSERT INTO habit(name, frequency," +
-                             "login_idlogin) values(%s, %s, %s)",
-                             (habit_name, 0, user_id))
+            self.cur.execute(
+                "INSERT INTO habit(name, frequency,"
+                + "login_idlogin) values(%s, %s, %s)",
+                (habit_name, 0, user_id),
+            )
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not add habit to the database.")
@@ -163,8 +174,10 @@ class Database:
     def edit_habit(self, habit_id, habit_name):
         """Edit a habit in the database."""
         try:
-            self.cur.execute("UPDATE habit SET name=%s WHERE idhabit=%s",
-                             (habit_name, habit_id))
+            self.cur.execute(
+                "UPDATE habit SET name=%s WHERE idhabit=%s",
+                (habit_name, habit_id)
+            )
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not update habit in the database.")

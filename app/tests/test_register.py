@@ -63,7 +63,7 @@ class TestRegisterFrame(unittest.TestCase):
         self.RegisterFrame.user_entry.insert(0, "test")
         self.RegisterFrame.pass_entry.insert(0, "test")
         self.RegisterFrame.confirm_pass_entry.insert(0, "test")
-        with patch('app.ui.register_frame.messagebox.showinfo'):
+        with patch("app.ui.register_frame.messagebox.showinfo"):
             self.RegisterFrame.create_account()
 
         # Assert that a user has been created
@@ -74,5 +74,5 @@ class TestRegisterFrame(unittest.TestCase):
         self.db.delete_account("test")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

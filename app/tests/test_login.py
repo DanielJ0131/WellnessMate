@@ -49,11 +49,14 @@ class TestLoginFrame(unittest.TestCase):
         password = "password123"
         self.LoginFrame.user_entry.insert(0, username)
         self.LoginFrame.pass_entry.insert(0, password)
-        with patch('app.ui.login_frame.messagebox.showerror'), \
-             patch('app.src.database.Database.check_username_uniqueness'):
+        with patch("app.ui.login_frame.messagebox.showerror"), patch(
+            "app.src.database.Database.check_username_uniqueness"
+        ):
             self.LoginFrame.login()
-            assert self.LoginFrame.user_entry.get() == "user1" \
+            assert (
+                self.LoginFrame.user_entry.get() == "user1"
                 and self.LoginFrame.pass_entry.get() == "password123"
+            )
 
     # Test case for unsuccessful login, no username
     def test_nouser_login(self):
@@ -62,8 +65,9 @@ class TestLoginFrame(unittest.TestCase):
         password = "password123"
         self.LoginFrame.user_entry.insert(0, username)
         self.LoginFrame.pass_entry.insert(0, password)
-        with patch('app.ui.login_frame.messagebox.showerror'), \
-             patch('app.src.database.Database.check_username_uniqueness'):
+        with patch("app.ui.login_frame.messagebox.showerror"), patch(
+            "app.src.database.Database.check_username_uniqueness"
+        ):
             self.LoginFrame.login()
         assert self.LoginFrame.user_entry.get() == ""
         assert self.LoginFrame.pass_entry.get() == "password123"
@@ -75,8 +79,9 @@ class TestLoginFrame(unittest.TestCase):
         password = ""
         self.LoginFrame.user_entry.insert(0, username)
         self.LoginFrame.pass_entry.insert(0, password)
-        with patch('app.ui.login_frame.messagebox.showerror'), \
-             patch('app.src.database.Database.check_username_uniqueness'):
+        with patch("app.ui.login_frame.messagebox.showerror"), patch(
+            "app.src.database.Database.check_username_uniqueness"
+        ):
             self.LoginFrame.login()
         assert self.LoginFrame.user_entry.get() == "user1"
         assert self.LoginFrame.pass_entry.get() == ""
@@ -88,12 +93,13 @@ class TestLoginFrame(unittest.TestCase):
         password = ""
         self.LoginFrame.user_entry.insert(0, username)
         self.LoginFrame.pass_entry.insert(0, password)
-        with patch('app.ui.login_frame.messagebox.showerror'), \
-             patch('app.src.database.Database.check_username_uniqueness'):
+        with patch("app.ui.login_frame.messagebox.showerror"), patch(
+            "app.src.database.Database.check_username_uniqueness"
+        ):
             self.LoginFrame.login()
         assert self.LoginFrame.user_entry.get() == ""
         assert self.LoginFrame.pass_entry.get() == ""
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

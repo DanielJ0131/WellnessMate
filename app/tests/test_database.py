@@ -63,5 +63,5 @@ class TestDatabase(unittest.TestCase):
         self.db.commit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
