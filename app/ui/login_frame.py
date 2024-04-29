@@ -12,10 +12,8 @@ class LoginFrame(Frame):
         self.master = master
         self.main_ui = main_ui
         self.db = db
-        self.show_pass_image = PhotoImage(file="app/assets/" +
-                                          "show_pass.png").subsample(25, 25)
-        self.hide_pass_image = PhotoImage(file="app/assets/" +
-                                          "hide_pass.png").subsample(25, 25)
+        self.show_pass_image = PhotoImage(file="app/assets/" + "show_pass.png").subsample(25, 25)
+        self.hide_pass_image = PhotoImage(file="app/assets/" + "hide_pass.png").subsample(25, 25)
         self.create_widgets()
 
     def create_widgets(self):
@@ -72,8 +70,6 @@ class LoginFrame(Frame):
             # Check if user exists in the database
             user_exists = self.db.check_user_existance(username, password)
             if user_exists:
-                messagebox.showinfo("Success", "Login successful!")
-                #find user id
                 user_id = self.db.get_user_id(username)
                 self.main_ui.show_dashboard_frame(username, user_id, self.db)
             else:
