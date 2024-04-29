@@ -50,21 +50,33 @@ class DashboardFrame(Frame):
 
         # Create and add buttons to the sidebar
 
-        self.my_habits_button = Button(self.nav_frame, text="My Habits", bg="#111D4A", bd=0, command=lambda:self.mount_my_habits(), cursor="hand2",
-                                     fg="#CCCCCC")
-        self.my_habits_button.grid(row=1, column=0, sticky='ew', padx=10, pady=10)
+        self.my_habits_button = Button(self.nav_frame, text="My Habits",
+                                       bg="#111D4A", bd=0,
+                                       command=lambda: self.mount_my_habits(),
+                                       cursor="hand2",
+                                       fg="#CCCCCC")
+        self.my_habits_button.grid(row=1, column=0, sticky='ew',
+                                   padx=10, pady=10)
 
-        self.sport_events_button = Button(self.nav_frame, text="Sport Events", bg="#111D4A", bd=0, command=lambda:self.open_sport_events, cursor="hand2",
-                                     fg="#CCCCCC")
-        self.sport_events_button.grid(row=2, column=0, sticky='ew', padx=10, pady=10)
+        self.sport_events_button = Button(self.nav_frame, text="Sport Events",
+                                          bg="#111D4A", bd=0,
+                                          command=self.open_sport_events,
+                                          cursor="hand2",
+                                          fg="#CCCCCC")
+        self.sport_events_button.grid(row=2, column=0, sticky='ew',
+                                      padx=10, pady=10)
 
-        self.discover_button = Button(self.nav_frame, text="Discover", bg="#111D4A", bd=0, cursor="hand2",
-                                     fg="#CCCCCC")
-        self.discover_button.grid(row=3, column=0, sticky='ew', padx=10, pady=10)
+        self.discover_button = Button(self.nav_frame, text="Discover",
+                                      bg="#111D4A", bd=0, cursor="hand2",
+                                      fg="#CCCCCC")
+        self.discover_button.grid(row=3, column=0, sticky='ew',
+                                  padx=10, pady=10)
 
-        self.profile_button = Button(self.nav_frame, text="Profile", bg="#111D4A", bd=0, cursor="hand2",
+        self.profile_button = Button(self.nav_frame, text="Profile",
+                                     bg="#111D4A", bd=0, cursor="hand2",
                                      fg="#CCCCCC")
-        self.profile_button.grid(row=0, column=0, sticky='ew', padx=10, pady=10)
+        self.profile_button.grid(row=0, column=0, sticky='ew',
+                                 padx=10, pady=10)
 
     def mount_my_habits(self):
         """Mount the My Habits frame on the dashboard."""
@@ -73,7 +85,7 @@ class DashboardFrame(Frame):
         welcome_label = Label(self.content_frame, text="Welcome, " +
                               f"{self.username}",
                               font=("Helvetica", 26))
-        welcome_label.grid(row=0, column=1, sticky='ew', padx=512, pady=10)
+        welcome_label.grid(row=0, column=1, sticky='ew', padx=10, pady=10)
         my_habits_frame = MyHabits(self.content_frame, self.db, self.user_id)
         my_habits_frame.grid(row=1, column=1, sticky="ew")
 
@@ -86,6 +98,6 @@ class DashboardFrame(Frame):
         self.sport_events_frame = SportEventsFrame(self.master)
                                                                      
         # Configure row and column weights of the main window
-        #self.master.grid_rowconfigure(0, weight=200)
+
 
         
