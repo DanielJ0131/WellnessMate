@@ -116,10 +116,30 @@ class Database:
     def create_account(self, username, password):
         """Create a new account in the database."""
         try:
-            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)", (username, password))
+            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)",
+                             (username, password))
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not create account.")
+
+    # Function 1 to delete account we can test the database in test_database.py
+    def delete_account(self, username):
+        """Delete an account from the database."""
+        try:
+            self.cur.execute("DELETE FROM login WHERE user=%s", (username))
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not delete account.")
+
+    # Function 2 to check username we can test the database in test_database.py
+    def check_username(self, username):
+        """Check if the username exists in the database."""
+        try:
+            self.cur.execute("SELECT * FROM login WHERE user=%s", (username))
+            self.db.commit()
+            return self.cur.fetchone()
+        except pymysql.Error:
+            print("Error: Could not check username.")
 
     def commit(self):
         """Commit changes to the database."""

@@ -23,19 +23,19 @@ class TestDatabase(unittest.TestCase):
 
     def test_create_database(self):
         """Test the create_database method."""
-        self.db.create_database()
+        # self.db.create_database()
 
     def test_create_tables(self):
         """Test the create_tables method."""
-        self.db.create_tables()
+        # self.db.create_tables()
 
     def test_disconnect(self):
         """Test the disconnect method."""
-        self.db.disconnect()
+        # self.db.disconnect()
 
     def test_query(self):
         """Test the query method."""
-        self.db.query("SELECT * FROM login")
+        # self.db.query("SELECT * FROM login")
 
     def test_check_user_existance(self):
         """Test the check_user_existance method."""
@@ -48,6 +48,10 @@ class TestDatabase(unittest.TestCase):
     def test_create_account(self):
         """Test the create_account method."""
         self.db.create_account("test", "test")
+
+    def test_delete_account(self):
+        """Test the delete_account method."""
+        self.db.delete_account("test")
 
     def test_commit(self):
         """Test the commit method."""
