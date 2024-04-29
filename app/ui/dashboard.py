@@ -1,9 +1,8 @@
 """Tkinter GUI for user dashboard."""
 
-from tkinter import Frame, Label, Button
-# from ui.my_habits_frame import MyHabits
-from ui.sport_events_frame import SportEventsFrame
-
+from tkinter import Frame, Label, Button, Toplevel
+from ui.my_habits_frame import MyHabits
+from ui.sport_events_frame import SportEvents
 
 class DashboardFrame(Frame):
     """Represent the user dashboard in the application."""
