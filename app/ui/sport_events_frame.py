@@ -1,145 +1,117 @@
-"""Sport events navigation module."""
+"""Sport events module."""
 
-from tkinter import Frame, Button, Tk, Label
+from tkinter import Frame, Button, Label, Tk
 
 
-class SportEvents:
+class SportEventsFrame(Frame):
     """Sport event class for the application."""
 
-    def __init__(self, parent=None):
+    def __init__(self, master):
         """Initialize the class."""
-        if parent is None:
-            self.window = Tk()
-        else:
-            self.window = parent
+        self.master = master
+        self.create_main_container()
+        self.create_widgets()
 
-        # Create main container
-        container = Frame(parent)
-        container.pack(expand=True, fill="both")
+    def create_main_container(self):
+        """Create the main container."""
+        self.container = Frame(self.master, bg="#82AACF")  # Set background color
+        self.container.grid(row=0, column=1, sticky='news')   # Adjust column 
+        self.container.grid_columnconfigure(1, weight=1, minsize=240)  # Configure column weight
+        self.container.grid_rowconfigure(0, weight=1)  # Configure row weight
 
-        # Container style
-        container.style = {"width": "100%", "height": "100%",
-                           "position": "relative"}
+    def create_widgets(self):
+        """Create all widgets."""
+        self.create_sporting_events_label()
+        self.create_open_to_everyone_button()
+        self.create_national_leagues_button()
+        self.create_elites_only_button()
+        self.create_return_button()
 
-        # Main container
-        main_container = Frame(container)
-        main_container.pack(expand=True, fill="both")
-
-        # Defining/customizing widget
-        def create_widget(
-            parent, width, height, left, top, background,
-            text=None, command=None
-        ):
-            """Create parameters for widget."""
-            if command:
-                button = Button(
-                    parent,
-                    text=text,
-                    bg=background,
-                    fg="white",
-                    font=("Inter", 13, "bold"),
-                    justify="center",
-                    wraplength=width,
-                    command=command,
-                    cursor="hand2",
-                )
-                button.place(x=left, y=top, anchor="nw", width=width,
-                             height=height)
-            else:
-                widget = Frame(parent, width=width, height=height,
-                               bg=background)
-                widget.place(x=left, y=top, anchor="nw")
-                if text:
-                    label = Label(
-                        widget,
-                        text=text,
-                        bg=background,
-                        fg="white",
-                        font=("Inter", 14, "bold"),
-                        justify="center",
-                        wraplength=width,
-                    )
-                    label.pack(expand=True, fill="both", padx=10, pady=10)
-
-        def open_to_everyone():
-            """Display specific sport events."""
-            # >>> This is only saved temporary to later be put in database <<<
-            print(" ")
-
-        def return_function():
-            """Return."""
-            # pass
-
-        def national_lct_function():
-            """Display sport leagues, cups and tours."""
-            # >>> This is only saved temporary to later be put in database <<<
-
-            # Allsvenskan — the top-level men's football league
-            # Damallsvenskan — the top-level women's football league
-            # Swedish Hockey League — the top-level ice hockey league
-            # Elitserien — the top-level bandy league
-            # Elitserien — the top-level baseball league
-            # Elitserien — the top-level men's handball league
-            # Elitserien — the top-level women's handball league
-            # Elitserien — the top-level speedway league
-            # Svenska Basketligan - the top-level men's basketball league
-            # Basketligan Dam - the top-level women's basketball league
-            # Svenska Cupen - the main Swedish football cup
-            # Swedish Golf Tour - the domestic professional golf tour
-            # Swedish Super League — the top-level men's floorball league
-            # Swedish Super League — the top-level women's floorball league
-            # Swedish Touring Car Championship
-            print(" ")
-
-        def elites_only_function():
-            """Display event on elite level."""
-            # >>> This is only saved temporary to later be put in database <<<
-            print(" ")
-
-        create_widget(main_container, 490, 300, 0, 0, "#82AACF")
-        create_widget(
-            main_container, 267, 17, 116, 24, "#1165A1",
-            "Sporting events in Sweden"
+    def create_button(self, text, command):
+        """Create a button."""
+        button = Button(
+            self.container,
+            text=text,
+            bg="#1165A1",
+            fg="white",
+            font=("Inter", 15, "bold"),
+            justify="center",
+            wraplength=400,
+            command=command,
+            cursor="hand2"
         )
-        create_widget(
-            main_container,
-            293,
-            35,
-            103,
-            95,
-            "#1165A1",
-            "Open to everyone",
-            command=open_to_everyone,
-        )
-        create_widget(
-            main_container,
-            106,
-            22,
-            192,
-            260,
-            "#1165A1",
-            "Return",
-            command=return_function,
-        )
-        create_widget(
-            main_container,
-            293,
-            35,
-            103,
-            205,
-            "#1165A1",
-            "National leagues, cups and tours",
-            command=national_lct_function,
-        )
-        create_widget(
-            main_container,
-            293,
-            35,
-            103,
-            150,
-            "#1165A1",
-            "Elites only",
-            command=elites_only_function,
-        )
+        return button
 
-        self.window.mainloop()
+    def create_label(self, text):
+        """Create a label."""
+        label = Label(
+            self.container,
+            text=text,
+            bg="#1165A1",
+            fg="white",
+            font=("Inter", 25, "bold"),
+            justify="center",
+            wraplength=550,
+            cursor="arrow",
+        )
+        return label
+
+    def create_sporting_events_label(self):
+        """Create Sporting Events label."""
+        self.sporting_events_label = self.create_label("Sporting events in Sweden")
+        self.sporting_events_label.grid(row=0, column=0, padx=580, pady=50,
+                                        sticky="n")
+
+    def create_open_to_everyone_button(self):
+        """Create Open to Everyone button."""
+        self.open_to_everyone_button = self.create_button("Open to everyone",
+                                                          self.open_to_everyone)
+        self.open_to_everyone_button.grid(row=1, column=0,
+                                          padx=580, pady=10, sticky="ew")
+
+    def create_national_leagues_button(self):
+        """Create National Leagues button."""
+        self.national_leagues_button = self.create_button("National leagues, cups and tours",
+                                                          self.national_lct_function)
+        self.national_leagues_button.grid(row=2, column=0,
+                                          padx=580, pady=10, sticky="ew")
+
+    def create_elites_only_button(self):
+        """Create Elites Only button."""
+        self.elites_only_button = self.create_button("Elites only",
+                                                     self.elites_only_function)
+        self.elites_only_button.grid(row=3, column=0,
+                                     padx=580, pady=10, sticky="ew")
+
+    def create_return_button(self):
+        """Create Return button."""
+        self.return_button = self.create_button("Return",
+                                                self.return_function)
+        self.return_button.grid(row=4, column=0, padx=580, pady=150)
+
+    def open_to_everyone(self):
+        """Display specific sport events."""
+        print("Open to everyone button clicked!")
+
+    def national_lct_function(self):
+        """Display sport leagues, cups and tours."""
+        print("National leagues, cups and tours button clicked!")
+
+    def elites_only_function(self):
+        """Display event on elite level."""
+        print("Elites only button clicked!")
+
+    def return_function(self):
+        """Return to the dashboard."""
+        self.grid_remove()
+        # Show the DashboardFrame again
+        self.master.show_dashboard()
+
+
+# if __name__ == "__main__":
+#     root = Tk()
+#     root.geometry("1024x700")
+#     root.grid_rowconfigure(0, weight=1)  # Configure row weight for root window
+#     root.grid_columnconfigure(0, weight=1)  # Configure column weight for root window
+#     SportEventsFrame(root)
+#     root.mainloop()
