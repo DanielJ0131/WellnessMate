@@ -9,7 +9,7 @@ class Database:
         """Initialize the database connection."""
         self.__host = "localhost"
         self.__user = "root"
-        self.__password = "wellnessmate1234"
+        self.__password = "hyT9mon#"
         try:
             self.server = pymysql.connect(
                 host=self.__host,
@@ -100,7 +100,7 @@ class Database:
         except pymysql.Error:
             print("Error: Could not check user existence query.")
 
-    def check_username(self, username):
+    def check_username_uniqueness(self, username):
         """Check if the username already exists in the database."""
         try:
             self.cur.execute("SELECT * FROM login WHERE user=%s", (username))
@@ -116,8 +116,7 @@ class Database:
     def create_account(self, username, password):
         """Create a new account in the database."""
         try:
-            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)",
-                             (username, password))
+            self.cur.execute("INSERT INTO login(user, pass) values(%s, %s)", (username, password))
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not create account.")
