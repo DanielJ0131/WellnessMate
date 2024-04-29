@@ -44,8 +44,8 @@ class MainUI:
 
         # Right frame
         # Navigation buttons (Login and Signup)
-        nav_frame = Frame(self.right_frame, pady=20, bg="#D8B7E3")
-        nav_frame.grid(row=0, column=0, sticky="ew", padx=100)
+        nav_frame = Frame(self.right_frame, pady=20, bg="#F3F1E7")
+        nav_frame.grid(row=0, column=0, sticky="ew", padx=150)
 
         self.right_frame.grid_rowconfigure(0, weight=1)
         self.right_frame.grid_rowconfigure(1, weight=1)
@@ -57,8 +57,8 @@ class MainUI:
         register_button.grid(row=0, column=1, padx=20)
 
         # Login/Signup Container Frame
-        container_frame = Frame(self.right_frame, pady=20, bg="#D8B7E3")
-        container_frame.grid(row=1, column=0, sticky="ew", padx=100)
+        container_frame = Frame(self.right_frame, pady=20, bg="#F3F1E7")
+        container_frame.grid(row=1, column=0, sticky="ew", padx=150)
 
         self.register_frame = RegisterFrame(container_frame, self, self.db)
         self.login_frame = LoginFrame(container_frame, self, self.db)
@@ -70,12 +70,12 @@ class MainUI:
     def show_login_frame(self):
         """Show the login frame and hide signup frame."""
         self.register_frame.grid_remove()
-        self.login_frame.grid(row=1, column=0, sticky="nsew")
+        self.login_frame.grid(row=0, column=0, sticky="nsew")
 
     def show_register_frame(self):
         """Show the register frame and hide login frame."""
         self.login_frame.grid_remove()
-        self.register_frame.grid(row=1, column=0, sticky="nsew")
+        self.register_frame.grid(row=0, column=0, sticky="nsew")
 
     def show_dashboard_frame(self, user_info):
         """Hide initial frames and show the dashboard frame."""
