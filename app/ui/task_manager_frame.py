@@ -175,8 +175,9 @@ class TaskManager:
             1 for _, completed in self.tasks.items() if completed
         )
         self.active_label.config(text=f"Active Tasks: {self.active_tasks}")
-        self.completed_label.config(text="Completed Tasks: " +
-                                    f"{self.completed_tasks}")
+        self.completed_label.config(
+            text="Completed Tasks: " + f"{self.completed_tasks}"
+        )
 
 
 root = tk.Tk()

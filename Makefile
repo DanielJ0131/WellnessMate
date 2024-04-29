@@ -1,7 +1,7 @@
 #!/usr/bin/env make
 
 # Change this to be your variant of the python command
-PYTHON ?= python3 # python3 py
+PYTHON ?= python # python3 py
 
 # Print out colored action message
 MESSAGE = printf "\033[32;01m---> $(1)\033[0m\n"
@@ -55,7 +55,7 @@ run:
 #
 clean:
 	rm -f .coverage *.pyc
-	rm -rf __pycache__
+	rm -rf app/src/__pycache__ app/tests/__pycache__ app/ui/__pycache__ 
 	rm -rf htmlcov
 
 clean-doc:

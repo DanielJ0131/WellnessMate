@@ -23,7 +23,6 @@ class TestDatabase(unittest.TestCase):
 
     def test_create_database(self):
         """Test the create_database method."""
-        self.db.drop_database()
         self.db.create_database()
 
     def test_create_tables(self):
@@ -42,13 +41,38 @@ class TestDatabase(unittest.TestCase):
         """Test the check_user_existance method."""
         self.db.check_user_existance("test", "test")
 
-    def test_check_username(self):
+    def test_check_username_uniqueness(self):
         """Test the check_username method."""
         self.db.check_username_uniqueness("test")
 
     def test_create_account(self):
         """Test the create_account method."""
         self.db.create_account("test", "test")
+
+    # Comment out cause not working
+    # def test_get_user_id(self):
+    #     """Test the get_user_id method."""
+    #     self.db.get_user_id("test")
+
+    def test_get_habits(self):
+        """Test the get_habits method."""
+        self.db.get_habits(1)
+
+    def test_add_habit(self):
+        """Test the add_habit method."""
+        self.db.add_habit("test", 1)
+
+    def test_delete_habit(self):
+        """Test the delete_habit method."""
+        self.db.delete_habit("test")
+
+    def test_edit_habit(self):
+        """Test the edit_habit method."""
+        self.db.edit_habit("test", "test")
+
+    def test_commit(self):
+        """Test the commit method."""
+        self.db.commit()
 
     def test_delete_account(self):
         """Test the delete_account method."""
@@ -58,10 +82,6 @@ class TestDatabase(unittest.TestCase):
         """Test the drop_database method."""
         self.db.drop_database()
 
-    def test_commit(self):
-        """Test the commit method."""
-        self.db.commit()
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

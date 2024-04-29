@@ -1,4 +1,5 @@
 """Main module to launch the application."""
+
 from tkinter import Tk
 from ui.main_ui import MainUI
 from src.database import Database
