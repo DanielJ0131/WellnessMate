@@ -20,7 +20,7 @@ class MainUI:
     def load_app(self):
         """Load the application UI."""
 
-        # Create main frames frame
+        # Create main frames
         self.left_frame = Frame(self.master, bg="#D8B7E3")
         self.left_frame.grid(row=0, column=0, sticky='nswe', rowspan=2)
         self.right_frame = Frame(self.master, bg="#F3F1E7")
@@ -82,4 +82,4 @@ class MainUI:
         self.left_frame.grid_remove()
         self.right_frame.grid_remove()
         self.dashboard_frame = DashboardFrame(self.master, user_info)
-        self.dashboard_frame.grid(row=0, column=0, columnspan=2, rowspan=2, sticky="nsew")
+        self.dashboard_frame.grid(row=0, column=0, sticky="nsew")
