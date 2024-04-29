@@ -1,5 +1,5 @@
 """Sport events module."""
-from tkinter import Frame, Button, Label
+from tkinter import Frame, Button, Label, messagebox
 
 
 class SportEventsFrame(Frame):
@@ -40,9 +40,10 @@ class SportEventsFrame(Frame):
             fg="white",
             font=("Inter", 15, "bold"),
             justify="center",
-            wraplength=400,
+            wraplength=500,
             command=command,
             cursor="hand2",
+            width=40
         )
         return button
 
@@ -53,7 +54,7 @@ class SportEventsFrame(Frame):
             text=text,
             bg="#82AACF",
             fg="#F3F1E7",
-            font=("Helvetica", 30, "bold"),
+            font=("Helvetica", 25, "bold"),
             justify="center",
             wraplength=550,
             cursor="arrow",
@@ -62,9 +63,9 @@ class SportEventsFrame(Frame):
 
     def create_sporting_events_label(self):
         """Create Sporting Events label."""
-        self.sporting_events_label = self.create_label("Sporting events \
+        self.sporting_events_label = self.create_label("Sporting Events \
                                                         in Sweden")
-        self.sporting_events_label.grid(row=0, column=0, padx=580,
+        self.sporting_events_label.grid(row=0, column=0, padx=480,
                                         pady=50, sticky="n")
 
     def create_open_to_everyone_button(self):
@@ -74,7 +75,7 @@ class SportEventsFrame(Frame):
             "Open to everyone", self.open_to_everyone
         )
         self.open_to_everyone_button.grid(
-            row=1, column=0, padx=580, pady=20, sticky="ew"
+            row=1, column=0, padx=500, pady=20, sticky="ew"
         )
 
     def create_national_leagues_button(self):
@@ -83,7 +84,7 @@ class SportEventsFrame(Frame):
             "National leagues, cups and tours", self.national_lct_function
         )
         self.national_leagues_button.grid(
-            row=2, column=0, padx=580, pady=20, sticky="ew"
+            row=2, column=0, padx=500, pady=20, sticky="ew"
         )
 
     def create_elites_only_button(self):
@@ -91,7 +92,7 @@ class SportEventsFrame(Frame):
         self.elites_only_button = self.create_button(
             "Elites only", self.elites_only_function
         )
-        self.elites_only_button.grid(row=3, column=0, padx=580,
+        self.elites_only_button.grid(row=3, column=0, padx=500,
                                      pady=20, sticky="ew")
 
     # def create_return_button(self):
@@ -103,14 +104,18 @@ class SportEventsFrame(Frame):
     def open_to_everyone(self):
         """Display specific sport events."""
         print("Open to everyone button clicked!")
+        messagebox.showinfo("Open Events", "test")
 
     def national_lct_function(self):
         """Display sport leagues, cups and tours."""
         print("National leagues, cups and tours button clicked!")
+        messagebox.showinfo("National leagues, cups and tours", "test")
 
     def elites_only_function(self):
         """Display event on elite level."""
         print("Elites only button clicked!")
+        messagebox.showinfo("Elite Events", "test")
+
 
     # def return_function(self):
     #     """Return to the dashboard."""

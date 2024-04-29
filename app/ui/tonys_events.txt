@@ -35,3 +35,20 @@ Elites Only
             # Swedish Rally — rally in Värmland
             # Swedish Short Course Swimming Championships
             # Swedish Swimming Championships
+
+National leagues, cups and tours
+            Allsvenskan — the top-level men's football league
+            Damallsvenskan — the top-level women's football league
+            Swedish Hockey League — the top-level ice hockey league
+            Elitserien — the top-level bandy league
+            Elitserien — the top-level baseball league
+            Elitserien — the top-level men's handball league
+            Elitserien — the top-level women's handball league
+            Elitserien — the top-level speedway league
+            Svenska Basketligan - the top-level men's basketball league
+            Basketligan Dam - the top-level women's basketball league
+            Svenska Cupen - the main Swedish football cup
+            Swedish Golf Tour - the domestic professional golf tour
+            Swedish Super League — the top-level men's floorball league
+            Swedish Super League — the top-level women's floorball league
+            Swedish Touring Car Championship
