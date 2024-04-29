@@ -1,5 +1,4 @@
 """Sport events module."""
-
 from tkinter import Frame, Button, Label
 
 
@@ -21,7 +20,8 @@ class SportEventsFrame(Frame):
         self.container.grid_columnconfigure(
             1, weight=1, minsize=240
         )  # Configure column weight
-        self.container.grid_rowconfigure(0, weight=1)  # Configure row weight
+        self.container.grid_rowconfigure(0, weight=0, minsize=400)  # Configure row 0 weight
+        self.container.grid_rowconfigure(4, weight=1, minsize=500)  # Configure row 4 weight
 
     def create_widgets(self):
         """Create all widgets."""
@@ -51,9 +51,9 @@ class SportEventsFrame(Frame):
         label = Label(
             self.container,
             text=text,
-            bg="#1165A1",
-            fg="white",
-            font=("Inter", 25, "bold"),
+            bg="#82AACF",
+            fg="#F3F1E7",
+            font=("Helvetica", 30, "bold"),
             justify="center",
             wraplength=550,
             cursor="arrow",
@@ -69,11 +69,12 @@ class SportEventsFrame(Frame):
 
     def create_open_to_everyone_button(self):
         """Create Open to Everyone button."""
+
         self.open_to_everyone_button = self.create_button(
             "Open to everyone", self.open_to_everyone
         )
         self.open_to_everyone_button.grid(
-            row=1, column=0, padx=580, pady=10, sticky="ew"
+            row=1, column=0, padx=580, pady=20, sticky="ew"
         )
 
     def create_national_leagues_button(self):
@@ -82,7 +83,7 @@ class SportEventsFrame(Frame):
             "National leagues, cups and tours", self.national_lct_function
         )
         self.national_leagues_button.grid(
-            row=2, column=0, padx=580, pady=10, sticky="ew"
+            row=2, column=0, padx=580, pady=20, sticky="ew"
         )
 
     def create_elites_only_button(self):
@@ -91,7 +92,7 @@ class SportEventsFrame(Frame):
             "Elites only", self.elites_only_function
         )
         self.elites_only_button.grid(row=3, column=0, padx=580,
-                                     pady=10, sticky="ew")
+                                     pady=20, sticky="ew")
 
     # def create_return_button(self):
     #     """Create Return button."""
@@ -116,12 +117,3 @@ class SportEventsFrame(Frame):
     #     self.grid_remove()
     #     # Show the DashboardFrame again
     #     self.master.show_dashboard()
-
-
-# if __name__ == "__main__":
-#     root = Tk()
-#     root.geometry("1024x700")
-#     root.grid_rowconfigure(0, weight=1)  # Configure row weight
-#     root.grid_columnconfigure(0, weight=1)  # Configure column weight
-#     SportEventsFrame(root)
-#     root.mainloop()
