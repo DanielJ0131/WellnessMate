@@ -55,7 +55,7 @@ run:
 #
 clean:
 	rm -f .coverage *.pyc
-	rm -rf __pycache__
+	rm -rf app/src/__pycache__ app/tests/__pycache__ app/ui/__pycache__ 
 	rm -rf htmlcov
 
 clean-doc:
