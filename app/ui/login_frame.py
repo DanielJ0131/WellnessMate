@@ -74,12 +74,9 @@ class LoginFrame(Frame):
             messagebox.showerror("Error", "Password is required!")
         else:
             # Check if user exists in the database
-            user = self.db.check_user_existance(username, password)
-            if user:
+            user_exists = self.db.check_user_existance(username, password)
+            if user_exists:
                 messagebox.showinfo("Success", "Login successful!")
                 self.main_ui.show_dashboard_frame({'username': username})
-                # Call a method in the main application to load the
-                # dashboard frame, for example:
-                # self.master.load_dashboard_frame()
             else:
                 messagebox.showerror("Error", "Invalid username or password")
