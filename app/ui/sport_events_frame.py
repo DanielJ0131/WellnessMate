@@ -25,7 +25,7 @@ class SportEventsFrame(Frame):
         self.create_open_to_everyone_button()
         self.create_national_leagues_button()
         self.create_elites_only_button()
-        self.create_return_button()
+        ##self.create_return_button()
 
     def create_button(self, text, command):
         """Create a button."""
@@ -83,11 +83,11 @@ class SportEventsFrame(Frame):
         self.elites_only_button.grid(row=3, column=0,
                                      padx=580, pady=10, sticky="ew")
 
-    def create_return_button(self):
-        """Create Return button."""
-        self.return_button = self.create_button("Return",
-                                                self.return_function)
-        self.return_button.grid(row=4, column=0, padx=580, pady=150)
+    # def create_return_button(self):
+    #     """Create Return button."""
+    #     self.return_button = self.create_button("Return",
+    #                                             self.return_function)
+    #     self.return_button.grid(row=4, column=0, padx=580, pady=150)
 
     def open_to_everyone(self):
         """Display specific sport events."""
@@ -101,11 +101,11 @@ class SportEventsFrame(Frame):
         """Display event on elite level."""
         print("Elites only button clicked!")
 
-    def return_function(self):
-        """Return to the dashboard."""
-        self.grid_remove()
-        # Show the DashboardFrame again
-        self.master.show_dashboard()
+    # def return_function(self):
+    #     """Return to the dashboard."""
+    #     self.grid_remove()
+    #     # Show the DashboardFrame again
+    #     self.master.show_dashboard()
 
 
 # if __name__ == "__main__":

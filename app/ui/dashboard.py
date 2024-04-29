@@ -1,6 +1,6 @@
 """Tkinter GUI for user dashboard."""
 
-from tkinter import Frame, Label, Button, Toplevel, PhotoImage
+from tkinter import Frame, Label, Button, PhotoImage
 from ui.my_habits_frame import MyHabits
 from ui.sport_events_frame import SportEventsFrame
 
@@ -15,11 +15,11 @@ class DashboardFrame(Frame):
         self.username = username
         self.user_id = user_id
         self.db = db
-        self.create_sidebar()
+        self.create_nav()
         self.mount_my_habits()
 
-    def create_sidebar(self):
-        """Create the sidebar for the dashboard."""
+    def create_nav(self):
+        """Create the sidebar for the dashboard with navigation buttons."""
         # Create main frames
         self.nav_frame = Frame(self.master, bg="#359C90", padx=50, pady=30)
         self.nav_frame.grid(row=0, column=0, sticky='nswe')
@@ -29,6 +29,7 @@ class DashboardFrame(Frame):
         self.master.grid_rowconfigure(0, weight=1)
         self.master.grid_columnconfigure(0, weight=0)
         self.master.grid_columnconfigure(1, weight=1)
+        self.content_frame.grid_columnconfigure(1, weight=1)
 
         # Create and add buttons to the sidebar
         self.title_label = Label(self.nav_frame, text="WellnessMate", font=("Helvetica", 30, "bold"), bg="#359C90", fg="#F3F1E7")
@@ -40,7 +41,7 @@ class DashboardFrame(Frame):
         self.my_habits_button = Button(self.nav_frame, anchor="w", text="My Habits", font=("Helvetica", 16, "bold"), fg="#2A2A28", bg="#359C90", highlightbackground="#359C90", relief="flat", highlightthickness=0, borderwidth=0, pady=10, cursor="hand2", command=lambda:self.mount_my_habits())
         self.my_habits_button.grid(row=2, column=0, sticky='w', padx=10, pady=10)
 
-        self.sport_events_button = Button(self.nav_frame, anchor="w", text="Sport Events", font=("Helvetica", 16, "bold"), fg="#2A2A28", bg="#359C90", highlightbackground="#359C90", relief="flat", highlightthickness=0, borderwidth=0, pady=10, cursor="hand2", command=lambda:self.open_sport_events)
+        self.sport_events_button = Button(self.nav_frame, anchor="w", text="Sport Events", font=("Helvetica", 16, "bold"), fg="#2A2A28", bg="#359C90", highlightbackground="#359C90", relief="flat", highlightthickness=0, borderwidth=0, pady=10, cursor="hand2", command=lambda:self.mount_sport_events())
         self.sport_events_button.grid(row=3, column=0, sticky='ew', padx=10, pady=10)
 
         self.discover_button = Button(self.nav_frame, anchor="w", text="Discover", font=("Helvetica", 16, "bold"), fg="#2A2A28", bg="#359C90", highlightbackground="#359C90", relief="flat", highlightthickness=0, borderwidth=0, pady=10, cursor="hand2")
@@ -61,22 +62,26 @@ class DashboardFrame(Frame):
 
 
     def mount_my_habits(self):
+        # Remove any existing frame in the content_frame
+        for widget in self.content_frame.winfo_children():
+            widget.destroy()
+
         """Mount the My Habits frame on the dashboard."""
-
-        my_habits_frame = MyHabits(self.content_frame, self.db, self.user_id, self.username)
-        my_habits_frame.grid(row=1, column=1, sticky="nsew")
-        self.content_frame.grid_columnconfigure(1, weight=1)
+        self.my_habits_frame = MyHabits(self.content_frame, self.db, self.user_id, self.username)
+        self.my_habits_frame.grid(row=1, column=1, sticky="nsew")
 
 
-    def open_sport_events(self):
+    def mount_sport_events(self):
+        # Remove any existing frame in the content_frame
+        for widget in self.content_frame.winfo_children():
+            widget.destroy()
+
         """Open the Sport Events frame."""
-        # Remove the dashboard frame
-        self.grid_remove()
+        self.sport_events_frame = SportEventsFrame(self.content_frame)
+        self.sport_events_frame.grid(row=1, column=1, sticky="nsew")
 
-        # Instantiate the SportEventsFrame class
-        self.sport_events_frame = SportEventsFrame(self.master)
+        
                                                                      
-        # Configure row and column weights of the main window
 
 
         
