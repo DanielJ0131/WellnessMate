@@ -90,10 +90,9 @@ class RegisterFrame(Frame):
         else:
             user = self.user_entry.get()
             password = self.pass_entry.get()
-            user_name = self.db.check_username(user)
+            user_name = self.db.check_username_uniqueness(user)
             if not user_name:
                 self.db.create_account(user, password)
                 messagebox.showinfo("Success", "Account created successfully!")
             else:
                 messagebox.showerror("Error", "Username already exists!")
-            
