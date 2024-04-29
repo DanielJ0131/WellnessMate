@@ -1,7 +1,7 @@
 """Tkinter GUI for user dashboard."""
 
 from tkinter import Frame, Label, Button, Toplevel
-# from ui.my_habits_frame import MyHabits
+from ui.my_habits_frame import MyHabits
 from ui.sport_events_frame import SportEvents
 
 
@@ -58,7 +58,8 @@ class DashboardFrame(Frame):
                               font=("Helvetica", 26))
         welcome_label.grid(row=0, column=1, sticky='ew', padx=10, pady=10)
 
-        # my_habits_frame = MyHabits(self).grid(row=1, column=1, sticky="ew")
+        my_habits_frame = MyHabits(self)
+        my_habits_frame.grid(row=1, column=1, sticky="ew")
 
     def open_sport_events(self):
         """Open the Sport Events window."""

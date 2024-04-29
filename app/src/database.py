@@ -100,7 +100,7 @@ class Database:
         except pymysql.Error:
             print("Error: Could not check user existence query.")
 
-    def check_username(self, username):
+    def check_username_uniqueness(self, username):
         """Check if the username already exists in the database."""
         try:
             self.cur.execute("SELECT * FROM login WHERE user=%s", (username))
