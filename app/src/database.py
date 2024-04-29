@@ -139,6 +139,7 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not add habit to the database.")
+
     def delete_habit(self, habit_id):
         """Delete a habit from the database."""
         try:
@@ -146,6 +147,7 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not delete habit from the database.")
+
     def edit_habit(self, habit_id, habit_name):
         """Edit a habit in the database."""
         try:
@@ -153,6 +155,7 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not update habit in the database.")
+
     def commit(self):
         """Commit changes to the database."""
         try:
