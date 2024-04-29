@@ -6,10 +6,11 @@ from tkinter import Frame, Label, Button, Entry
 class MyHabits(Frame):
     """Tkinter frame for displaying user's habits."""
 
-    def __init__(self, master):
+    def __init__(self, master, db):
         """Initialize the MyHabits frame."""
         super().__init__(master)
         self.master = master
+        self.db = db
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 

@@ -1,12 +1,12 @@
 """Tkinter GUI for user registration form."""
 
 from tkinter import Frame, Label, Entry, Button, messagebox, PhotoImage
-import pymysql
 
 
 class RegisterFrame(Frame):
     """Sign up frame for the application."""
 
+    def __init__(self, master, main_ui, db):
     def __init__(self, master, main_ui, db):
         """Init method for the RegisterFrame class."""
         super().__init__(master, bg="#F3F1EB")
@@ -89,15 +89,12 @@ class RegisterFrame(Frame):
         elif self.pass_entry.get() != self.confirm_pass_entry.get():
             messagebox.showerror("Error", "Passwords do not match!")
         else:
-            try:
-                user = self.user_entry.get()
-                password = self.pass_entry.get()
-                user_name = self.db.check_username_uniqueness(user)
-                if not user_name:
-                    self.db.create_account(user, password)
-                    messagebox.showinfo("Success",
-                                        "Account created successfully!")
-                else:
-                    messagebox.showerror("Error", "Username already exists!")
-            except pymysql.Error:
-                print("Error: Could not create account.")
+            user = self.user_entry.get()
+            password = self.pass_entry.get()
+            user_name = self.db.check_username(user)
+            if not user_name:
+                self.db.create_account(user, password)
+                messagebox.showinfo("Success", "Account created successfully!")
+            else:
+                messagebox.showerror("Error", "Username already exists!")
+            
