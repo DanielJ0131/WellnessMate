@@ -8,13 +8,14 @@ from ui.sport_events_frame import SportEventsFrame
 class DashboardFrame(Frame):
     """Represent the user dashboard in the application."""
 
-    def __init__(self, master, username, user_id, db):
+    def __init__(self, master, username, user_id, db, main_iu):
         """Init method for the DashboardFrame class."""
         super().__init__(master, bg="#F3F1EB")
         self.master = master
         self.username = username
         self.user_id = user_id
         self.db = db
+        self.main_ui = main_iu
         self.create_nav()
         self.mount_my_habits()
 
@@ -142,6 +143,23 @@ class DashboardFrame(Frame):
         )
         self.user_username_label.grid(row=0, column=1, sticky="w",
                                       padx=10, pady=20)
+        self.logout_button = Button(
+            self.user_frame,
+            anchor="w",
+            text="Log out",
+            font=("Helvetica", 14, "bold"),
+            fg="#2A2A28",
+            bg="#359C90",
+            highlightbackground="#359C90",
+            relief="flat",
+            highlightthickness=0,
+            borderwidth=0,
+            pady=10,
+            cursor="hand2",
+            command=lambda: self.main_ui.logout(),
+        )
+        self.logout_button.grid(row=1, column=0, sticky="ew",
+                                 padx=10, pady=10)
 
     def mount_my_habits(self):
         """Mount the My Habits frame on the dashboard."""
