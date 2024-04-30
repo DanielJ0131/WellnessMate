@@ -18,7 +18,7 @@ class MyHabits(Frame):
 
         welcome_label = Label(
             self,
-            text="Welcome, " + f"{self.username}" + "!",
+            text="Welcome, " + f"{self.username.capitalize()}" + "!",
             font=("Helvetica", 32),
             bg="#F3F1EB",
             fg="#2A2A28",
