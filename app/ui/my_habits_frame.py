@@ -60,7 +60,7 @@ class MyHabits(Frame):
 
         self.create_habit_button = Button(
             habit_creator_frame,
-            text="Crete habit",
+            text="Create habit",
             font=("Helvetica", 16, "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
