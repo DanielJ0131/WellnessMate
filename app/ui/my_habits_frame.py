@@ -57,10 +57,11 @@ class MyHabits(Frame):
             insertbackground="#4C4A46",
         )
         user_entry.grid(row=1, column=0, sticky="ew")
+        user_entry.focus_set()
 
         self.create_habit_button = Button(
             habit_creator_frame,
-            text="Crete habit",
+            text="Create habit",
             font=("Helvetica", 16, "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
@@ -73,7 +74,7 @@ class MyHabits(Frame):
             cursor="hand2",
             command=lambda: self.create_habit(user_entry.get()),
         )
-        self.create_habit_button.grid(row=3, column=0, sticky="w", pady=20)
+        self.create_habit_button.grid(row=2, column=0, sticky="w", pady=20)
 
     def mount_habit_list(self):
         """Mount the habit list frame."""
@@ -153,7 +154,6 @@ class MyHabits(Frame):
             )
             edit_button.grid(row=0, column=1, sticky="ew", padx=10)
 
-            # Create delete button
             delete_button = Button(
                 habit_item,
                 text="Delete",
@@ -191,4 +191,29 @@ class MyHabits(Frame):
 
     def edit_habit(self, habit_item):
         """Edit a habit item."""
-        pass
+        current_description = habit_item.grid_slaves(row=0, column=0)[0].cget("text")
+    
+        entry_widget = Entry(
+            habit_item,
+            font=("Helvetica", 16),
+            fg="#2A2A28",
+            bg="#FFFFFF",
+            relief="solid",
+            highlightthickness=5,
+            highlightbackground="#FFFFFF",
+            borderwidth=0,
+            insertbackground="#4C4A46",
+        )
+        entry_widget.insert(0, current_description)
+        entry_widget.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+        entry_widget.focus_set()
+        entry_widget.bind("<Return>", lambda event: self.save_habit_edit(habit_item, entry_widget, current_description))
+
+    def save_habit_edit(self, habit_item, entry_widget, current_description):
+        """Save the changes made to the habit item."""
+        new_description = entry_widget.get()
+        self.db.edit_habit(current_description, new_description)
+        # Update the label text with the new description not working
+        entry_widget.destroy()
+        habit_item.grid_slaves(row=0, column=0)[0].config(text=new_description)
+        print(habit_item.grid_slaves(row=0, column=0)[0].config(text=new_description))
