@@ -16,22 +16,25 @@ class DashboardFrame(Frame):
         self.user_id = user_id
         self.db = db
         self.main_ui = main_iu
-        self.create_nav()
-        self.mount_my_habits()
 
-    def create_nav(self):
-        """Create the sidebar for the dashboard with navigation buttons."""
+        self.master.grid_rowconfigure(0, weight=1)
+        self.master.grid_columnconfigure(0, weight=0)
+        self.master.grid_columnconfigure(1, weight=1)
+
         # Create main frames
         self.nav_frame = Frame(self.master, bg="#359C90", padx=50, pady=30)
         self.nav_frame.grid(row=0, column=0, sticky="nswe")
         self.content_frame = Frame(self.master, bg="#F3F1E7")
         self.content_frame.grid(row=0, column=1, sticky="nsew")
 
-        self.master.grid_rowconfigure(0, weight=1)
-        self.master.grid_columnconfigure(0, weight=0)
-        self.master.grid_columnconfigure(1, weight=1)
         self.content_frame.grid_columnconfigure(1, weight=1)
+        self.content_frame.grid_rowconfigure(0, weight=1)
 
+        self.create_nav()
+        self.mount_my_habits()
+
+    def create_nav(self):
+        """Create the sidebar for the dashboard with navigation buttons."""
         # Create and add buttons to the sidebar
         self.title_label = Label(
             self.nav_frame,
@@ -170,7 +173,7 @@ class DashboardFrame(Frame):
         self.my_habits_frame = MyHabits(
             self.content_frame, self.db, self.user_id, self.username
         )
-        self.my_habits_frame.grid(row=1, column=1, sticky="nsew")
+        self.my_habits_frame.grid(row=0, column=1, sticky="nsew")
 
     def mount_sport_events(self):
         """Mount the Sport Events frame on the dashboard."""
