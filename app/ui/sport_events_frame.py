@@ -18,7 +18,7 @@ class SportEventsFrame(Frame):
         # Adjust column
         self.container.grid(row=0, column=1, sticky="news")
         self.container.grid_columnconfigure(
-            1, weight=1, minsize=240
+            1, weight=1, minsize=300
         )  # Configure column weight
         self.container.grid_rowconfigure(0, weight=0, minsize=400)  # Configure row 0 weight
         self.container.grid_rowconfigure(4, weight=1, minsize=500)  # Configure row 4 weight
@@ -43,7 +43,7 @@ class SportEventsFrame(Frame):
             wraplength=500,
             command=command,
             cursor="hand2",
-            width=40
+            width=35
         )
         return button
 
@@ -75,7 +75,7 @@ class SportEventsFrame(Frame):
             "Open to everyone", self.open_to_everyone
         )
         self.open_to_everyone_button.grid(
-            row=1, column=0, padx=500, pady=20, sticky="ew"
+            row=1, column=0, padx=512, pady=20, sticky="ew"
         )
 
     def create_national_leagues_button(self):
@@ -84,7 +84,7 @@ class SportEventsFrame(Frame):
             "National leagues, cups and tours", self.national_lct_function
         )
         self.national_leagues_button.grid(
-            row=2, column=0, padx=500, pady=20, sticky="ew"
+            row=2, column=0, padx=512, pady=20, sticky="ew"
         )
 
     def create_elites_only_button(self):
@@ -92,7 +92,7 @@ class SportEventsFrame(Frame):
         self.elites_only_button = self.create_button(
             "Elites only", self.elites_only_function
         )
-        self.elites_only_button.grid(row=3, column=0, padx=500,
+        self.elites_only_button.grid(row=3, column=0, padx=512,
                                      pady=20, sticky="ew")
 
     # def create_return_button(self):
