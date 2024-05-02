@@ -21,3 +21,6 @@ coverage
 
 # MySQL integration
 pymysql
+
+# Tkinter for MacOS
+tkmacosx

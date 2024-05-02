@@ -1,6 +1,8 @@
 """Tkinter GUI for user login form."""
 
 from tkinter import Frame, Label, PhotoImage, Entry, Button, messagebox
+from tkmacosx import Button
+
 
 
 class LoginFrame(Frame):

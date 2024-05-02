@@ -1,6 +1,7 @@
 """Tkinter GUI for user registration form."""
 
 from tkinter import Frame, Label, Entry, Button, messagebox, PhotoImage
+from tkmacosx import Button
 
 
 class RegisterFrame(Frame):
