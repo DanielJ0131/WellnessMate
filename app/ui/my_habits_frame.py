@@ -1,6 +1,8 @@
 """Tkinter GUI for user's habits."""
 
 from tkinter import Frame, Label, Button, Entry, Canvas, Scrollbar
+from tkmacosx import Button
+
 
 
 class MyHabits(Frame):
@@ -63,7 +65,7 @@ class MyHabits(Frame):
             font=("Helvetica", 16, "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
-            highlightbackground="#F3F1E7",
+            highlightbackground="#D8B7E4",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
@@ -158,7 +160,7 @@ class MyHabits(Frame):
                 font=("Helvetica", 14, "bold"),
                 fg="#2A2A28",
                 bg="#CDCBC1",
-                highlightbackground="#F3F1E7",
+                highlightbackground="#F3F1E6",
                 relief="solid",
                 highlightthickness=0,
                 pady=5,
@@ -174,7 +176,7 @@ class MyHabits(Frame):
                 font=("Helvetica", 14, "bold"),
                 fg="#2A2A28",
                 bg="#45B9AC",
-                highlightbackground="#F3F1E7",
+                highlightbackground="#F3F1E6",
                 relief="solid",
                 highlightthickness=0,
                 pady=5,
