@@ -8,7 +8,7 @@ class MyHabits(Frame):
 
     def __init__(self, master, db, user_id, username):
         """Initialize the MyHabits frame."""
-        super().__init__(master, bg="#F3F1E7", padx=50, pady=30)
+        super().__init__(master, bg="#F3F1E7", padx=70, pady=60)
         self.master = master
         self.db = db
         self.user_id = user_id
@@ -29,9 +29,8 @@ class MyHabits(Frame):
         self.mount_habit_list()
 
     def mount_habit_creator(self):
-        habit_creator_frame = Frame(self, bg="#D8B7E3", pady=10, padx=50)
-        habit_creator_frame.grid(row=1, column=0, sticky="nsew",
-                                 pady=20, padx=20)
+        habit_creator_frame = Frame(self, bg="#D8B7E3", pady=25, padx=25)
+        habit_creator_frame.grid(row=1, column=0, sticky="nsew")
         habit_creator_frame.grid_columnconfigure(0, weight=1)
 
         label = Label(
@@ -41,7 +40,7 @@ class MyHabits(Frame):
             bg="#D8B7E3",
             fg="#2A2A28",
         )
-        label.grid(row=0, column=0, sticky="w", pady=20)
+        label.grid(row=0, column=0, sticky="w", pady=(0, 10))
 
         user_entry = Entry(
             habit_creator_frame,
@@ -79,9 +78,8 @@ class MyHabits(Frame):
         # Get habits from database
         habit_list = self.db.get_habits(self.user_id)
 
-        self.habit_list_frame = Frame(self, bg="#D7D97D", pady=20, padx=50)
-        self.habit_list_frame.grid(row=2, column=0, sticky="nsew",
-                                   pady=20, padx=20)
+        self.habit_list_frame = Frame(self, bg="#D7D97D", pady=25, padx=25)
+        self.habit_list_frame.grid(row=2, column=0, sticky="nsew", pady=(30, 0))
         self.habit_list_frame.grid_columnconfigure(0, weight=1)
         self.habit_list_frame.grid_rowconfigure(1, weight=1)
 
@@ -92,17 +90,18 @@ class MyHabits(Frame):
             bg="#D7D97D",
             fg="#2A2A28",
         )
-        label.grid(row=0, column=0, sticky="w", pady=20)
+        label.grid(row=0, column=0, sticky="w", pady=(0, 10))
 
         # Canvas to contain the habit items and attach scrollbar to it
         self.canvas = Canvas(self.habit_list_frame, bg="#D7D97D", highlightthickness=0)
-        self.canvas.grid(row=1, column=0, sticky="nsew")
+        self.canvas.grid(row=1, column=0, sticky="nsew", padx=(0, 20))
         self.canvas.grid_columnconfigure(0, weight=1)
 
-        self.scrollbar = Scrollbar(self.habit_list_frame, orient="vertical", command=self.canvas.yview, troughcolor="#D7D97D")
-        self.scrollbar.grid(row=1, column=1, sticky="ns") 
+        self.scrollbar = Scrollbar(self.habit_list_frame, orient="vertical", command=self.canvas.yview, background="#D7D97D", troughcolor="#F3F1E7")
+        self.scrollbar.config(bg="#D7D97D")
+        self.scrollbar.grid(row=1, column=1, sticky="ns", pady=10) 
         
-        self.habit_inner_frame = Frame(self.canvas, bg="#D7D97D")
+        self.habit_inner_frame = Frame(self.canvas, bg="#D7D97D", pady=10)
         self.habit_inner_frame.grid_columnconfigure(0,weight=1)
 
         self.canvas_frame = self.canvas.create_window((0, 0), window=self.habit_inner_frame, anchor="nw")
@@ -133,12 +132,12 @@ class MyHabits(Frame):
     def mount_habit_item(self, habit_description):
         try:
             habit_item = Frame(self.habit_inner_frame,
-                               bg="#F3F1E7", padx=10, pady=10)
+                               bg="#F3F1E7", padx=7, pady=7)
             habit_item.grid(
                 row=self.habit_inner_frame.grid_size()[1],
                 column=0,
                 sticky="nsew",
-                pady=10,
+                pady=10
             )
             habit_item.grid_columnconfigure(0, weight=1)
 
