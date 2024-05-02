@@ -8,29 +8,33 @@ from ui.sport_events_frame import SportEventsFrame
 class DashboardFrame(Frame):
     """Represent the user dashboard in the application."""
 
-    def __init__(self, master, username, user_id, db):
+    def __init__(self, master, username, user_id, db, main_iu):
         """Init method for the DashboardFrame class."""
         super().__init__(master, bg="#F3F1EB")
         self.master = master
         self.username = username
         self.user_id = user_id
         self.db = db
-        self.create_nav()
-        self.mount_my_habits()
+        self.main_ui = main_iu
 
-    def create_nav(self):
-        """Create the sidebar for the dashboard with navigation buttons."""
+        self.master.grid_rowconfigure(0, weight=1)
+        self.master.grid_columnconfigure(0, weight=0)
+        self.master.grid_columnconfigure(1, weight=1)
+
         # Create main frames
         self.nav_frame = Frame(self.master, bg="#359C90", padx=50, pady=30)
         self.nav_frame.grid(row=0, column=0, sticky="nswe")
         self.content_frame = Frame(self.master, bg="#F3F1E7")
         self.content_frame.grid(row=0, column=1, sticky="nsew")
 
-        self.master.grid_rowconfigure(0, weight=1)
-        self.master.grid_columnconfigure(0, weight=0)
-        self.master.grid_columnconfigure(1, weight=1)
         self.content_frame.grid_columnconfigure(1, weight=1)
+        self.content_frame.grid_rowconfigure(0, weight=1)
 
+        self.create_nav()
+        self.mount_my_habits()
+
+    def create_nav(self):
+        """Create the sidebar for the dashboard with navigation buttons."""
         # Create and add buttons to the sidebar
         self.title_label = Label(
             self.nav_frame,
@@ -142,6 +146,23 @@ class DashboardFrame(Frame):
         )
         self.user_username_label.grid(row=0, column=1, sticky="w",
                                       padx=10, pady=20)
+        self.logout_button = Button(
+            self.user_frame,
+            anchor="w",
+            text="Log out",
+            font=("Helvetica", 14, "bold"),
+            fg="#2A2A28",
+            bg="#359C90",
+            highlightbackground="#359C90",
+            relief="flat",
+            highlightthickness=0,
+            borderwidth=0,
+            pady=10,
+            cursor="hand2",
+            command=lambda: self.main_ui.logout(),
+        )
+        self.logout_button.grid(row=1, column=0, sticky="ew",
+                                 padx=10, pady=10)
 
     def mount_my_habits(self):
         """Mount the My Habits frame on the dashboard."""
@@ -152,7 +173,7 @@ class DashboardFrame(Frame):
         self.my_habits_frame = MyHabits(
             self.content_frame, self.db, self.user_id, self.username
         )
-        self.my_habits_frame.grid(row=1, column=1, sticky="nsew")
+        self.my_habits_frame.grid(row=0, column=1, sticky="nsew")
 
     def mount_sport_events(self):
         """Mount the Sport Events frame on the dashboard."""

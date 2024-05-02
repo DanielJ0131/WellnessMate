@@ -43,8 +43,7 @@ class MainUI:
         wellnessmate_label.grid(row=0, column=0, padx=50, pady=80, sticky="ew")
 
         # Add slogan label at the bottom
-        slogan_text = "Track your habits,\ntransform your life\nwith\
-              WellnessMate."
+        slogan_text = "Track your habits,\ntransform your life\nwith WellnessMate."
         slogan_label = Label(
             self.left_frame,
             text=slogan_text,
@@ -123,5 +122,10 @@ class MainUI:
         self.left_frame.grid_remove()
         self.right_frame.grid_remove()
         self.dashboard_frame = DashboardFrame(self.master, username,
-                                              user_id, db)
+                                              user_id, db, self)
         self.dashboard_frame.grid(row=0, column=0, sticky="nsew")
+    
+    def logout(self):
+        for widget in self.master.winfo_children():
+            widget.destroy()
+        self.load_app()
