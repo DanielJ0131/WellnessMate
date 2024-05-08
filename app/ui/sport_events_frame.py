@@ -20,8 +20,8 @@ class SportEventsFrame(Frame):
         self.container.grid_columnconfigure(
             1, weight=1, minsize=300
         )  # Configure column weight
-        self.container.grid_rowconfigure(0, weight=0, minsize=400)  # Configure row 0 weight
-        self.container.grid_rowconfigure(4, weight=1, minsize=500)  # Configure row 4 weight
+        self.container.grid_rowconfigure(0, weight=0, minsize=400)  #Configure row 0 weight
+        self.container.grid_rowconfigure(4, weight=1, minsize=500)  #Configure row 4 weight
 
     def create_widgets(self):
         """Create all widgets."""
@@ -115,7 +115,6 @@ class SportEventsFrame(Frame):
         """Display event on elite level."""
         print("Elites only button clicked!")
         messagebox.showinfo("Elite Events", "test")
-
 
     # def return_function(self):
     #     """Return to the dashboard."""
