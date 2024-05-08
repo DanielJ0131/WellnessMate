@@ -6,6 +6,7 @@ from tkmacosx import Button
 
 class MyHabits(Frame):
     """Tkinter frame for displaying user's habits."""
+
     def __init__(self, master, db, user_id, username):
         """Initialize the MyHabits frame."""
         super().__init__(master, bg="#F3F1E7", padx=70, pady=60)
@@ -29,6 +30,7 @@ class MyHabits(Frame):
         self.mount_habit_list()
 
     def mount_habit_creator(self):
+        """Mount the habit creator frame."""
         habit_creator_frame = Frame(self, bg="#D8B7E3", pady=25, padx=25)
         habit_creator_frame.grid(row=1, column=0, sticky="nsew")
         habit_creator_frame.grid_columnconfigure(0, weight=1)
@@ -75,7 +77,7 @@ class MyHabits(Frame):
         self.create_habit_button.grid(row=2, column=0, sticky="w", pady=20)
 
     def mount_habit_list(self):
-        # Get habits from database
+        """Mount the habit list frame."""
         habit_list = self.db.get_habits(self.user_id)
 
         self.habit_list_frame = Frame(self, bg="#D7D97D", pady=25, padx=25)
@@ -83,7 +85,6 @@ class MyHabits(Frame):
                                    pady=(30, 0))
         self.habit_list_frame.grid_columnconfigure(0, weight=1)
         self.habit_list_frame.grid_rowconfigure(1, weight=1)
-
         label = Label(
             self.habit_list_frame,
             text="My Habit List",
@@ -98,16 +99,14 @@ class MyHabits(Frame):
                              highlightthickness=0)
         self.canvas.grid(row=1, column=0, sticky="nsew", padx=(0, 20))
         self.canvas.grid_columnconfigure(0, weight=1)
-
         self.scrollbar = Scrollbar(self.habit_list_frame, orient="vertical",
                                    command=self.canvas.yview,
                                    background="#D7D97D",
                                    troughcolor="#F3F1E7")
         self.scrollbar.config(bg="#D7D97D")
-        self.scrollbar.grid(row=1, column=1, sticky="ns", pady=10)       
+        self.scrollbar.grid(row=1, column=1, sticky="ns", pady=10)
         self.habit_inner_frame = Frame(self.canvas, bg="#D7D97D", pady=10)
         self.habit_inner_frame.grid_columnconfigure(0, weight=1)
-
         self.canvas_frame = self.canvas.create_window(
             (0, 0),
             window=self.habit_inner_frame,
@@ -129,6 +128,7 @@ class MyHabits(Frame):
                 self.mount_habit_item(habit[0])
 
     def mount_empty_list_frame(self):
+        """Mount the empty list frame."""
         self.empty_list_label = Label(
             self.habit_inner_frame,
             text="You don't have any habit yet.",
@@ -141,6 +141,7 @@ class MyHabits(Frame):
         self.empty_list_label.grid_columnconfigure(0, weight=1)
 
     def mount_habit_item(self, habit_description):
+        """Mount a habit item to the habit list."""
         try:
             habit_item = Frame(self.habit_inner_frame,
                                bg="#F3F1E7", padx=7, pady=7)
@@ -199,7 +200,7 @@ class MyHabits(Frame):
             print(f"An error occurred while creating a new habit: {e}")
 
     def create_habit(self, habit_description):
-        # Check if empty_list_frame exists and remove it if it does
+        """Create a new habit."""
         if hasattr(self, "empty_list_label"):
             self.empty_list_label.grid_forget()
             del self.empty_list_label
@@ -207,15 +208,16 @@ class MyHabits(Frame):
         self.db.add_habit(habit_description, self.user_id)
 
     def delete_habit(self, habit_item, habit_description):
+        """Delete a habit."""
         self.db.delete_habit(habit_description)
         habit_item.destroy()
         if self.habit_inner_frame.grid_size()[1] == 1:
             self.mount_empty_list_frame()
 
     def edit_habit(self, habit_item):
+        """Edit a habit."""
         current_description = habit_item.grid_slaves(row=0, column=0)[0].cget(
             "text")
-    
         entry_widget = Entry(
             habit_item,
             font=("Helvetica", 16),
@@ -236,6 +238,7 @@ class MyHabits(Frame):
             current_description))
 
     def save_habit_edit(self, habit_item, entry_widget, current_description):
+        """Save the edited habit."""
         new_description = entry_widget.get()
         self.db.edit_habit(current_description, new_description)
         # Update the label text with the new description not working
