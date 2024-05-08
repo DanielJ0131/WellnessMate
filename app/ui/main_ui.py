@@ -1,6 +1,8 @@
 """Main UI module for WellnessMate application."""
 
 from tkinter import Button, Frame, Label
+from tkmacosx import Button
+
 from ui.login_frame import LoginFrame
 from ui.register_frame import RegisterFrame
 from ui.dashboard import DashboardFrame
@@ -43,7 +45,9 @@ class MainUI:
         wellnessmate_label.grid(row=0, column=0, padx=50, pady=80, sticky="ew")
 
         # Add slogan label at the bottom
-        slogan_text = "Track your habits,\ntransform your life\nwith WellnessMate."
+        slogan_text = "Track your habits,\n" \
+                      "transform your life\n" \
+                      "with WellnessMate."
         slogan_label = Label(
             self.left_frame,
             text=slogan_text,
@@ -70,13 +74,15 @@ class MainUI:
             text="Login",
             font=("Helvetica", 18),
             fg="#2A2A28",
-            bg="#CDCBC1",
-            highlightbackground="#F3F1E7",
+            bg="#45B9AC",
+            borderless=0,
+            highlightbackground="#F3F1E6",
             relief="solid",
             highlightthickness=0,
-            bd="0",
+            borderwidth=0,
             padx=20,
             pady=5,
+            cursor="hand2",
             command=self.show_login_frame,
         )
         login_button.grid(row=0, column=0, padx=20)
@@ -86,10 +92,10 @@ class MainUI:
             font=("Helvetica", 18),
             fg="#2A2A28",
             bg="#D7D97D",
-            highlightbackground="#F3F1E7",
+            highlightbackground="#F3F1E6",
             relief="solid",
             highlightthickness=0,
-            bd="0",
+            borderwidth=0,
             padx=20,
             pady=5,
             command=self.show_register_frame,
