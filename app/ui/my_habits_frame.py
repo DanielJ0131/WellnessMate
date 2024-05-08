@@ -4,10 +4,8 @@ from tkinter import Frame, Label, Button, Entry, Canvas, Scrollbar
 from tkmacosx import Button
 
 
-
 class MyHabits(Frame):
     """Tkinter frame for displaying user's habits."""
-
     def __init__(self, master, db, user_id, username):
         """Initialize the MyHabits frame."""
         super().__init__(master, bg="#F3F1E7", padx=70, pady=60)
@@ -81,7 +79,8 @@ class MyHabits(Frame):
         habit_list = self.db.get_habits(self.user_id)
 
         self.habit_list_frame = Frame(self, bg="#D7D97D", pady=25, padx=25)
-        self.habit_list_frame.grid(row=2, column=0, sticky="nsew", pady=(30, 0))
+        self.habit_list_frame.grid(row=2, column=0, sticky="nsew",
+                                   pady=(30, 0))
         self.habit_list_frame.grid_columnconfigure(0, weight=1)
         self.habit_list_frame.grid_rowconfigure(1, weight=1)
 
@@ -95,23 +94,33 @@ class MyHabits(Frame):
         label.grid(row=0, column=0, sticky="w", pady=(0, 10))
 
         # Canvas to contain the habit items and attach scrollbar to it
-        self.canvas = Canvas(self.habit_list_frame, bg="#D7D97D", highlightthickness=0)
+        self.canvas = Canvas(self.habit_list_frame, bg="#D7D97D",
+                             highlightthickness=0)
         self.canvas.grid(row=1, column=0, sticky="nsew", padx=(0, 20))
         self.canvas.grid_columnconfigure(0, weight=1)
 
-        self.scrollbar = Scrollbar(self.habit_list_frame, orient="vertical", command=self.canvas.yview, background="#D7D97D", troughcolor="#F3F1E7")
+        self.scrollbar = Scrollbar(self.habit_list_frame, orient="vertical",
+                                   command=self.canvas.yview,
+                                   background="#D7D97D",
+                                   troughcolor="#F3F1E7")
         self.scrollbar.config(bg="#D7D97D")
-        self.scrollbar.grid(row=1, column=1, sticky="ns", pady=10) 
-        
+        self.scrollbar.grid(row=1, column=1, sticky="ns", pady=10)       
         self.habit_inner_frame = Frame(self.canvas, bg="#D7D97D", pady=10)
-        self.habit_inner_frame.grid_columnconfigure(0,weight=1)
+        self.habit_inner_frame.grid_columnconfigure(0, weight=1)
 
-        self.canvas_frame = self.canvas.create_window((0, 0), window=self.habit_inner_frame, anchor="nw")
+        self.canvas_frame = self.canvas.create_window(
+            (0, 0),
+            window=self.habit_inner_frame,
+            anchor="nw")
         self.canvas.config(yscrollcommand=self.scrollbar.set)
-        self.habit_inner_frame.bind("<Configure>", lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")))
-        self.canvas.bind('<Configure>', lambda e: self.canvas.itemconfig(self.canvas_frame, width=self.canvas.winfo_width()))   
+        self.habit_inner_frame.bind("<Configure>", lambda e:
+                                    self.canvas.configure
+                                    (scrollregion=self.canvas.bbox("all")))
+        self.canvas.bind('<Configure>', lambda e: self.canvas.itemconfig(
+            self.canvas_frame, width=self.canvas.winfo_width()))
 
-        #self.canvas.bind_all("<MouseWheel>", lambda e: self.canvas.yview_scroll(int(-1 * (e.delta / 120)), "units"))
+        # self.canvas.bind_all("<MouseWheel>", lambda e:
+        #   self.canvas.yview_scroll(int(-1 * (e.delta / 120)), "units"))
 
         if habit_list == ():
             self.mount_empty_list_frame()
@@ -204,7 +213,8 @@ class MyHabits(Frame):
             self.mount_empty_list_frame()
 
     def edit_habit(self, habit_item):
-        current_description = habit_item.grid_slaves(row=0, column=0)[0].cget("text")
+        current_description = habit_item.grid_slaves(row=0, column=0)[0].cget(
+            "text")
     
         entry_widget = Entry(
             habit_item,
@@ -220,7 +230,10 @@ class MyHabits(Frame):
         entry_widget.insert(0, current_description)
         entry_widget.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
         entry_widget.focus_set()
-        entry_widget.bind("<Return>", lambda event: self.save_habit_edit(habit_item, entry_widget, current_description))
+        entry_widget.bind("<Return>", lambda event: self.save_habit_edit(
+            habit_item,
+            entry_widget,
+            current_description))
 
     def save_habit_edit(self, habit_item, entry_widget, current_description):
         new_description = entry_widget.get()
@@ -228,4 +241,5 @@ class MyHabits(Frame):
         # Update the label text with the new description not working
         entry_widget.destroy()
         habit_item.grid_slaves(row=0, column=0)[0].config(text=new_description)
-        print(habit_item.grid_slaves(row=0, column=0)[0].config(text=new_description))
+        print(habit_item.grid_slaves(row=0, column=0)[0].config
+              (text=new_description))
