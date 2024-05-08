@@ -114,7 +114,7 @@ class DashboardFrame(Frame):
             bg="#2A2A28",
             fg="#CDCBC1",
         )
-        self.subtitle_label.grid(row=5, column=0, sticky="w", pady=(30,0))
+        self.subtitle_label.grid(row=5, column=0, sticky="w", pady=(30, 0))
 
         self.profile_button = Button(
             self.nav_frame,
