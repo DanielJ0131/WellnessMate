@@ -4,7 +4,6 @@ from tkinter import Frame, Label, PhotoImage, Entry, Button, messagebox
 from tkmacosx import Button
 
 
-
 class LoginFrame(Frame):
     """Login frame for the application."""
 
