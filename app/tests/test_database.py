@@ -49,11 +49,6 @@ class TestDatabase(unittest.TestCase):
         """Test the create_account method."""
         self.db.create_account("test", "test")
 
-    # Comment out cause not working
-    # def test_get_user_id(self):
-    #     """Test the get_user_id method."""
-    #     self.db.get_user_id("test")
-
     def test_get_habits(self):
         """Test the get_habits method."""
         self.db.get_habits(1)
