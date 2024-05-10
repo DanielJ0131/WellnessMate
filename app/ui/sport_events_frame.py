@@ -20,8 +20,8 @@ class SportEventsFrame(Frame):
         self.container.grid_columnconfigure(
             1, weight=1, minsize=300
         )  # Configure column weight
-        self.container.grid_rowconfigure(0, weight=0, minsize=400)  #Configure row 0 weight
-        self.container.grid_rowconfigure(4, weight=1, minsize=500)  #Configure row 4 weight
+        self.container.grid_rowconfigure(0, weight=0, minsize=400)
+        self.container.grid_rowconfigure(4, weight=1, minsize=500)
 
     def create_widgets(self):
         """Create all widgets."""
@@ -70,7 +70,6 @@ class SportEventsFrame(Frame):
 
     def create_open_to_everyone_button(self):
         """Create Open to Everyone button."""
-
         self.open_to_everyone_button = self.create_button(
             "Open to everyone", self.open_to_everyone
         )
@@ -115,9 +114,3 @@ class SportEventsFrame(Frame):
         """Display event on elite level."""
         print("Elites only button clicked!")
         messagebox.showinfo("Elite Events", "test")
-
-    # def return_function(self):
-    #     """Return to the dashboard."""
-    #     self.grid_remove()
-    #     # Show the DashboardFrame again
-    #     self.master.show_dashboard()
