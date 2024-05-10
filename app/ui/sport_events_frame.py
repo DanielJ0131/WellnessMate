@@ -1,5 +1,7 @@
 """Sport events module."""
 from tkinter import Frame, Button, Label, messagebox
+import tkinter as tk
+import webbrowser
 
 
 class SportEventsFrame(Frame):
@@ -100,17 +102,108 @@ class SportEventsFrame(Frame):
     #                                             self.return_function)
     #     self.return_button.grid(row=4, column=0, padx=580, pady=150)
 
+    def open_url(self, url):
+        """Open URL in a web browser."""
+        webbrowser.open_new(url)
+
+    def on_enter(self, event, idx, labels):
+        """Event handler for mouse entering."""
+        labels[idx].config(
+            fg="white",
+            cursor="hand2",
+            font=("Helvetica", 12, "bold"))
+
+    def on_leave(self, event, idx, labels):
+        """Event handler for mouse leaving."""
+        labels[idx].config(
+            fg="black",
+            font=("Helvetica", 10, "normal"))
+
+    def create_event_labels(
+            self, window, events, on_enter, on_leave, open_url
+            ):
+        """Create labels to display the event info."""
+        labels = []
+        for idx, (event_text, url) in enumerate(events):
+            label = tk.Label(window, text=event_text, bg="#82AACF")
+            label.pack(padx=10, pady=5)
+            label.bind("<Enter>", lambda e,
+                       idx=idx: on_enter(e, idx, labels))
+            label.bind("<Leave>", lambda e,
+                       idx=idx: on_leave(e, idx, labels))
+            label.bind("<Button-1>", lambda e,
+                       url=url: open_url(url))
+            labels.append(label)
+
+        return labels
+    
+    def create_event_window(self, events, category):
+        """Create and display the event window."""
+        # Toplevel window
+        event_window = tk.Toplevel(self.master)
+        event_window.title(category)
+        event_window.geometry("800x300")
+        event_window.configure(bg="#82AACF")
+
+        # Create labels for event info
+        self.create_event_labels(
+            event_window,
+            events,
+            self.on_enter,
+            self.on_leave,
+            self.open_url)
+
+        # Run the Tkinter event loop for the new window
+        event_window.mainloop()
+
     def open_to_everyone(self):
         """Display specific sport events."""
+        events = [
+            ("Alliansloppet - 16, 32 & 48km roller skiing event in Trollhättan World biggest rollerski race",
+             "https://www.alliansloppet.se/"),
+
+            ("Broloppet - Swedish/Danish road running (half marathon) event across the Oresund Bridge",
+             "https://broloppet2025.se/"),
+
+            ("Convinistafetten - A relay race for corporate teams around Laduviken",
+             "https://stafetten.com/"),
+
+            ("Engelbrektsloppet - 60 km cross-country skiing event in Västmanland",
+             "https://www.engelbrektsloppet.se/"),
+
+            ("Gothia Cup - youth football tournament in Gothenburg",
+             "https://gothiacup.se/sv"),
+
+            ("Stockholm Marathon - marathon in Stockholm",
+             "https://www.stockholmmarathon.se/"),
+
+            ("Göteborgsvarvet - road running (half marathon) event in Gothenburg",
+             "https://www.goteborgsvarvet.se/"),
+
+            ("Tjejmilen - 10 km cross country running event for women in Djurgården, open for girls and women only",
+             "https://tjejmilen.se/"),
+        ]
         print("Open to everyone button clicked!")
-        messagebox.showinfo("Open Events", "test")
+
+        # Create and display the event window
+        self.create_event_window(events, category="Open sport events")
 
     def national_lct_function(self):
         """Display sport leagues, cups and tours."""
+        events = [("Test", "https://youtu.be/dQw4w9WgXcQ?si=OFNBRuTy6UWem927"),
+                  ]
         print("National leagues, cups and tours button clicked!")
-        messagebox.showinfo("National leagues, cups and tours", "test")
+        # messagebox.showinfo("National leagues, cups and tours", "test")
+        # Create and display the event window
+        self.create_event_window(
+            events,
+            category="Sport leagues, cups and tours")
 
     def elites_only_function(self):
         """Display event on elite level."""
+        events = [("Test", "https://youtu.be/V1bFr2SWP1I?si=DBN6NGpGsXc-qcZK"),
+                  ]
         print("Elites only button clicked!")
-        messagebox.showinfo("Elite Events", "test")
+        # messagebox.showinfo("Elite Events", "test")
+        # Create and display the event window
+        self.create_event_window(events, category="Elite Sport Event")
