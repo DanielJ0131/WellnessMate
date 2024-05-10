@@ -130,8 +130,9 @@ class MainUI:
         self.dashboard_frame = DashboardFrame(self.master, username,
                                               user_id, db, self)
         self.dashboard_frame.grid(row=0, column=0, sticky="nsew")
-    
+
     def logout(self):
+        """Log out the user and show the initial frames."""
         for widget in self.master.winfo_children():
             widget.destroy()
         self.load_app()
