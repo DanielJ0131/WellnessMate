@@ -159,16 +159,21 @@ class SportEventsFrame(Frame):
     def open_to_everyone(self):
         """Display specific sport events."""
         events = [
-            ("Alliansloppet - 16, 32 & 48km roller skiing event in Trollhättan World biggest rollerski race",
+            ("Alliansloppet - 16, 32 & 48km roller skiing event in " +
+             "Trollhättan " +
+             "World biggest rollerski race",
              "https://www.alliansloppet.se/"),
 
-            ("Broloppet - Swedish/Danish road running (half marathon) event across the Oresund Bridge",
+            ("Broloppet - Swedish/Danish road running (half marathon) event " +
+             "across the Oresund Bridge",
              "https://broloppet2025.se/"),
 
-            ("Convinistafetten - A relay race for corporate teams around Laduviken",
+            ("Convinistafetten - A relay race for corporate teams around " +
+             "Laduviken",
              "https://stafetten.com/"),
 
-            ("Engelbrektsloppet - 60 km cross-country skiing event in Västmanland",
+            ("Engelbrektsloppet - 60 km cross-country skiing event in " +
+             "Västmanland",
              "https://www.engelbrektsloppet.se/"),
 
             ("Gothia Cup - youth football tournament in Gothenburg",
@@ -177,10 +182,12 @@ class SportEventsFrame(Frame):
             ("Stockholm Marathon - marathon in Stockholm",
              "https://www.stockholmmarathon.se/"),
 
-            ("Göteborgsvarvet - road running (half marathon) event in Gothenburg",
+            ("Göteborgsvarvet - road running (half marathon) event in " +
+             "Gothenburg",
              "https://www.goteborgsvarvet.se/"),
 
-            ("Tjejmilen - 10 km cross country running event for women in Djurgården, open for girls and women only",
+            ("Tjejmilen - 10 km cross country running event for women in " +
+             "Djurgården, open for girls and women only" +
              "https://tjejmilen.se/"),
         ]
         print("Open to everyone button clicked!")
