@@ -10,7 +10,7 @@ class Database:
         """Initialize the database connection."""
         self.__host = "localhost"
         self.__user = "root"
-        self.__password = "hyT9mon#"
+        self.__password = "wellnessmate1234"
         try:
             self.server = pymysql.connect(
                 host=self.__host, user=self.__user, password=self.__password
