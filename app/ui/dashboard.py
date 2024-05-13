@@ -5,6 +5,7 @@ from tkmacosx import Button
 
 from ui.my_habits_frame import MyHabits
 from ui.sport_events_frame import SportEventsFrame
+from ui.discover_frame import Discover
 
 
 class DashboardFrame(Frame):
@@ -16,6 +17,8 @@ class DashboardFrame(Frame):
         self.master = master
         self.username = username
         self.user_id = user_id
+        self.user_image = PhotoImage(file="app/assets/" +
+                                     "avatar1.png").subsample(7, 7)
         self.db = db
         self.main_ui = main_iu
 
@@ -104,6 +107,7 @@ class DashboardFrame(Frame):
             borderwidth=0,
             pady=10,
             cursor="hand2",
+            command=lambda: self.mount_discover(),
         )
         self.discover_button.grid(row=4, column=0, sticky="ew")
 
@@ -135,23 +139,26 @@ class DashboardFrame(Frame):
         self.nav_frame.grid_rowconfigure(7, weight=1)
 
         self.user_frame = Frame(self.nav_frame, bg="#2A2A28")
-        self.user_frame.grid(row=8, column=0, sticky="w")
-        self.user_image = PhotoImage(file="app/assets/" +
-                                     "user_avatar.png").subsample(
-            30, 30
-        )
+        self.user_frame.grid(row=8, column=0, sticky="ew")
+
         self.user_image_label = Label(
             self.user_frame, image=self.user_image, bg="#2A2A28"
         )
-        self.user_image_label.grid(row=0, column=0, sticky="w")
-        self.user_username_label = Label(
+        self.user_image_label.grid(row=0, column=0, sticky="w", padx=(0,10))
+
+        self.username_label = Label(
             self.user_frame,
             text=f"{self.username}",
             font=("Helvetica", 16, "bold"),
             bg="#2A2A28",
             fg="#F3F1E7",
+            anchor="w"
         )
-        self.user_username_label.grid(row=0, column=1, sticky="w")
+        self.username_label.grid(row=0, column=1, sticky="ew")
+
+        self.user_frame.grid_columnconfigure(0, weight=0)
+        self.user_frame.grid_columnconfigure(1, weight=1)
+        
         self.logout_button = Button(
             self.user_frame,
             anchor="w",
@@ -167,25 +174,33 @@ class DashboardFrame(Frame):
             cursor="hand2",
             command=lambda: self.main_ui.logout(),
         )
-        self.logout_button.grid(row=1, column=0, sticky="ew")
+        self.logout_button.grid(row=1, column=0, sticky="ew", columnspan=2)
 
-    def mount_my_habits(self):
-        """Mount the My Habits frame on the dashboard."""
+    def unmount_current_frame(self):
+        """Unmount frame currently displayed on the dashboard."""
         for widget in self.content_frame.winfo_children():
             widget.destroy()
 
+    def mount_my_habits(self):
         """Mount the My Habits frame on the dashboard."""
+        self.unmount_current_frame()
         self.my_habits_frame = MyHabits(
             self.content_frame, self.db, self.user_id, self.username
         )
         self.my_habits_frame.grid(row=0, column=1, sticky="nsew")
 
+    def mount_discover(self):
+        """Mount the My Habits frame on the dashboard."""
+        self.unmount_current_frame()
+        self.discover_frame = Discover(
+            self.content_frame, self.db, self.user_id, self.username
+        )
+        self.discover_frame.grid(row=0, column=1, sticky="nsew")
+
     def mount_sport_events(self):
         """Mount the Sport Events frame on the dashboard."""
-        # Remove any existing frame in the content_frame
-        for widget in self.content_frame.winfo_children():
-            widget.destroy()
-
-        """Open the Sport Events frame."""
+        self.unmount_current_frame()
         self.sport_events_frame = SportEventsFrame(self.content_frame)
         self.sport_events_frame.grid(row=1, column=1, sticky="nsew")
+    
+
