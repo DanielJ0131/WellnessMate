@@ -7,6 +7,7 @@ class SportEventsFrame(Frame):
 
     def __init__(self, master):
         """Initialize the class."""
+        super().__init__(master)
         self.master = master
         self.create_main_container()
         self.create_widgets()
