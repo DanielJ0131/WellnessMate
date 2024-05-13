@@ -1,5 +1,5 @@
 """Sport events module."""
-from tkinter import Frame, Button, Label, messagebox
+from tkinter import Frame, Button, Label
 import tkinter as tk
 import webbrowser
 
@@ -136,7 +136,7 @@ class SportEventsFrame(Frame):
             labels.append(label)
 
         return labels
-    
+
     def create_event_window(self, events, category):
         """Create and display the event window."""
         # Toplevel window
