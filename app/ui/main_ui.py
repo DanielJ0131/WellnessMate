@@ -75,7 +75,7 @@ class MainUI:
         wellnessmate_label5.grid(row=4, column=0, padx=10, pady=30, sticky="ew")
         wellnessmate_label6 = Label(
             self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['xxl']), bg="#D8B7E3"
+            font=("Helvetica", -60), bg="#D8B7E3"
         )
         wellnessmate_label6.grid(row=5, column=0, padx=10, pady=30, sticky="ew")
 
