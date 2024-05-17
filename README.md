@@ -3,7 +3,6 @@ Project for the Agile Development Methods Course
 
 by Daniel, Patrick, Tony, André, Elina
 
-WellnessMate is an application for individuals looking to improve their mental health and well-being, who struggle to find effective tools for cultivating good habits. It is a wellness computer application that provides easy access to habit tracking, personalization and instead of using complex and time-consuming apps - gives users a simple and easy-to-use habit tracker app that provides personalized recommendations and goals, an app that offers reminders and motivational features to help users stay on track. WellnessMate focuses on making the user experience personal.
 
 ## Contents
 - [Introduction](#introduction)
@@ -19,9 +18,6 @@ WellnessMate is an application for individuals looking to improve their mental h
 
 ## Requirements
 Before running this application, ensure that you have the following prerequisites installed:
-
-Python: [version number]
-MySQL Workbench: [version number]
 
 - A package manager:
   - Brew for Mac and Linux: https://brew.sh/
