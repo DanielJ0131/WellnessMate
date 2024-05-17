@@ -18,12 +18,13 @@ class MainUI:
         self.screen_width = master.winfo_screenwidth()
         self.screen_height = master.winfo_screenheight()
         self.font_size = {
-            'xs': int(self.screen_width / -100),
-            's': int(self.screen_width / -85),
-            'm': int(self.screen_width / -70),
+            'xxs': int(self.screen_width / -95),
+            'xs': int(self.screen_width / -85),
+            's': int(self.screen_width / -75),
+            'm': int(self.screen_width / -65),
             'l': int(self.screen_width / -55),
             'xl': int(self.screen_width / -40),
-            'xxl': int(self.screen_width / -25),
+            'xxl': int(self.screen_width / -30),
         }
         master.title("WellnessMate")
         master.configure(bg="#F3F1EB")
@@ -50,9 +51,14 @@ class MainUI:
         # Add WellnessMate label at the top
         wellnessmate_label = Label(
             self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['xs']), bg="#D8B7E3"
+            font=("Helvetica", self.font_size['xxs']), bg="#D8B7E3"
         )
         wellnessmate_label.grid(row=0, column=0, padx=10, pady=30, sticky="ew")
+        wellnessmate_label0 = Label(
+            self.left_frame, text="WellnessMate",
+            font=("Helvetica", self.font_size['xs']), bg="#D8B7E3"
+        )
+        wellnessmate_label0.grid(row=0, column=0, padx=10, pady=30, sticky="ew")
         wellnessmate_label2 = Label(
             self.left_frame, text="WellnessMate",
             font=("Helvetica", self.font_size['s']), bg="#D8B7E3"
