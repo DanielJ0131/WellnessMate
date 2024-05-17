@@ -3,7 +3,6 @@ Project for the Agile Development Methods Course
 
 by Daniel, Patrick, Tony, André, Elina
 
-
 ## Contents
 - [Introduction](#introduction)
 - [Requirements](#requirements)
@@ -42,11 +41,6 @@ brew install make #for Mac/Linux
 - MySQL Workbench:
   - MySQL Workbench is a unified visual tool for database architects, developers, and DBAs. It provides data modeling, SQL development, and comprehensive administration tools for server configuration, user administration, and more.
   - To install MySQL Workbench, visit the official download page: https://www.mysql.com/products/workbench/
-  - Or install it using a package manager:
-```bash
-choco install mysql.workbench  # for Windows
-brew install --cask mysqlworkbench  # for Mac
-```
 
 By ensuring you have these prerequisites installed, you will be able to set up and run the application smoothly.
 
