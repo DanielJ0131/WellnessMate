@@ -15,11 +15,21 @@ class MainUI:
         """Initialize the main UI for the application."""
         self.master = master
         self.db = db
+        self.screen_width = master.winfo_screenwidth()
+        self.screen_height = master.winfo_screenheight()
+        self.font_size = {
+            'xs': int(self.screen_width / 100),
+            's': int(self.screen_width / 85),
+            'm': int(self.screen_width / 70),
+            'l': int(self.screen_width / 55),
+            'xl': int(self.screen_width / 40),
+            'xxl': int(self.screen_width / 25),
+        }
         master.title("WellnessMate")
         master.configure(bg="#F3F1EB")
         master.geometry(
             "{0}x{1}+0+0".format(
-                master.winfo_screenwidth(), master.winfo_screenheight()
+                self.screen_width, self.screen_height
             )
         )
         self.load_app()
@@ -40,9 +50,34 @@ class MainUI:
         # Add WellnessMate label at the top
         wellnessmate_label = Label(
             self.left_frame, text="WellnessMate",
-            font=("Helvetica", 60), bg="#D8B7E3"
+            font=("Helvetica", self.font_size['xs']), bg="#D8B7E3"
         )
-        wellnessmate_label.grid(row=0, column=0, padx=50, pady=80, sticky="ew")
+        wellnessmate_label.grid(row=0, column=0, padx=10, pady=30, sticky="ew")
+        wellnessmate_label2 = Label(
+            self.left_frame, text="WellnessMate",
+            font=("Helvetica", self.font_size['s']), bg="#D8B7E3"
+        )
+        wellnessmate_label2.grid(row=1, column=0, padx=10, pady=30, sticky="ew")
+        wellnessmate_label3 = Label(
+            self.left_frame, text="WellnessMate",
+            font=("Helvetica", self.font_size['m']), bg="#D8B7E3"
+        )
+        wellnessmate_label3.grid(row=2, column=0, padx=10, pady=30, sticky="ew")
+        wellnessmate_label4 = Label(
+            self.left_frame, text="WellnessMate",
+            font=("Helvetica", self.font_size['l']), bg="#D8B7E3"
+        )
+        wellnessmate_label4.grid(row=3, column=0, padx=10, pady=30, sticky="ew")
+        wellnessmate_label5 = Label(
+            self.left_frame, text="WellnessMate",
+            font=("Helvetica", self.font_size['xl']), bg="#D8B7E3"
+        )
+        wellnessmate_label5.grid(row=4, column=0, padx=10, pady=30, sticky="ew")
+        wellnessmate_label6 = Label(
+            self.left_frame, text="WellnessMate",
+            font=("Helvetica", self.font_size['xxl']), bg="#D8B7E3"
+        )
+        wellnessmate_label6.grid(row=5, column=0, padx=10, pady=30, sticky="ew")
 
         # Add slogan label at the bottom
         slogan_text = "Track your habits,\n" \
@@ -51,12 +86,12 @@ class MainUI:
         slogan_label = Label(
             self.left_frame,
             text=slogan_text,
-            font=("Helvetica", 32),
+            font=("Helvetica", -32),
             bg="#D8B7E3",
             fg="#2A2A28",
             justify="left",
         )
-        slogan_label.grid(row=1, column=0, padx=20, pady=(0, 20), sticky="ew")
+        slogan_label.grid(row=6, column=0, padx=20, pady=(0, 20), sticky="ew")
 
         self.left_frame.grid_rowconfigure(1, weight=1)
 
