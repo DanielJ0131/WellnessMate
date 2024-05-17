@@ -24,16 +24,21 @@ class Discover(Frame):
         )
         heading_label.grid(row=0, column=0, sticky="w", padx=10, pady=(30,10))
 
-        subheading_label = Label(
+        self.subheading_label = Text(
             self,
-            text="Here, you'll find a curated collection of habits and ideas to help you lead a healthier, happier life. Explore the categories below to discover new habits, learn actionable tips, and start incorporating positive changes into your daily routine.",
-            font=("Helvetica", 18),
+            wrap="word",
+            font=("Helvetica", 14),
+            spacing3=6,
             bg="#F3F1EB",
             fg="#2A2A28",
-            justify="left"
+            width=30,
+            height=10,
+            borderwidth=0,
+            highlightthickness=0,
         )
-        subheading_label.grid(row=1, column=0, sticky="w", padx=10, pady=10)
-        subheading_label.bind('<Configure>', lambda e: subheading_label.config(wraplength=subheading_label.winfo_width()))
+        self.subheading_label.insert("1.0", "Here, you'll find a curated collection of habits and ideas to help you lead a healthier, happier life. Explore the categories below to discover new habits, learn actionable tips, and start incorporating positive changes into your daily routine.")
+        self.subheading_label.config(state="disabled")
+        self.subheading_label.grid(row=1, column=0, sticky="w", padx=10, pady=10)
 
         self.mount_trending_habits()
 
