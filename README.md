@@ -38,9 +38,12 @@ brew install python #for Mac/Linux
 choco install make #for Windows
 brew install make #for Mac/Linux
 ```
+
 - MySQL Workbench:
   - MySQL Workbench is a unified visual tool for database architects, developers, and DBAs. It provides data modeling, SQL development, and comprehensive administration tools for server configuration, user administration, and more.
-  - To install MySQL Workbench, visit the official download page: https://www.mysql.com/products/workbench/
+  - Download the MySQL Installer and make sure you select MySQL Server and MySQL Workbech before executing. 
+  - To downlad MySQL Installer, visit the official download page: https://dev.mysql.com/downloads/installer/
+  - Once installed, create a new Connection with Hostname = localhost, Username = root and Password = wellnessmate1234
 
 By ensuring you have these prerequisites installed, you will be able to set up and run the application smoothly.
 
