@@ -18,12 +18,12 @@ class MainUI:
         self.screen_width = master.winfo_screenwidth()
         self.screen_height = master.winfo_screenheight()
         self.font_size = {
-            'xs': int(self.screen_width / 100),
-            's': int(self.screen_width / 85),
-            'm': int(self.screen_width / 70),
-            'l': int(self.screen_width / 55),
-            'xl': int(self.screen_width / 40),
-            'xxl': int(self.screen_width / 25),
+            'xs': int(self.screen_width / -100),
+            's': int(self.screen_width / -85),
+            'm': int(self.screen_width / -70),
+            'l': int(self.screen_width / -55),
+            'xl': int(self.screen_width / -40),
+            'xxl': int(self.screen_width / -25),
         }
         master.title("WellnessMate")
         master.configure(bg="#F3F1EB")
@@ -75,7 +75,7 @@ class MainUI:
         wellnessmate_label5.grid(row=4, column=0, padx=10, pady=30, sticky="ew")
         wellnessmate_label6 = Label(
             self.left_frame, text="WellnessMate",
-            font=("Helvetica", -60), bg="#D8B7E3"
+            font=("Helvetica", self.font_size['xxl']), bg="#D8B7E3"
         )
         wellnessmate_label6.grid(row=5, column=0, padx=10, pady=30, sticky="ew")
 
