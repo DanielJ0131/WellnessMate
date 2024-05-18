@@ -33,6 +33,7 @@ class MainUI:
                 self.screen_width, self.screen_height
             )
         )
+        master.state('zoomed')
         self.load_app()
 
     def load_app(self):
