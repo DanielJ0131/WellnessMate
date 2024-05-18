@@ -28,7 +28,7 @@ class RegisterFrame(Frame):
         self.register_title = Label(
             self,
             text="Create an account",
-            font=("Helvetica", 30, "bold"),
+            font=("Helvetica", self.fontsize["l"], "bold"),
             fg="#2A2A28",
             bg="#F3F1EB",
         )
