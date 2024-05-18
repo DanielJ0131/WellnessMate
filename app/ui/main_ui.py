@@ -38,7 +38,7 @@ class MainUI:
     def load_app(self):
         """Load the application UI."""
         # Create main frames
-        self.left_frame = Frame(self.master, bg="#D8B7E3")
+        self.left_frame = Frame(self.master, bg="#59B2A7")
         self.left_frame.grid(row=0, column=0, sticky="nswe", rowspan=2)
         self.right_frame = Frame(self.master, bg="#F3F1E7")
         self.right_frame.grid(row=0, column=1, sticky="nswe", rowspan=2)
@@ -51,39 +51,9 @@ class MainUI:
         # Add WellnessMate label at the top
         wellnessmate_label = Label(
             self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['xxs']), bg="#D8B7E3"
+            font=("Helvetica", self.font_size['xxl']), bg="#59B2A7"
         )
-        wellnessmate_label.grid(row=0, column=0, padx=10, pady=30, sticky="ew")
-        wellnessmate_label0 = Label(
-            self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['xs']), bg="#D8B7E3"
-        )
-        wellnessmate_label0.grid(row=0, column=0, padx=10, pady=30, sticky="ew")
-        wellnessmate_label2 = Label(
-            self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['s']), bg="#D8B7E3"
-        )
-        wellnessmate_label2.grid(row=1, column=0, padx=10, pady=30, sticky="ew")
-        wellnessmate_label3 = Label(
-            self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['m']), bg="#D8B7E3"
-        )
-        wellnessmate_label3.grid(row=2, column=0, padx=10, pady=30, sticky="ew")
-        wellnessmate_label4 = Label(
-            self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['l']), bg="#D8B7E3"
-        )
-        wellnessmate_label4.grid(row=3, column=0, padx=10, pady=30, sticky="ew")
-        wellnessmate_label5 = Label(
-            self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['xl']), bg="#D8B7E3"
-        )
-        wellnessmate_label5.grid(row=4, column=0, padx=10, pady=30, sticky="ew")
-        wellnessmate_label6 = Label(
-            self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['xxl']), bg="#D8B7E3"
-        )
-        wellnessmate_label6.grid(row=5, column=0, padx=10, pady=30, sticky="ew")
+        wellnessmate_label.grid(row=0, column=0, padx=80, pady=80, sticky="nw")
 
         # Add slogan label at the bottom
         slogan_text = "Track your habits,\n" \
@@ -92,45 +62,46 @@ class MainUI:
         slogan_label = Label(
             self.left_frame,
             text=slogan_text,
-            font=("Helvetica", -32),
-            bg="#D8B7E3",
+            font=("Helvetica", self.font_size['m']),
+            bg="#59B2A7",
             fg="#2A2A28",
             justify="left",
         )
-        slogan_label.grid(row=6, column=0, padx=20, pady=(0, 20), sticky="ew")
+        slogan_label.grid(row=1, column=0, padx=80, pady=150, sticky="sw")
 
         self.left_frame.grid_rowconfigure(1, weight=1)
 
         # Right frame
         # Navigation buttons (Login and Signup)
-        nav_frame = Frame(self.right_frame, pady=20, bg="#F3F1E7")
-        nav_frame.grid(row=0, column=0, sticky="ew", padx=150)
+        nav_frame = Frame(self.right_frame, pady=20, bg="#F3F1EB")
+        nav_frame.grid(row=0, column=0, sticky="ew", padx=0, pady=80)
 
-        self.right_frame.grid_rowconfigure(0, weight=1)
-        self.right_frame.grid_rowconfigure(1, weight=1)
         self.right_frame.grid_columnconfigure(0, weight=1)
+        nav_frame.grid_rowconfigure(1, weight=1)
+        nav_frame.grid_columnconfigure(0, weight=1)
+        nav_frame.grid_columnconfigure(1, weight=1)
 
         login_button = Button(
             nav_frame,
             text="Login",
-            font=("Helvetica", 18),
+            font=("Helvetica", self.font_size["xxs"]),
             fg="#2A2A28",
-            bg="#45B9AC",
+            bg="#CDCBC1",
             borderless=0,
             highlightbackground="#F3F1E6",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
             padx=20,
-            pady=5,
+            pady=10,
             cursor="hand2",
             command=self.show_login_frame,
         )
-        login_button.grid(row=0, column=0, padx=20)
+        login_button.grid(row=0, column=0, padx=40, sticky="e")
         register_button = Button(
             nav_frame,
             text="Sign Up",
-            font=("Helvetica", 18),
+            font=("Helvetica", self.font_size["xxs"]),
             fg="#2A2A28",
             bg="#D7D97D",
             highlightbackground="#F3F1E6",
@@ -138,17 +109,17 @@ class MainUI:
             highlightthickness=0,
             borderwidth=0,
             padx=20,
-            pady=5,
+            pady=10,
             command=self.show_register_frame,
         )
-        register_button.grid(row=0, column=1, padx=20)
+        register_button.grid(row=0, column=1, padx=40, sticky="w")
 
         # Login/Signup Container Frame
-        container_frame = Frame(self.right_frame, pady=20, bg="#F3F1E7")
-        container_frame.grid(row=1, column=0, sticky="ew", padx=150)
+        container_frame = Frame(self.right_frame, pady=20, bg="#F3F1EB", padx=200)
+        container_frame.grid(row=1, column=0, sticky="ew", padx=0)
 
-        self.register_frame = RegisterFrame(container_frame, self, self.db)
-        self.login_frame = LoginFrame(container_frame, self, self.db)
+        self.register_frame = RegisterFrame(container_frame, self, self.db, self.font_size)
+        self.login_frame = LoginFrame(container_frame, self, self.db, self.font_size)
         self.login_frame.grid(row=0, column=0, sticky="nsew")
 
         container_frame.rowconfigure(1, weight=1)

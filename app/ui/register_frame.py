@@ -7,18 +7,20 @@ from tkmacosx import Button
 class RegisterFrame(Frame):
     """Sign up frame for the application."""
 
-    def __init__(self, master, main_ui, db):
+    def __init__(self, master, main_ui, db, fontsize):
         """Init method for the RegisterFrame class."""
         super().__init__(master, bg="#F3F1EB")
         self.master = master
         self.main_ui = main_ui
         self.db = db
+        self.fontsize = fontsize
         self.show_pass_image = PhotoImage(
             file="app/assets/" + "show_pass.png"
         ).subsample(25, 25)
         self.hide_pass_image = PhotoImage(
             file="app/assets/" + "hide_pass.png"
         ).subsample(25, 25)
+        self.grid_columnconfigure(0, weight=1)
         self.create_widgets()
 
     def create_widgets(self):
@@ -32,21 +34,21 @@ class RegisterFrame(Frame):
         )
         self.register_title.grid(row=0, column=0, pady=30, sticky="w")
 
-        # Create a frame to input the username
+# Create a frame to input the username
         self.username_frame = Frame(self, bg="#F3F1EB")
         self.username_frame.grid(row=1, column=0, sticky="ew", pady=10)
+        self.username_frame.grid_columnconfigure(0, weight=1)
         self.username_label = Label(
             self.username_frame,
             text="Username:",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             bg="#F3F1EB",
             fg="#4C4A46",
         )
         self.username_label.grid(row=0, column=0, sticky="w")
         self.user_entry = Entry(
             self.username_frame,
-            width=50,
-            font=("Helvetica", 16),
+            font=("Helvetica", self.fontsize["xxs"]),
             fg="#4C4A46",
             bg="#FFFFFF",
             relief="solid",
@@ -57,23 +59,26 @@ class RegisterFrame(Frame):
         )
         self.user_entry.grid(row=1, column=0, sticky="ew", pady=5)
 
-        # Create a frame to input the password
-        # and a button to toggle password visibility
+        # Create a frame to input the password and
+        # a button to toggle password visibility
         self.pass_frame = Frame(self, bg="#F3F1EB")
         self.pass_frame.grid(row=2, column=0, sticky="ew", pady=10)
+        self.pass_frame.grid_columnconfigure(0, weight=1)
         self.pass_label = Label(
             self.pass_frame,
             text="Password:",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             bg="#F3F1EB",
             fg="#4C4A46",
         )
         self.pass_label.grid(row=0, column=0, sticky="w")
+        self.pass_entry_frame = Frame(self.pass_frame, bg="#FFFFFF")
+        self.pass_entry_frame.grid(row=2, column=0, sticky="ew", pady=5)
+        self.pass_entry_frame.grid_columnconfigure(0, weight=1)
         self.pass_entry = Entry(
-            self.pass_frame,
-            width=50,
+            self.pass_entry_frame,
             show="*",
-            font=("Helvetica", 16),
+            font=("Helvetica", self.fontsize["xxs"]),
             fg="#4C4A46",
             bg="#FFFFFF",
             relief="solid",
@@ -82,37 +87,41 @@ class RegisterFrame(Frame):
             borderwidth=0,
             insertbackground="#4C4A46",
         )
-        self.pass_entry.grid(row=1, column=0, sticky="ew", pady=5)
+        self.pass_entry.grid(row=0, column=0, sticky="ew")
         self.show_pass_button = Button(
-            self.pass_frame,
+            self.pass_entry_frame,
             image=self.show_pass_image,
-            bg="#D8B7E3",
+            bg="#FFFFFF",
             bd=0,
-            highlightbackground="#F3F1E7",
+            highlightbackground="#FFFFF0",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
             command=self.toggle_password,
         )
-        self.show_pass_button.grid(row=1, column=1, sticky="ew", padx=5)
+        self.show_pass_button.grid(row=0, column=1, sticky="e")
+
 
         # Create a frame to input the password confirmation and
         # a button to toggle password confirmation visibility
-        self.confirm_pass_frame = Frame(self, bg="#F3F1EB")
-        self.confirm_pass_frame.grid(row=3, column=0, sticky="ew", pady=10)
-        self.confirm_pass_label = Label(
-            self.confirm_pass_frame,
+        self.pass_confirmation_frame = Frame(self, bg="#F3F1EB")
+        self.pass_confirmation_frame.grid(row=3, column=0, sticky="ew", pady=10)
+        self.pass_confirmation_frame.grid_columnconfigure(0, weight=1)
+        self.pass_label = Label(
+            self.pass_confirmation_frame,
             text="Confirm Password:",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             bg="#F3F1EB",
             fg="#4C4A46",
         )
-        self.confirm_pass_label.grid(row=0, column=0, sticky="w")
-        self.confirm_pass_entry = Entry(
-            self.confirm_pass_frame,
-            width=50,
+        self.pass_label.grid(row=0, column=0, sticky="w")
+        self.pass_confirmation_entry_frame = Frame(self.pass_confirmation_frame, bg="#FFFFFF")
+        self.pass_confirmation_entry_frame.grid(row=2, column=0, sticky="ew", pady=5)
+        self.pass_confirmation_entry_frame.grid_columnconfigure(0, weight=1)
+        self.pass_confirmation_entry = Entry(
+            self.pass_confirmation_entry_frame,
             show="*",
-            font=("Helvetica", 16),
+            font=("Helvetica", self.fontsize["xxs"]),
             fg="#4C4A46",
             bg="#FFFFFF",
             relief="solid",
@@ -121,26 +130,25 @@ class RegisterFrame(Frame):
             borderwidth=0,
             insertbackground="#4C4A46",
         )
-        self.confirm_pass_entry.grid(row=1, column=0, sticky="ew", pady=5)
+        self.pass_confirmation_entry.grid(row=0, column=0, sticky="ew")
         self.show_confirm_pass_button = Button(
-            self.confirm_pass_frame,
+            self.pass_confirmation_entry_frame,
             image=self.show_pass_image,
-            bg="#D8B7E3",
+            bg="#FFFFFF",
             bd=0,
-            highlightbackground="#F3F1E7",
+            highlightbackground="#FFFFF0",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
             command=self.toggle_confirm_password,
         )
-        self.show_confirm_pass_button.grid(row=1, column=1,
-                                           sticky="ew", padx=5)
+        self.show_confirm_pass_button.grid(row=0, column=1, sticky="e")
 
         # Create a button to submit data
         self.submit_button = Button(
             self,
             text="Sign Up",
-            font=("Helvetica", 16, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
             highlightbackground="#F3F1E7",
@@ -168,14 +176,14 @@ class RegisterFrame(Frame):
 
     def toggle_confirm_password(self):
         """Toggle visibility of password in the confirm password entry."""
-        pass_state = self.confirm_pass_entry.cget("show")
+        pass_state = self.pass_confirmation_entry.cget("show")
         if pass_state:
             # If password is hidden, show it
-            self.confirm_pass_entry.configure(show="")
+            self.pass_confirmation_entry.configure(show="")
             self.show_confirm_pass_button.configure(image=self.hide_pass_image)
         else:
             # If password is shown, hide it
-            self.confirm_pass_entry.configure(show="*")
+            self.pass_confirmation_entry.configure(show="*")
             self.show_confirm_pass_button.configure(image=self.show_pass_image)
 
     def create_account(self):
