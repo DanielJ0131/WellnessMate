@@ -8,7 +8,6 @@ by Daniel, Patrick, Tony, André, Elina
 - [Requirements](#requirements)
 - [Installation](#Installation)
 - [Usage](#usage)
-- [How to contribute to the project](#how-to-contribute-to-the-project) 
 
 ## Introduction
 

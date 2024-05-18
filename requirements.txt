@@ -24,3 +24,6 @@ pymysql
 
 # Tkinter for MacOS
 tkmacosx
+
+# Cryptography
+cryptography
