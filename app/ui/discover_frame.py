@@ -6,19 +6,20 @@ from tkmacosx import Button
 class Discover(Frame):
     """Tkinter frame for displaying user's habits."""
 
-    def __init__(self, master, db, user_id, username):
+    def __init__(self, master, db, user_id, username, fontsize):
         """Initialize the MyHabits frame."""
         super().__init__(master, bg="#F3F1E7", padx=70, pady=60)
         self.master = master
         self.db = db
         self.user_id = user_id
         self.username = username
+        self.fontsize = fontsize
         self.grid_columnconfigure(0, weight=1)
 
         heading_label = Label(
             self,
             text="Discover",
-            font=("Helvetica", 32),
+            font=("Helvetica", self.fontsize["xl"], "bold"),
             bg="#F3F1EB",
             fg="#2A2A28",
         )
@@ -27,7 +28,7 @@ class Discover(Frame):
         self.subheading_label = Text(
             self,
             wrap="word",
-            font=("Helvetica", 18),
+            font=("Helvetica", self.fontsize["xs"]),
             bg="#F3F1E7",
             fg="#2A2A28",
             borderwidth=0,
@@ -46,17 +47,8 @@ class Discover(Frame):
         self.trending_habits_frame.grid(row=2, column=0, sticky="ew")
         self.trending_habits_frame.grid_columnconfigure(0, weight=1)
 
-        self.h2_label = Label(
-            self.trending_habits_frame,
-            text="Trending Habits",
-            font=("Helvetica", 24),
-            bg="#F3F1EB",
-            fg="#2A2A28",
-        )
-        self.h2_label.grid(row=0, column=0, sticky="w", padx=10, pady=(30,20))
-
         self.trending_habits_container = Frame(self.trending_habits_frame, bg="#F3F1EB")
-        self.trending_habits_container.grid(row=1, column=0, sticky="ew")
+        self.trending_habits_container.grid(row=1, column=0, sticky="ew", pady=20)
 
 
         self.trending_habits_container.grid_columnconfigure(0, weight=1)
@@ -65,12 +57,12 @@ class Discover(Frame):
 
         ## Habit 1 card
         self.habit1_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
-        self.habit1_frame.grid(row=0, column=0, padx=10, sticky="nsew")
+        self.habit1_frame.grid(row=0, column=0, padx=15, sticky="nsew")
         self.habit1_frame.grid_columnconfigure(0, weight=1)
         self.habit1_label = Label(
             self.habit1_frame,
             text="Morning Stretching",
-            font=("Helvetica", 18),
+            font=("Helvetica", self.fontsize["s"], "bold"),
             bg="#D8B7E3",
             fg="#2A2A28",
         )
@@ -78,21 +70,21 @@ class Discover(Frame):
         self.habit1_description = Text(
             self.habit1_frame,
             wrap="word",
-            font=("Helvetica", 14),
+            font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
             bg="#D8B7E3",
             fg="#2A2A28",
-            height=9,
+            height=7,
             borderwidth=0,
             highlightthickness=0,
         )
-        self.habit1_description.insert("1.0", "Start your day on the right foot by incorporating a quick stretching routine into your morning ritual. Stretching helps improve flexibility, reduce muscle tension, and increase blood flow, leaving you feeling energized and ready to tackle the day ahead.")
+        self.habit1_description.insert("1.0", "Stretching in the morning can boost your flexibility, release muscle tension, and get your blood flowing. It's a simple way to feel refreshed and ready to take on whatever comes your way!")
         self.habit1_description.config(state="disabled")
         self.habit1_description.grid(row=1, column=0, sticky="ew", padx=10, pady=10)
         self.create_habit_button = Button(
             self.habit1_frame,
             text="Add to My Habits",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
             highlightbackground="#D8B7E4",
@@ -108,12 +100,12 @@ class Discover(Frame):
 
         ## Habit 2 card
         self.habit2_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
-        self.habit2_frame.grid(row=0, column=1, padx=10, sticky="nsew")
+        self.habit2_frame.grid(row=0, column=1, padx=15, sticky="nsew")
         self.habit2_frame.grid_columnconfigure(0, weight=1)
         self.habit2_label = Label(
             self.habit2_frame,
             text="Pomodoro Technique",
-            font=("Helvetica", 18),
+            font=("Helvetica", self.fontsize["s"], "bold"),
             bg="#D8B7E3",
             fg="#2A2A28",
         )
@@ -121,21 +113,21 @@ class Discover(Frame):
         self.habit2_description = Text(
             self.habit2_frame,
             wrap="word",
-            font=("Helvetica", 14),
+            font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
             bg="#D8B7E3",
             fg="#2A2A28",
-            height=9,
+            height=7,
             borderwidth=0,
             highlightthickness=0,
         )
-        self.habit2_description.insert("1.0", "Boost your productivity and focus with the Pomodoro Technique. This time management method involves breaking your workday into short, focused intervals (typically 25 minutes), followed by a short break. By working in short bursts, you can maintain high levels of concentration and avoid burnout.")
+        self.habit2_description.insert("1.0", "Break your work into short, intense bursts (usually 25 minutes), followed by quick breaks. This method helps you stay super focused and avoid burning out.")
         self.habit2_description.config(state="disabled")
         self.habit2_description.grid(row=1, column=0, sticky="ew", padx=10, pady=10)
         self.create_habit_button = Button(
             self.habit2_frame,
             text="Add to My Habits",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
             highlightbackground="#D8B7E4",
@@ -151,12 +143,12 @@ class Discover(Frame):
 
         ## Habit 3 card
         self.habit3_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
-        self.habit3_frame.grid(row=0, column=2, padx=10, sticky="nsew")
+        self.habit3_frame.grid(row=0, column=2, padx=15, sticky="nsew")
         self.habit3_frame.grid_columnconfigure(0, weight=1)
         self.habit3_label = Label(
             self.habit3_frame,
             text="Evening Meditation",
-            font=("Helvetica", 18),
+            font=("Helvetica", self.fontsize["s"], "bold"),
             bg="#D8B7E3",
             fg="#2A2A28",
         )
@@ -164,21 +156,21 @@ class Discover(Frame):
         self.habit3_description = Text(
             self.habit3_frame,
             wrap="word",
-            font=("Helvetica", 14),
+            font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
             bg="#D8B7E3",
             fg="#2A2A28",
-            height=9,
+            height=7,
             borderwidth=0,
             highlightthickness=0,
         )
-        self.habit3_description.insert("1.0", "Wind down at the end of the day with a relaxing evening meditation practice. Meditation helps calm the mind, reduce stress, and promote a sense of inner peace and tranquility. By incorporating meditation into your evening routine, you can improve sleep quality and prepare your mind for restful sleep.")
+        self.habit3_description.insert("1.0", "It's a great way to ease stress, calm your mind, and feel totally zen. Plus, it sets you up for a peaceful night's sleep, so you wake up feeling refreshed and ready to tackle the day.")
         self.habit3_description.config(state="disabled")
         self.habit3_description.grid(row=1, column=0, sticky="ew", padx=10, pady=10)
         self.create_habit_button = Button(
             self.habit3_frame,
             text="Add to My Habits",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
             highlightbackground="#D8B7E4",
@@ -194,12 +186,12 @@ class Discover(Frame):
 
         ##Habit 4
         self.habit4_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
-        self.habit4_frame.grid(row=1, column=0, padx=10, pady=20, sticky="nsew")
+        self.habit4_frame.grid(row=1, column=0, padx=15, pady=30, sticky="nsew")
         self.habit4_frame.grid_columnconfigure(0, weight=1)
         self.habit4_label = Label(
             self.habit4_frame,
-            text="Gratitude Practice",
-            font=("Helvetica", 18),
+            text="Daily Reflections",
+            font=("Helvetica", self.fontsize["s"], "bold"),
             bg="#D8B7E3",
             fg="#2A2A28",
         )
@@ -207,21 +199,21 @@ class Discover(Frame):
         self.habit4_description = Text(
             self.habit4_frame,
             wrap="word",
-            font=("Helvetica", 14),
+            font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
             bg="#D8B7E3",
             fg="#2A2A28",
-            height=9,
+            height=7,
             borderwidth=0,
             highlightthickness=0,
         )
-        self.habit4_description.insert("1.0", "Cultivate a sense of gratitude and appreciation by incorporating a daily gratitude practice into your life. Gratitude has been linked to improved mental and physical health, increased happiness, and stronger relationships. By taking time each day to reflect on the things you're grateful for, you can shift your focus from negativity to positivity and cultivate a more positive outlook on life.")
+        self.habit4_description.insert("1.0", "Take a few moments each evening to reflect on your day, acknowledging accomplishments, challenges, and moments of growth. Reflective practices encourage self-awareness, promote personal growth, and can help you make positive changes in your life.")
         self.habit4_description.config(state="disabled")
         self.habit4_description.grid(row=1, column=0, sticky="ew", padx=10, pady=10)
         self.create_habit_button = Button(
             self.habit4_frame,
             text="Add to My Habits",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
             highlightbackground="#D8B7E4",
@@ -237,12 +229,12 @@ class Discover(Frame):
 
         ##Habit 5
         self.habit5_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
-        self.habit5_frame.grid(row=1, column=1, padx=10, pady=20, sticky="nsew")
+        self.habit5_frame.grid(row=1, column=1, padx=15, pady=30, sticky="nsew")
         self.habit5_frame.grid_columnconfigure(0, weight=1)
         self.habit5_label = Label(
             self.habit5_frame,
-            text="Gratitude Practice",
-            font=("Helvetica", 18),
+            text="Digital Detox",
+            font=("Helvetica", self.fontsize["s"], "bold"),
             bg="#D8B7E3",
             fg="#2A2A28",
         )
@@ -250,21 +242,21 @@ class Discover(Frame):
         self.habit5_description = Text(
             self.habit5_frame,
             wrap="word",
-            font=("Helvetica", 14),
+            font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
             bg="#D8B7E3",
             fg="#2A2A28",
-            height=9,
+            height=7,
             borderwidth=0,
             highlightthickness=0,
         )
-        self.habit5_description.insert("1.0", "Cultivate a sense of gratitude and appreciation by incorporating a daily gratitude practice into your life. Gratitude has been linked to improved mental and physical health, increased happiness, and stronger relationships. By taking time each day to reflect on the things you're grateful for, you can shift your focus from negativity to positivity and cultivate a more positive outlook on life.")
+        self.habit5_description.insert("1.0", "Disconnect from screens for a designated period each day to reduce digital overload and reconnect with the present moment. Use this time to engage in activities like reading, journaling, or spending quality time with loved ones.")
         self.habit5_description.config(state="disabled")
         self.habit5_description.grid(row=1, column=0, sticky="ew", padx=10, pady=10)
         self.create_habit_button = Button(
             self.habit5_frame,
             text="Add to My Habits",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
             highlightbackground="#D8B7E4",
@@ -280,12 +272,12 @@ class Discover(Frame):
 
         ##Habit 6
         self.habit6_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
-        self.habit6_frame.grid(row=1, column=2, padx=10, pady=20, sticky="nsew")
+        self.habit6_frame.grid(row=1, column=2, padx=15, pady=30, sticky="nsew")
         self.habit6_frame.grid_columnconfigure(0, weight=1)
         self.habit6_label = Label(
             self.habit6_frame,
-            text="Gratitude Practice",
-            font=("Helvetica", 18),
+            text="Daily Walk",
+            font=("Helvetica", self.fontsize["s"], "bold"),
             bg="#D8B7E3",
             fg="#2A2A28",
         )
@@ -293,21 +285,21 @@ class Discover(Frame):
         self.habit6_description = Text(
             self.habit6_frame,
             wrap="word",
-            font=("Helvetica", 14),
+            font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
             bg="#D8B7E3",
             fg="#2A2A28",
-            height=9,
+            height=7,
             borderwidth=0,
             highlightthickness=0,
         )
-        self.habit6_description.insert("1.0", "Cultivate a sense of gratitude and appreciation by incorporating a daily gratitude practice into your life. Gratitude has been linked to improved mental and physical health, increased happiness, and stronger relationships. By taking time each day to reflect on the things you're grateful for, you can shift your focus from negativity to positivity and cultivate a more positive outlook on life.")
+        self.habit6_description.insert("1.0", "Walking boosts mood, reduces stress, and supports overall well-being. Aim for at least 30 minutes a day to reap the benefits.")
         self.habit6_description.config(state="disabled")
         self.habit6_description.grid(row=1, column=0, sticky="ew", padx=10, pady=10)
         self.create_habit_button = Button(
             self.habit6_frame,
             text="Add to My Habits",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
             highlightbackground="#D8B7E4",
