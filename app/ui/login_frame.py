@@ -28,11 +28,12 @@ class LoginFrame(Frame):
         self.login_title = Label(
             self,
             text="Welcome back!",
-            font=("Helvetica", self.fontsize["l"], "bold"),
+            font=("Helvetica", self.fontsize["xl"], "bold"),
             fg="#2A2A28",
             bg="#F3F1EB",
+            width=20
         )
-        self.login_title.grid(row=0, column=0, pady=30, sticky="w")
+        self.login_title.grid(row=0, column=0, pady=30, sticky="ew")
 
         # Create a frame to input the username
         self.username_frame = Frame(self, bg="#F3F1EB")
@@ -41,14 +42,14 @@ class LoginFrame(Frame):
         self.username_label = Label(
             self.username_frame,
             text="Username:",
-            font=("Helvetica", self.fontsize["xxs"], "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             bg="#F3F1EB",
             fg="#4C4A46",
         )
         self.username_label.grid(row=0, column=0, sticky="w")
         self.user_entry = Entry(
             self.username_frame,
-            font=("Helvetica", self.fontsize["xxs"]),
+            font=("Helvetica", self.fontsize["s"]),
             fg="#4C4A46",
             bg="#FFFFFF",
             relief="solid",
@@ -57,7 +58,7 @@ class LoginFrame(Frame):
             borderwidth=0,
             insertbackground="#4C4A46",
         )
-        self.user_entry.grid(row=1, column=0, sticky="ew", pady=5)
+        self.user_entry.grid(row=1, column=0, sticky="ew", pady=5, ipady=2)
 
         # Create a frame to input the password and
         # a button to toggle password visibility
@@ -67,7 +68,7 @@ class LoginFrame(Frame):
         self.pass_label = Label(
             self.pass_frame,
             text="Password:",
-            font=("Helvetica", self.fontsize["xxs"], "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             bg="#F3F1EB",
             fg="#4C4A46",
         )
@@ -78,7 +79,7 @@ class LoginFrame(Frame):
         self.pass_entry = Entry(
             self.pass_entry_frame,
             show="*",
-            font=("Helvetica", self.fontsize["xxs"]),
+            font=("Helvetica", self.fontsize["s"]),
             fg="#4C4A46",
             bg="#FFFFFF",
             relief="solid",
@@ -87,7 +88,7 @@ class LoginFrame(Frame):
             borderwidth=0,
             insertbackground="#4C4A46",
         )
-        self.pass_entry.grid(row=0, column=0, sticky="ew")
+        self.pass_entry.grid(row=0, column=0, sticky="ew", ipady=2)
         self.show_pass_button = Button(
             self.pass_entry_frame,
             image=self.show_pass_image,
@@ -105,7 +106,7 @@ class LoginFrame(Frame):
         self.submit_button = Button(
             self,
             text="Login",
-            font=("Helvetica", self.fontsize["xxs"], "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             fg="#2A2A28",
             bg="#45B9AC",
             highlightbackground="#F3F1E7",

@@ -18,12 +18,12 @@ class MainUI:
         self.screen_width = master.winfo_screenwidth()
         self.screen_height = master.winfo_screenheight()
         self.font_size = {
-            'xxs': int(self.screen_width / -95),
-            'xs': int(self.screen_width / -85),
-            's': int(self.screen_width / -75),
-            'm': int(self.screen_width / -65),
-            'l': int(self.screen_width / -55),
-            'xl': int(self.screen_width / -40),
+            'xxs': int(self.screen_width / -110),
+            'xs': int(self.screen_width / -100),
+            's': int(self.screen_width / -90),
+            'm': int(self.screen_width / -75),
+            'l': int(self.screen_width / -60),
+            'xl': int(self.screen_width / -50),
             'xxl': int(self.screen_width / -30),
         }
         master.title("WellnessMate")
@@ -62,7 +62,7 @@ class MainUI:
         slogan_label = Label(
             self.left_frame,
             text=slogan_text,
-            font=("Helvetica", self.font_size['m']),
+            font=("Helvetica", self.font_size['xl']),
             bg="#59B2A7",
             fg="#2A2A28",
             justify="left",
@@ -84,7 +84,7 @@ class MainUI:
         login_button = Button(
             nav_frame,
             text="Login",
-            font=("Helvetica", self.font_size["xxs"]),
+            font=("Helvetica", self.font_size["xs"]),
             fg="#2A2A28",
             bg="#CDCBC1",
             borderless=0,
@@ -101,7 +101,7 @@ class MainUI:
         register_button = Button(
             nav_frame,
             text="Sign Up",
-            font=("Helvetica", self.font_size["xxs"]),
+            font=("Helvetica", self.font_size["xs"]),
             fg="#2A2A28",
             bg="#D7D97D",
             highlightbackground="#F3F1E6",
@@ -140,7 +140,7 @@ class MainUI:
         self.left_frame.grid_remove()
         self.right_frame.grid_remove()
         self.dashboard_frame = DashboardFrame(self.master, username,
-                                              user_id, db, self)
+                                              user_id, db, self, self.font_size)
         self.dashboard_frame.grid(row=0, column=0, sticky="nsew")
 
     def logout(self):

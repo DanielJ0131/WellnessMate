@@ -11,12 +11,13 @@ from ui.discover_frame import Discover
 class DashboardFrame(Frame):
     """Represent the user dashboard in the application."""
 
-    def __init__(self, master, username, user_id, db, main_iu):
+    def __init__(self, master, username, user_id, db, main_iu, fontsize):
         """Init method for the DashboardFrame class."""
         super().__init__(master, bg="#F3F1EB")
         self.master = master
         self.username = username
         self.user_id = user_id
+        self.fontsize = fontsize
         self.user_image = PhotoImage(file="app/assets/" +
                                      "avatar1.png").subsample(7, 7)
         self.db = db
@@ -44,7 +45,7 @@ class DashboardFrame(Frame):
         self.title_label = Label(
             self.nav_frame,
             text="WellnessMate",
-            font=("Helvetica", 30),
+            font=("Helvetica", self.fontsize["xl"]),
             bg="#2A2A28",
             fg="#F3F1E7",
         )
@@ -53,7 +54,7 @@ class DashboardFrame(Frame):
         self.subtitle_label = Label(
             self.nav_frame,
             text="General",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             bg="#2A2A28",
             fg="#CDCBC1",
         )
@@ -63,7 +64,7 @@ class DashboardFrame(Frame):
             self.nav_frame,
             anchor="w",
             text="My Habits",
-            font=("Helvetica", 16, "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             fg="#F3F1E7",
             bg="#2A2A28",
             highlightbackground="#2A2A29",
@@ -74,13 +75,13 @@ class DashboardFrame(Frame):
             cursor="hand2",
             command=lambda: self.mount_my_habits(),
         )
-        self.my_habits_button.grid(row=2, column=0, sticky="w")
+        self.my_habits_button.grid(row=2, column=0, sticky="ew")
 
         self.sport_events_button = Button(
             self.nav_frame,
             anchor="w",
             text="Sport Events",
-            font=("Helvetica", 16, "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             fg="#F3F1E7",
             bg="#2A2A28",
             borderless=1,
@@ -98,7 +99,7 @@ class DashboardFrame(Frame):
             self.nav_frame,
             anchor="w",
             text="Discover",
-            font=("Helvetica", 16, "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             fg="#F3F1E7",
             bg="#2A2A28",
             highlightbackground="#2A2A29",
@@ -114,7 +115,7 @@ class DashboardFrame(Frame):
         self.subtitle_label = Label(
             self.nav_frame,
             text="Settings",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             bg="#2A2A28",
             fg="#CDCBC1",
         )
@@ -124,7 +125,7 @@ class DashboardFrame(Frame):
             self.nav_frame,
             anchor="w",
             text="Profile",
-            font=("Helvetica", 16, "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             fg="#F3F1E7",
             bg="#2A2A28",
             highlightbackground="#2A2A29",
@@ -149,7 +150,7 @@ class DashboardFrame(Frame):
         self.username_label = Label(
             self.user_frame,
             text=f"{self.username}",
-            font=("Helvetica", 16, "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             bg="#2A2A28",
             fg="#F3F1E7",
             anchor="w"
@@ -163,7 +164,7 @@ class DashboardFrame(Frame):
             self.user_frame,
             anchor="w",
             text="Log out",
-            font=("Helvetica", 14, "bold"),
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#F3F1E7",
             bg="#2A2A28",
             highlightbackground="#2A2A29",
@@ -185,7 +186,7 @@ class DashboardFrame(Frame):
         """Mount the My Habits frame on the dashboard."""
         self.unmount_current_frame()
         self.my_habits_frame = MyHabits(
-            self.content_frame, self.db, self.user_id, self.username
+            self.content_frame, self.db, self.user_id, self.username, self.fontsize
         )
         self.my_habits_frame.grid(row=0, column=1, sticky="nsew")
 
@@ -193,7 +194,7 @@ class DashboardFrame(Frame):
         """Mount the My Habits frame on the dashboard."""
         self.unmount_current_frame()
         self.discover_frame = Discover(
-            self.content_frame, self.db, self.user_id, self.username
+            self.content_frame, self.db, self.user_id, self.username, self.fontsize
         )
         self.discover_frame.grid(row=0, column=1, sticky="nsew")
 

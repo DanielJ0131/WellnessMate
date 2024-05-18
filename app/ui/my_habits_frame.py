@@ -7,20 +7,21 @@ from tkmacosx import Button
 class MyHabits(Frame):
     """Tkinter frame for displaying user's habits."""
 
-    def __init__(self, master, db, user_id, username):
+    def __init__(self, master, db, user_id, username, fontsize):
         """Initialize the MyHabits frame."""
         super().__init__(master, bg="#F3F1E7", padx=70, pady=60)
         self.master = master
         self.db = db
         self.user_id = user_id
         self.username = username
+        self.fontsize = fontsize
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(2, weight=1)
 
         welcome_label = Label(
             self,
             text="Welcome, " + f"{self.username.capitalize()}" + "!",
-            font=("Helvetica", 32),
+            font=("Helvetica", self.fontsize["xl"], "bold"),
             bg="#F3F1EB",
             fg="#2A2A28",
         )
@@ -31,23 +32,32 @@ class MyHabits(Frame):
 
     def mount_habit_creator(self):
         """Mount the habit creator frame."""
-        habit_creator_frame = Frame(self, bg="#D8B7E3", pady=25, padx=25)
+        habit_creator_frame = Frame(self, bg="#59B2A7", pady=15, padx=35)
         habit_creator_frame.grid(row=1, column=0, sticky="nsew")
         habit_creator_frame.grid_columnconfigure(0, weight=1)
 
         label = Label(
             habit_creator_frame,
-            text="Habit Creator",
-            font=("Helvetica", 20),
-            bg="#D8B7E3",
+            text="Create a new habit",
+            font=("Helvetica", self.fontsize["m"], "bold"),
+            bg="#59B2A7",
             fg="#2A2A28",
         )
-        label.grid(row=0, column=0, sticky="w", pady=(0, 10))
+        label.grid(row=0, column=0, sticky="w", pady=(0, 20))
+
+        entry_label = Label(
+            habit_creator_frame,
+            text="Title",
+            font=("Helvetica", self.fontsize["xxs"], "bold"),
+            bg="#59B2A7",
+            fg="#48463D",
+        )
+        entry_label.grid(row=1, column=0, sticky="w")
 
         user_entry = Entry(
             habit_creator_frame,
             width=30,
-            font=("Helvetica", 16),
+            font=("Helvetica", self.fontsize["xs"]),
             fg="#2A2A28",
             bg="#FFFFFF",
             relief="solid",
@@ -56,16 +66,16 @@ class MyHabits(Frame):
             borderwidth=0,
             insertbackground="#4C4A46",
         )
-        user_entry.grid(row=1, column=0, sticky="ew")
+        user_entry.grid(row=2, column=0, sticky="ew")
         user_entry.focus_set()
 
         self.create_habit_button = Button(
             habit_creator_frame,
             text="Create habit",
-            font=("Helvetica", 16, "bold"),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             fg="#2A2A28",
-            bg="#45B9AC",
-            highlightbackground="#D8B7E4",
+            bg="#D7D97D",
+            highlightbackground="#59B2A9",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
@@ -74,13 +84,13 @@ class MyHabits(Frame):
             cursor="hand2",
             command=lambda: self.create_habit(user_entry.get()),
         )
-        self.create_habit_button.grid(row=2, column=0, sticky="w", pady=20)
+        self.create_habit_button.grid(row=3, column=0, sticky="w", pady=20)
 
     def mount_habit_list(self):
         """Mount the habit list frame."""
         habit_list = self.db.get_habits(self.user_id)
 
-        self.habit_list_frame = Frame(self, bg="#D7D97D", pady=25, padx=25)
+        self.habit_list_frame = Frame(self, bg="#D7D97D", pady=15, padx=35)
         self.habit_list_frame.grid(row=2, column=0, sticky="nsew",
                                    pady=(30, 0))
         self.habit_list_frame.grid_columnconfigure(0, weight=1)
@@ -88,7 +98,7 @@ class MyHabits(Frame):
         label = Label(
             self.habit_list_frame,
             text="My Habit List",
-            font=("Helvetica", 20),
+            font=("Helvetica", self.fontsize["m"], "bold"),
             bg="#D7D97D",
             fg="#2A2A28",
         )
@@ -132,7 +142,7 @@ class MyHabits(Frame):
         self.empty_list_label = Label(
             self.habit_inner_frame,
             text="You don't have any habit yet.",
-            font=("Helvetica", 14),
+            font=("Helvetica", self.fontsize["xs"], "bold"),
             bg="#D7D97D",
             fg="#2A2A28",
         )
@@ -144,19 +154,19 @@ class MyHabits(Frame):
         """Mount a habit item to the habit list."""
         try:
             habit_item = Frame(self.habit_inner_frame,
-                               bg="#F3F1E7", padx=7, pady=7)
+                               bg="#F3F1E7", padx=7, pady=1)
             habit_item.grid(
                 row=self.habit_inner_frame.grid_size()[1],
                 column=0,
                 sticky="nsew",
-                pady=10
+                pady=7
             )
             habit_item.grid_columnconfigure(0, weight=1)
 
             habit_item_label = Label(
                 habit_item,
                 text=f"{habit_description}",
-                font=("Helvetica", 16),
+                font=("Helvetica", self.fontsize["xs"]),
                 fg="#2A2A28",
                 bg="#F3F1E7",
                 anchor="w",
@@ -167,13 +177,13 @@ class MyHabits(Frame):
             edit_button = Button(
                 habit_item,
                 text="Edit",
-                font=("Helvetica", 14, "bold"),
+                font=("Helvetica", self.fontsize["xxs"]),
                 fg="#2A2A28",
                 bg="#CDCBC1",
                 highlightbackground="#F3F1E6",
                 relief="solid",
                 highlightthickness=0,
-                pady=5,
+                pady=2,
                 borderwidth=0,
                 cursor="hand2",
                 command=lambda: self.edit_habit(habit_item),
@@ -183,19 +193,19 @@ class MyHabits(Frame):
             delete_button = Button(
                 habit_item,
                 text="Delete",
-                font=("Helvetica", 14, "bold"),
+                font=("Helvetica", self.fontsize["xxs"]),
                 fg="#2A2A28",
                 bg="#45B9AC",
                 highlightbackground="#F3F1E6",
                 relief="solid",
                 highlightthickness=0,
-                pady=5,
+                pady=2,
                 borderwidth=0,
                 cursor="hand2",
                 command=lambda: self.delete_habit(habit_item,
                                                   habit_description),
             )
-            delete_button.grid(row=0, column=2, sticky="ew", padx=10)
+            delete_button.grid(row=0, column=2, sticky="ew", padx=7)
         except Exception as e:
             print(f"An error occurred while creating a new habit: {e}")
 
@@ -220,7 +230,7 @@ class MyHabits(Frame):
             "text")
         entry_widget = Entry(
             habit_item,
-            font=("Helvetica", 16),
+            font=("Helvetica", self.fontsize["xs"]),
             fg="#2A2A28",
             bg="#FFFFFF",
             relief="solid",
