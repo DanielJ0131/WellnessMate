@@ -30,11 +30,11 @@ class Discover(Frame):
             wrap="word",
             font=("Helvetica", self.fontsize["xs"]),
             bg="#F3F1E7",
-            fg="#2A2A28",
+            fg="#4C4A46",
             borderwidth=0,
             highlightthickness=0,
             height=3,
-            spacing2=10,
+            spacing2=7,
         )
         self.subheading_label.insert("1.0", "Here, you'll find a curated collection of habits and ideas to help you lead a healthier, happier life. Explore the categories below to discover new habits, learn actionable tips, and start incorporating positive changes into your daily routine.")
         self.subheading_label.config(state="disabled")
@@ -62,7 +62,7 @@ class Discover(Frame):
         self.habit1_label = Label(
             self.habit1_frame,
             text="Morning Stretching",
-            font=("Helvetica", self.fontsize["s"], "bold"),
+            font=("Helvetica", self.fontsize["m"], "bold"),
             bg="#D7D97D",
             fg="#2A2A28",
         )
@@ -71,9 +71,9 @@ class Discover(Frame):
             self.habit1_frame,
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
-            spacing2=6,
+            spacing2=4,
             bg="#D7D97D",
-            fg="#2A2A28",
+            fg="#4C4A46",
             height=7,
             borderwidth=0,
             highlightthickness=0,
@@ -105,7 +105,7 @@ class Discover(Frame):
         self.habit2_label = Label(
             self.habit2_frame,
             text="Pomodoro Technique",
-            font=("Helvetica", self.fontsize["s"], "bold"),
+            font=("Helvetica", self.fontsize["m"], "bold"),
             bg="#D9DABF",
             fg="#2A2A28",
         )
@@ -114,9 +114,9 @@ class Discover(Frame):
             self.habit2_frame,
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
-            spacing2=6,
+            spacing2=4,
             bg="#D9DABF",
-            fg="#2A2A28",
+            fg="#4C4A46",
             height=7,
             borderwidth=0,
             highlightthickness=0,
@@ -148,7 +148,7 @@ class Discover(Frame):
         self.habit3_label = Label(
             self.habit3_frame,
             text="Evening Meditation",
-            font=("Helvetica", self.fontsize["s"], "bold"),
+            font=("Helvetica", self.fontsize["m"], "bold"),
             bg="#59B2A7",
             fg="#2A2A28",
         )
@@ -157,9 +157,9 @@ class Discover(Frame):
             self.habit3_frame,
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
-            spacing2=6,
+            spacing2=4,
             bg="#59B2A7",
-            fg="#2A2A28",
+            fg="#4C4A46",
             height=7,
             borderwidth=0,
             highlightthickness=0,
@@ -191,7 +191,7 @@ class Discover(Frame):
         self.habit4_label = Label(
             self.habit4_frame,
             text="Daily Reflections",
-            font=("Helvetica", self.fontsize["s"], "bold"),
+            font=("Helvetica", self.fontsize["m"], "bold"),
             bg="#A1CFC9",
             fg="#2A2A28",
         )
@@ -200,9 +200,9 @@ class Discover(Frame):
             self.habit4_frame,
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
-            spacing2=6,
+            spacing2=4,
             bg="#A1CFC9",
-            fg="#2A2A28",
+            fg="#4C4A46",
             height=7,
             borderwidth=0,
             highlightthickness=0,
@@ -234,7 +234,7 @@ class Discover(Frame):
         self.habit5_label = Label(
             self.habit5_frame,
             text="Digital Detox",
-            font=("Helvetica", self.fontsize["s"], "bold"),
+            font=("Helvetica", self.fontsize["m"], "bold"),
             bg="#D7D97D",
             fg="#2A2A28",
         )
@@ -243,9 +243,9 @@ class Discover(Frame):
             self.habit5_frame,
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
-            spacing2=6,
+            spacing2=4,
             bg="#D7D97D",
-            fg="#2A2A28",
+            fg="#4C4A46",
             height=7,
             borderwidth=0,
             highlightthickness=0,
@@ -277,7 +277,7 @@ class Discover(Frame):
         self.habit6_label = Label(
             self.habit6_frame,
             text="Daily Walk",
-            font=("Helvetica", self.fontsize["s"], "bold"),
+            font=("Helvetica", self.fontsize["m"], "bold"),
             bg="#D9DABF",
             fg="#2A2A28",
         )
@@ -286,9 +286,9 @@ class Discover(Frame):
             self.habit6_frame,
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
-            spacing2=6,
+            spacing2=4,
             bg="#D9DABF",
-            fg="#2A2A28",
+            fg="#4C4A46",
             height=7,
             borderwidth=0,
             highlightthickness=0,
