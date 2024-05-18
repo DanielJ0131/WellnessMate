@@ -56,14 +56,14 @@ class Discover(Frame):
         self.trending_habits_container.grid_columnconfigure(2, weight=1)
 
         ## Habit 1 card
-        self.habit1_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
+        self.habit1_frame = Frame(self.trending_habits_container, bg="#D7D97D", padx=10, pady=20)
         self.habit1_frame.grid(row=0, column=0, padx=15, sticky="nsew")
         self.habit1_frame.grid_columnconfigure(0, weight=1)
         self.habit1_label = Label(
             self.habit1_frame,
             text="Morning Stretching",
             font=("Helvetica", self.fontsize["s"], "bold"),
-            bg="#D8B7E3",
+            bg="#D7D97D",
             fg="#2A2A28",
         )
         self.habit1_label.grid(row=0, column=0, sticky="w", padx=10, pady=10)
@@ -72,7 +72,7 @@ class Discover(Frame):
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
-            bg="#D8B7E3",
+            bg="#D7D97D",
             fg="#2A2A28",
             height=7,
             borderwidth=0,
@@ -86,12 +86,12 @@ class Discover(Frame):
             text="Add to My Habits",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
-            bg="#45B9AC",
-            highlightbackground="#D8B7E4",
+            bg="#F3F1EB",
+            highlightbackground="#D7D97E",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
-            padx=5,
+            padx=15,
             pady=10,
             cursor="hand2",
             command=lambda: self.add_to_my_habit(self.habit1_label.cget("text")),
@@ -99,14 +99,14 @@ class Discover(Frame):
         self.create_habit_button.grid(row=3, column=0, sticky="w", pady=10)
 
         ## Habit 2 card
-        self.habit2_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
+        self.habit2_frame = Frame(self.trending_habits_container, bg="#D9DABF", padx=10, pady=20)
         self.habit2_frame.grid(row=0, column=1, padx=15, sticky="nsew")
         self.habit2_frame.grid_columnconfigure(0, weight=1)
         self.habit2_label = Label(
             self.habit2_frame,
             text="Pomodoro Technique",
             font=("Helvetica", self.fontsize["s"], "bold"),
-            bg="#D8B7E3",
+            bg="#D9DABF",
             fg="#2A2A28",
         )
         self.habit2_label.grid(row=0, column=0, sticky="w", padx=10, pady=10)
@@ -115,7 +115,7 @@ class Discover(Frame):
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
-            bg="#D8B7E3",
+            bg="#D9DABF",
             fg="#2A2A28",
             height=7,
             borderwidth=0,
@@ -129,12 +129,12 @@ class Discover(Frame):
             text="Add to My Habits",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
-            bg="#45B9AC",
-            highlightbackground="#D8B7E4",
+            bg="#F3F1EB",
+            highlightbackground="#D9DABE",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
-            padx=5,
+            padx=15,
             pady=10,
             cursor="hand2",
             command=lambda: self.add_to_my_habit(self.habit2_label.cget("text")),
@@ -142,14 +142,14 @@ class Discover(Frame):
         self.create_habit_button.grid(row=3, column=0, sticky="w", pady=10)
 
         ## Habit 3 card
-        self.habit3_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
+        self.habit3_frame = Frame(self.trending_habits_container, bg="#59B2A7", padx=10, pady=20)
         self.habit3_frame.grid(row=0, column=2, padx=15, sticky="nsew")
         self.habit3_frame.grid_columnconfigure(0, weight=1)
         self.habit3_label = Label(
             self.habit3_frame,
             text="Evening Meditation",
             font=("Helvetica", self.fontsize["s"], "bold"),
-            bg="#D8B7E3",
+            bg="#59B2A7",
             fg="#2A2A28",
         )
         self.habit3_label.grid(row=0, column=0, sticky="w", padx=10, pady=10)
@@ -158,7 +158,7 @@ class Discover(Frame):
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
-            bg="#D8B7E3",
+            bg="#59B2A7",
             fg="#2A2A28",
             height=7,
             borderwidth=0,
@@ -172,12 +172,12 @@ class Discover(Frame):
             text="Add to My Habits",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
-            bg="#45B9AC",
-            highlightbackground="#D8B7E4",
+            bg="#F3F1EB",
+            highlightbackground="#59B2A8",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
-            padx=5,
+            padx=15,
             pady=10,
             cursor="hand2",
             command=lambda: self.add_to_my_habit(self.habit3_label.cget("text")),
@@ -185,14 +185,14 @@ class Discover(Frame):
         self.create_habit_button.grid(row=3, column=0, sticky="w", pady=10)
 
         ##Habit 4
-        self.habit4_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
+        self.habit4_frame = Frame(self.trending_habits_container, bg="#A1CFC9", padx=10, pady=20)
         self.habit4_frame.grid(row=1, column=0, padx=15, pady=30, sticky="nsew")
         self.habit4_frame.grid_columnconfigure(0, weight=1)
         self.habit4_label = Label(
             self.habit4_frame,
             text="Daily Reflections",
             font=("Helvetica", self.fontsize["s"], "bold"),
-            bg="#D8B7E3",
+            bg="#A1CFC9",
             fg="#2A2A28",
         )
         self.habit4_label.grid(row=0, column=0, sticky="w", padx=10, pady=10)
@@ -201,7 +201,7 @@ class Discover(Frame):
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
-            bg="#D8B7E3",
+            bg="#A1CFC9",
             fg="#2A2A28",
             height=7,
             borderwidth=0,
@@ -215,12 +215,12 @@ class Discover(Frame):
             text="Add to My Habits",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
-            bg="#45B9AC",
-            highlightbackground="#D8B7E4",
+            bg="#F3F1EB",
+            highlightbackground="#A1CFC8",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
-            padx=5,
+            padx=15,
             pady=10,
             cursor="hand2",
             command=lambda: self.add_to_my_habit(self.habit4_label.cget("text")),
@@ -228,14 +228,14 @@ class Discover(Frame):
         self.create_habit_button.grid(row=3, column=0, sticky="w", pady=10)
 
         ##Habit 5
-        self.habit5_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
+        self.habit5_frame = Frame(self.trending_habits_container, bg="#D7D97D", padx=10, pady=20)
         self.habit5_frame.grid(row=1, column=1, padx=15, pady=30, sticky="nsew")
         self.habit5_frame.grid_columnconfigure(0, weight=1)
         self.habit5_label = Label(
             self.habit5_frame,
             text="Digital Detox",
             font=("Helvetica", self.fontsize["s"], "bold"),
-            bg="#D8B7E3",
+            bg="#D7D97D",
             fg="#2A2A28",
         )
         self.habit5_label.grid(row=0, column=0, sticky="w", padx=10, pady=10)
@@ -244,7 +244,7 @@ class Discover(Frame):
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
-            bg="#D8B7E3",
+            bg="#D7D97D",
             fg="#2A2A28",
             height=7,
             borderwidth=0,
@@ -258,12 +258,12 @@ class Discover(Frame):
             text="Add to My Habits",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
-            bg="#45B9AC",
-            highlightbackground="#D8B7E4",
+            bg="#F3F1EB",
+            highlightbackground="#D7D97E",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
-            padx=5,
+            padx=15,
             pady=10,
             cursor="hand2",
             command=lambda: self.add_to_my_habit(self.habit5_label.cget("text")),
@@ -271,14 +271,14 @@ class Discover(Frame):
         self.create_habit_button.grid(row=3, column=0, sticky="w", pady=10)
 
         ##Habit 6
-        self.habit6_frame = Frame(self.trending_habits_container, bg="#D8B7E3", padx=10, pady=20)
+        self.habit6_frame = Frame(self.trending_habits_container, bg="#D9DABF", padx=10, pady=20)
         self.habit6_frame.grid(row=1, column=2, padx=15, pady=30, sticky="nsew")
         self.habit6_frame.grid_columnconfigure(0, weight=1)
         self.habit6_label = Label(
             self.habit6_frame,
             text="Daily Walk",
             font=("Helvetica", self.fontsize["s"], "bold"),
-            bg="#D8B7E3",
+            bg="#D9DABF",
             fg="#2A2A28",
         )
         self.habit6_label.grid(row=0, column=0, sticky="w", padx=10, pady=10)
@@ -287,7 +287,7 @@ class Discover(Frame):
             wrap="word",
             font=("Helvetica", self.fontsize["xxs"]),
             spacing2=6,
-            bg="#D8B7E3",
+            bg="#D9DABF",
             fg="#2A2A28",
             height=7,
             borderwidth=0,
@@ -301,12 +301,12 @@ class Discover(Frame):
             text="Add to My Habits",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
-            bg="#45B9AC",
-            highlightbackground="#D8B7E4",
+            bg="#F3F1EB",
+            highlightbackground="#D9DABE",
             relief="solid",
             highlightthickness=0,
             borderwidth=0,
-            padx=5,
+            padx=15,
             pady=10,
             cursor="hand2",
             command=lambda: self.add_to_my_habit(self.habit6_label.cget("text")),
