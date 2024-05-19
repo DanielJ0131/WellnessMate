@@ -12,7 +12,13 @@ class MainUI:
     """Main UI class for the WellnessMate application."""
 
     def __init__(self, master, db):
-        """Initialize the main UI for the application."""
+        """
+        Initialize the main UI for the WellnessMate application.
+
+        Parameters:
+        - master: The root window or parent widget.
+        - db: The database connection instance.
+        """
         self.master = master
         self.db = db
         self.screen_width = master.winfo_screenwidth()
@@ -37,7 +43,12 @@ class MainUI:
         self.load_app()
 
     def load_app(self):
-        """Load the application UI."""
+        """
+        Load the application UI.
+
+        This method sets up the main frames, labels, and buttons for the
+        WellnessMate application's initial interface.
+        """
         # Create main frames
         self.left_frame = Frame(self.master, bg="#59B2A7")
         self.left_frame.grid(row=0, column=0, sticky="nswe", rowspan=2)
@@ -127,17 +138,24 @@ class MainUI:
         container_frame.columnconfigure(0, weight=1)
 
     def show_login_frame(self):
-        """Show the login frame and hide signup frame."""
+        """Display the login frame and hide register frame."""
         self.register_frame.grid_remove()
         self.login_frame.grid(row=0, column=0, sticky="nsew")
 
     def show_register_frame(self):
-        """Show the register frame and hide login frame."""
+        """Dislay the register frame and hide login frame."""
         self.login_frame.grid_remove()
         self.register_frame.grid(row=0, column=0, sticky="nsew")
 
     def show_dashboard_frame(self, username, user_id, db):
-        """Hide initial frames and show the dashboard frame."""
+        """
+        Display the dashboard frame and hide the initial frames.
+
+        Parameters:
+        - username: The username of the logged-in user.
+        - user_id: The user ID of the logged-in user.
+        - db: The database connection instance.
+        """
         self.left_frame.grid_remove()
         self.right_frame.grid_remove()
         self.dashboard_frame = DashboardFrame(self.master, username,
@@ -145,7 +163,7 @@ class MainUI:
         self.dashboard_frame.grid(row=0, column=0, sticky="nsew")
 
     def logout(self):
-        """Log out the user and show the initial frames."""
+        """Log out the user and show the login and register frames."""
         for widget in self.master.winfo_children():
             widget.destroy()
         self.load_app()
