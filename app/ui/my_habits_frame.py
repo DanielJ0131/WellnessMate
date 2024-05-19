@@ -5,10 +5,19 @@ from tkmacosx import Button
 
 
 class MyHabits(Frame):
-    """Tkinter frame for displaying user's habits."""
+    """Tkinter frame for displaying and managing the user's habits."""
 
     def __init__(self, master, db, user_id, username, fontsize):
-        """Initialize the MyHabits frame."""
+        """
+        Initialize the MyHabits frame.
+
+        Parameters:
+        - master: The root window or parent widget.
+        - db: The database connection instance.
+        - user_id: The ID of the current user.
+        - username: The username of the current user.
+        - fontsize: A dictionary containing font sizes.
+        """
         super().__init__(master, bg="#F3F1E7", padx=70, pady=60)
         self.master = master
         self.db = db
@@ -31,7 +40,12 @@ class MyHabits(Frame):
         self.mount_habit_list()
 
     def mount_habit_creator(self):
-        """Mount the habit creator frame."""
+        """
+        Mount the habit creator frame.
+
+        This frame contains an entry for the habit title and a button
+        to create a new habit.
+        """
         habit_creator_frame = Frame(self, bg="#59B2A7", pady=15, padx=35)
         habit_creator_frame.grid(row=1, column=0, sticky="nsew")
         habit_creator_frame.grid_columnconfigure(0, weight=1)
@@ -87,7 +101,11 @@ class MyHabits(Frame):
         self.create_habit_button.grid(row=3, column=0, sticky="w", pady=20)
 
     def mount_habit_list(self):
-        """Mount the habit list frame."""
+        """
+        Mount the habit list frame.
+
+        This frame displays the list of habits fetched from the database.
+        """
         habit_list = self.db.get_habits(self.user_id)
 
         self.habit_list_frame = Frame(self, bg="#D7D97D", pady=15, padx=35)
@@ -128,9 +146,6 @@ class MyHabits(Frame):
         self.canvas.bind('<Configure>', lambda e: self.canvas.itemconfig(
             self.canvas_frame, width=self.canvas.winfo_width()))
 
-        # self.canvas.bind_all("<MouseWheel>", lambda e:
-        #   self.canvas.yview_scroll(int(-1 * (e.delta / 120)), "units"))
-
         if habit_list == ():
             self.mount_empty_list_frame()
         else:
@@ -138,7 +153,11 @@ class MyHabits(Frame):
                 self.mount_habit_item(habit[0])
 
     def mount_empty_list_frame(self):
-        """Mount the empty list frame."""
+        """
+        Mount the frame for an empty habit list.
+
+        Displays a message indicating that no habits are currently present.
+        """
         self.empty_list_label = Label(
             self.habit_inner_frame,
             text="You don't have any habit yet.",
@@ -151,7 +170,12 @@ class MyHabits(Frame):
         self.empty_list_label.grid_columnconfigure(0, weight=1)
 
     def mount_habit_item(self, habit_description):
-        """Mount a habit item to the habit list."""
+        """
+        Mount a single habit item in the habit list.
+
+        Parameters:
+        - habit_description: The description of the habit to display.
+        """
         try:
             habit_item = Frame(self.habit_inner_frame,
                                bg="#F3F1E7", padx=7, pady=1)
@@ -210,7 +234,12 @@ class MyHabits(Frame):
             print(f"An error occurred while creating a new habit: {e}")
 
     def create_habit(self, habit_description):
-        """Create a new habit."""
+        """
+        Create a new habit.
+
+        Parameters:
+        - habit_description: The description of the habit to create.
+        """
         if hasattr(self, "empty_list_label"):
             self.empty_list_label.grid_forget()
             del self.empty_list_label
@@ -218,14 +247,25 @@ class MyHabits(Frame):
         self.db.add_habit(habit_description, self.user_id)
 
     def delete_habit(self, habit_item, habit_description):
-        """Delete a habit."""
+        """
+        Delete a habit.
+
+        Parameters:
+        - habit_item: The UI frame of the habit to delete.
+        - habit_description: The description of the habit to delete.
+        """
         self.db.delete_habit(habit_description)
         habit_item.destroy()
         if self.habit_inner_frame.grid_size()[1] == 1:
             self.mount_empty_list_frame()
 
     def edit_habit(self, habit_item):
-        """Edit a habit."""
+        """
+        Edit a habit.
+
+        Parameters:
+        - habit_item: The UI frame of the habit to delete.
+        """
         current_description = habit_item.grid_slaves(row=0, column=0)[0].cget(
             "text")
         entry_widget = Entry(
@@ -248,7 +288,17 @@ class MyHabits(Frame):
             current_description))
 
     def save_habit_edit(self, habit_item, entry_widget, current_description):
-        """Save the edited habit."""
+        """
+        Save the edited habit.
+
+        This method is called to save the changes made to a habit's description.
+        It updates the habit description in the database and the UI.
+
+        Parameters:
+        - habit_item: The UI frame of the habit being edited.
+        - entry_widget: The entry widget containing the new description.
+        - current_description: The current description of the habit.
+        """
         new_description = entry_widget.get()
         self.db.edit_habit(current_description, new_description)
         # Update the label text with the new description not working
