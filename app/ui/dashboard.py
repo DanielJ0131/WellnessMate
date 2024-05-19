@@ -11,10 +11,23 @@ from ui.profile_frame import ProfileFrame
 
 
 class DashboardFrame(Frame):
-    """Represent the user dashboard in the application."""
+    """Represent the user dashboard in the application.
+
+    This class handles the main dashboard layout, including the sidebar navigation and
+    content display for various sections like My Habits, Sport Events, Discover, and Profile.
+    """
 
     def __init__(self, master, username, user_id, db, main_iu, fontsize):
-        """Init method for the DashboardFrame class."""
+        """Initialize the DashboardFrame class.
+
+        Args:
+            master (Tk): The root Tkinter window.
+            username (str): The username of the logged-in user.
+            user_id (int): The user ID of the logged-in user.
+            db (Database): The database connection object.
+            main_ui (MainUI): The main UI controller for handling logout.
+            fontsize (dict): A dictionary of font sizes for different UI elements.
+        """
         super().__init__(master, bg="#F3F1EB")
         self.master = master
         self.username = username
@@ -42,7 +55,11 @@ class DashboardFrame(Frame):
         self.mount_my_habits()
 
     def create_nav(self):
-        """Create the sidebar for the dashboard with navigation buttons."""
+        """Create the sidebar navigation with buttons for different sections.
+
+        This method sets up the navigation sidebar with buttons for "My Habits", "Sport Events",
+        "Discover", and "Profile". It also includes the application title and user info section.
+        """
         # Create and add buttons to the sidebar
         self.title_label = Label(
             self.nav_frame,
@@ -183,11 +200,21 @@ class DashboardFrame(Frame):
         self.logout_button.grid(row=1, column=0, sticky="ew", columnspan=2)
 
     def update_dashboard_avatar(self, new_avatar):
+        """Update the user's avatar on the dashboard.
+
+        Args:
+            new_avatar (int): The avatar number to update to.
+        """
         img_path = os.path.join("app", "assets", f"avatar{new_avatar}.png")
         self.user_image = PhotoImage(file=img_path).subsample(7,7)
         self.user_image_label.config(image=self.user_image)
 
     def update_dashboard_username(self, new_username):
+        """Update the username label on the dashboard.
+
+        Args:
+            new_username (str): The new username to display.
+        """
         self.username_label.config(text=new_username)
 
     def unmount_current_frame(self):
