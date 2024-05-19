@@ -1,5 +1,6 @@
 """Sport events module."""
 # flake8: noqa E501
+# Disables the "Line too Long" error for our URLs.
 from tkinter import Frame, Button, Label
 import tkinter as tk
 import webbrowser
