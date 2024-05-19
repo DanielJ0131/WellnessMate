@@ -1,4 +1,5 @@
 """Sport events module."""
+# flake8: noqa E501
 from tkinter import Frame, Button, Label
 import tkinter as tk
 import webbrowser

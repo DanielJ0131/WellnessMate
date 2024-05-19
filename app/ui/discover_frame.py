@@ -1,4 +1,5 @@
 """Discover frame for displaying user's habits."""
+# flake8: noqa E501
 from tkinter import Frame, Label, Button, Text, messagebox
 from tkmacosx import Button
 
