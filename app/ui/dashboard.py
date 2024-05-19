@@ -2,6 +2,7 @@
 
 from tkinter import Frame, Label, Button, PhotoImage
 from tkmacosx import Button
+import os
 
 from ui.my_habits_frame import MyHabits
 from ui.sport_events_frame import SportEventsFrame
@@ -19,10 +20,10 @@ class DashboardFrame(Frame):
         self.username = username
         self.user_id = user_id
         self.fontsize = fontsize
-        self.user_image = PhotoImage(file="app/assets/" +
-                                     "avatar1.png").subsample(7, 7)
         self.db = db
         self.main_ui = main_iu
+        img_path = os.path.join("app", "assets", f"avatar{db.get_user_avatar(user_id)}.png")
+        self.user_image = PhotoImage(file=img_path).subsample(7,7)
 
         self.master.grid_rowconfigure(0, weight=1)
         self.master.grid_columnconfigure(0, weight=0)
@@ -145,7 +146,9 @@ class DashboardFrame(Frame):
         self.user_frame.grid(row=8, column=0, sticky="ew")
 
         self.user_image_label = Label(
-            self.user_frame, image=self.user_image, bg="#2A2A28"
+            self.user_frame, 
+            image=self.user_image, 
+            bg="#2A2A28"
         )
         self.user_image_label.grid(row=0, column=0, sticky="w", padx=(0,10))
 
@@ -179,6 +182,14 @@ class DashboardFrame(Frame):
         )
         self.logout_button.grid(row=1, column=0, sticky="ew", columnspan=2)
 
+    def update_dashboard_avatar(self, new_avatar):
+        img_path = os.path.join("app", "assets", f"avatar{new_avatar}.png")
+        self.user_image = PhotoImage(file=img_path).subsample(7,7)
+        self.user_image_label.config(image=self.user_image)
+
+    def update_dashboard_username(self, new_username):
+        self.username_label.config(text=new_username)
+
     def unmount_current_frame(self):
         """Unmount frame currently displayed on the dashboard."""
         for widget in self.content_frame.winfo_children():
@@ -210,7 +221,7 @@ class DashboardFrame(Frame):
         """Mount the Profile frame on the dashboard."""
         self.unmount_current_frame()
         self.profile_frame = ProfileFrame(
-            self.content_frame, self.db, self.user_id, self.username, self.fontsize
+            self.content_frame, self.db, self.user_id, self.username, self.fontsize, self
         )
         self.profile_frame.grid(row=0, column=1, sticky="nsew")
     

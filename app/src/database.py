@@ -50,6 +50,7 @@ class Database:
                     `idlogin` INT NOT NULL AUTO_INCREMENT,
                     `user` VARCHAR(45) NOT NULL,
                     `pass` VARCHAR(45) NOT NULL,
+                    `avatar` INT NOT NULL DEFAULT 0,
                     PRIMARY KEY (`idlogin`),
                     UNIQUE INDEX `idlogin_UNIQUE` (`idlogin` ASC) VISIBLE,
                     UNIQUE INDEX `user_UNIQUE` (`user` ASC) VISIBLE)
@@ -228,3 +229,24 @@ class Database:
             self.server.commit()
         except pymysql.Error:
             print("Error: Could not drop database.")
+    
+    def get_user_avatar(self, user_id):
+        """Get the user avatar from the database."""
+        try:
+            self.cur.execute("SELECT avatar FROM login WHERE idlogin=%s",
+                             (user_id))
+            self.db.commit()
+            return self.cur.fetchone()[0]
+        except pymysql.Error:
+            print("Error: Could not get user avatar.")
+
+    def update_avatar(self, new_avatar, user_id):
+        """Change the avatar in the database."""
+        try:
+            self.cur.execute(
+                "UPDATE login SET avatar=%s WHERE idlogin=%s",
+                (new_avatar, user_id)
+            )
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not update avatar in the database.")
