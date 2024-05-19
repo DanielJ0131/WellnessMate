@@ -210,7 +210,7 @@ class DashboardFrame(Frame):
         """Mount the Profile frame on the dashboard."""
         self.unmount_current_frame()
         self.profile_frame = ProfileFrame(
-            self.content_frame, self.db, self.user_id, self.username
+            self.content_frame, self.db, self.user_id, self.username, self.fontsize
         )
         self.profile_frame.grid(row=0, column=1, sticky="nsew")
     
