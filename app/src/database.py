@@ -181,6 +181,28 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not update habit in the database.")
+    
+    def change_username(self, new_username, user_id):
+        """Change the username in the database."""
+        try:
+            self.cur.execute(
+                "UPDATE login SET user=%s WHERE idlogin=%s",
+                (new_username, user_id)
+            )
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not update username in the database.")
+    
+    def change_password(self, new_password, user_id):
+        """Change the password in the database."""
+        try:
+            self.cur.execute(
+                "UPDATE login SET pass=%s WHERE idlogin=%s",
+                (new_password, user_id)
+            )
+            self.db.commit()
+        except pymysql.Error:
+            print("Error: Could not update password in the database.")
 
     def commit(self):
         """Commit changes to the database."""
