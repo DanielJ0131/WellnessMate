@@ -62,7 +62,6 @@ class Database:
                 CREATE TABLE IF NOT EXISTS `wm_db`.`habit` (
                     `idhabit` INT NOT NULL AUTO_INCREMENT,
                     `name` VARCHAR(45) NOT NULL,
-                    `frequency` INT NOT NULL,
                     `login_idlogin` INT NOT NULL,
                     PRIMARY KEY (`idhabit`, `login_idlogin`),
                     UNIQUE INDEX `idhabit_UNIQUE` (`idhabit` ASC) VISIBLE,
@@ -156,9 +155,9 @@ class Database:
         """Add a habit to the database."""
         try:
             self.cur.execute(
-                "INSERT INTO habit(name, frequency,"
-                + "login_idlogin) values(%s, %s, %s)",
-                (habit_name, 0, user_id),
+                "INSERT INTO habit(name, "
+                + "login_idlogin) values(%s, %s)",
+                (habit_name, user_id),
             )
             self.db.commit()
         except pymysql.Error:
