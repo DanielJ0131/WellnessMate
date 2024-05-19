@@ -193,9 +193,9 @@ class RegisterFrame(Frame):
             messagebox.showerror("Error", "Username is required!")
         elif self.pass_entry.get() == "":
             messagebox.showerror("Error", "Password is required!")
-        elif self.confirm_pass_entry.get() == "":
+        elif self.pass_confirmation_entry.get() == "":
             messagebox.showerror("Error", "Confirm Password is required!")
-        elif self.pass_entry.get() != self.confirm_pass_entry.get():
+        elif self.pass_entry.get() != self.pass_confirmation_entry.get():
             messagebox.showerror("Error", "Passwords do not match!")
         else:
             user = self.user_entry.get()
