@@ -48,15 +48,15 @@ class ProfileFrame(Frame):
         )
         label.grid(row=0, column=0, sticky="w", pady=(0, 30))
 
-        username_label = Label(
+        self.username_label = Label(
             profile_info_frame,
-            text="Username: " + f"{self.username.capitalize()}",
+            text="Username: " + f"{self.username}",
             font=("Helvetica", self.fontsize["s"]),
             bg="#F3F1EB",
             fg="#2A2A28",
         )
         
-        username_label.grid(row=1, column=0, sticky="w", pady=(0, 10))
+        self.username_label.grid(row=1, column=0, sticky="w", pady=(0, 10))
 
         new_username_label = Label(
             profile_info_frame, 
@@ -195,6 +195,7 @@ class ProfileFrame(Frame):
         self.db.change_username(new_username, self.user_id)
         messagebox.showinfo("Success", "Username changed successfully!")
         self.dashboard.update_dashboard_username(new_username)
+        self.username_label.config(text="Username: " + new_username)
 
     def change_password(self):
         """Change the password in the database."""

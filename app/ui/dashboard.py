@@ -216,6 +216,7 @@ class DashboardFrame(Frame):
             new_username (str): The new username to display.
         """
         self.username_label.config(text=new_username)
+        self.username = new_username
 
     def unmount_current_frame(self):
         """Unmount frame currently displayed on the dashboard."""
