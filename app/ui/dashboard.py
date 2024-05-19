@@ -6,6 +6,7 @@ from tkmacosx import Button
 from ui.my_habits_frame import MyHabits
 from ui.sport_events_frame import SportEventsFrame
 from ui.discover_frame import Discover
+from ui.profile_frame import ProfileFrame
 
 
 class DashboardFrame(Frame):
@@ -134,6 +135,7 @@ class DashboardFrame(Frame):
             borderwidth=0,
             pady=10,
             cursor="hand2",
+            command=lambda: self.mount_profile()
         )
         self.profile_button.grid(row=6, column=0, sticky="ew")
 
@@ -203,5 +205,13 @@ class DashboardFrame(Frame):
         self.unmount_current_frame()
         self.sport_events_frame = SportEventsFrame(self.content_frame)
         self.sport_events_frame.grid(row=1, column=1, sticky="nsew")
+    
+    def mount_profile(self):
+        """Mount the Profile frame on the dashboard."""
+        self.unmount_current_frame()
+        self.profile_frame = ProfileFrame(
+            self.content_frame, self.db, self.user_id, self.username
+        )
+        self.profile_frame.grid(row=0, column=1, sticky="nsew")
     
 
