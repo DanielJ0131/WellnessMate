@@ -22,7 +22,7 @@ class TestLoginFrame(unittest.TestCase):
         self.db = Database()
 
         # Create login frame
-        self.LoginFrame = LoginFrame(None, None, self.db)
+        self.LoginFrame = LoginFrame(None, None, self.db, None)
 
     def test_LoginFrame(self):
         """Test the LoginFrame class."""
