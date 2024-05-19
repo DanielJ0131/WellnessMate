@@ -1,5 +1,14 @@
-"""This module contains the ProfileFrame class representing the user profile frame in the application."""
-from tkinter import Frame, Label, Button, Entry, PhotoImage, Radiobutton, IntVar, messagebox
+"""This module contains the user profile frame in the application."""
+from tkinter import (
+    Frame,
+    Label,
+    Button,
+    Entry,
+    PhotoImage,
+    Radiobutton,
+    IntVar,
+    messagebox
+)
 from tkmacosx import Button
 import os
 
@@ -16,7 +25,7 @@ class ProfileFrame(Frame):
             db: The database connection object.
             user_id: The ID of the logged-in user.
             username: The username of the logged-in user.
-            fontsize: A dictionary containing font sizes for different UI elements.
+            fontsize: A dictionary containing font sizes for UI elements.
             dashboard: Reference to the dashboard frame for updating user info.
         """
         super().__init__(master, bg="#F3F1EB", padx=70, pady=60)
@@ -47,9 +56,9 @@ class ProfileFrame(Frame):
         """
         Mount the profile information section.
 
-        This method creates and configures the UI elements for displaying user information,
-        such as username, new username entry field, password entry field, and buttons to
-        change username and password.
+        This method creates and configures the UI elements for displaying
+        user information, such as username, new username entry field,
+        password entry field, and buttons to change username and password.
         """
         profile_info_frame = Frame(self, bg="#F3F1EB", pady=25, padx=35)
         profile_info_frame.grid(row=1, column=0, sticky="nsew")
@@ -71,14 +80,14 @@ class ProfileFrame(Frame):
             bg="#F3F1EB",
             fg="#2A2A28",
         )
-        
+
         self.username_label.grid(row=1, column=0, sticky="w", pady=(0, 10))
 
         new_username_label = Label(
-            profile_info_frame, 
-            text="New Username:", 
+            profile_info_frame,
+            text="New Username:",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
-            bg="#F3F1EB", 
+            bg="#F3F1EB",
             fg="#2A2A28"
         )
         new_username_label.grid(row=2, column=0, sticky="w", pady=(25, 7))
@@ -98,8 +107,8 @@ class ProfileFrame(Frame):
         self.new_username_entry.grid(row=3, column=0, sticky="w")
 
         submit_button = Button(
-            profile_info_frame, 
-            text="Change Username", 
+            profile_info_frame,
+            text="Change Username",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#D7D97D",
@@ -115,8 +124,8 @@ class ProfileFrame(Frame):
         submit_button.grid(row=4, column=0, sticky="w", pady=10)
 
         new_password_label = Label(
-            profile_info_frame, 
-            text="New Password:", 
+            profile_info_frame,
+            text="New Password:",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             bg="#F3F1EB",
             fg="#2A2A28",
@@ -138,8 +147,8 @@ class ProfileFrame(Frame):
         self.new_password_entry.grid(row=6, column=0, sticky="w")
 
         submit_button = Button(
-            profile_info_frame, 
-            text="Change Password", 
+            profile_info_frame,
+            text="Change Password",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             fg="#2A2A28",
             bg="#D7D97D",
@@ -158,17 +167,19 @@ class ProfileFrame(Frame):
         """
         Mount the avatar selection frame.
 
-        This method creates and configures the UI elements for selecting a new avatar from
-        a set of predefined images. It includes radio buttons for each avatar option, a
-        button to save the selected avatar, and a label to display instructions.
+        This method creates and configures the UI elements for
+        selecting a new avatar from a set of predefined images.
+        It includes radio buttons for each avatar option, a
+        button to save the selected avatar,
+        and a label to display instructions.
         """
-
         self.current_avatar = self.db.get_user_avatar(self.user_id)
         self.selected_avatar.set(self.current_avatar)
 
         for i in range(9):
             img_path = os.path.join("app", "assets", f"avatar{i}.png")
-            self.avatar_images.append(PhotoImage(file=img_path).subsample(7,7))
+            self.avatar_images.append(PhotoImage(file=img_path).subsample(7, 7
+                                                                          ))
 
         change_avatar_frame = Frame(self, bg="#F3F1EB", pady=15, padx=35)
         change_avatar_frame.grid(row=2, column=0, sticky="nsew")
@@ -211,13 +222,14 @@ class ProfileFrame(Frame):
             command=self.update_avatar
         ).grid(row=5, column=0, columnspan=3, pady=20, sticky="w")
 
-       
     def change_username(self):
         """
         Change the username in the database and update UI.
 
-        This method retrieves the new username from the entry field, updates it in the database,
-        displays a success message, and updates the UI to reflect the changed username.
+        This method retrieves the new username from the entry field,
+        updates it in the database,
+        displays a success message, and updates the UI to
+        reflect the changed username.
         """
         new_username = self.new_username_entry.get()
         self.db.change_username(new_username, self.user_id)
@@ -229,26 +241,28 @@ class ProfileFrame(Frame):
         """
         Change the password in the database.
 
-        This method retrieves the new password from the entry field, updates it in the database,
+        This method retrieves the new password from the entry field,
+        updates it in the database,
         and displays a success message.
         """
         new_password = self.new_password_entry.get()
         self.db.change_password(new_password, self.user_id)
         messagebox.showinfo("Success", "Password changed successfully!")
-    
+
     def update_avatar(self):
         """
         Update the user's avatar in the database and UI.
 
-        This method retrieves the selsected avatar, updates it in the database, displays a success
-        message, and updates the UI to reflect the changed avatar.
+        This method retrieves the selsected avatar,
+        updates it in the database,
+        displays a success message,
+        and updates the UI to reflect the changed avatar.
         """
         new_avatar = self.selected_avatar.get()
         if new_avatar == self.current_avatar:
-            messagebox.showerror("Error", "You already have that avatar selected")
+            messagebox.showerror("Error",
+                                 "You already have that avatar selected")
         else:
             self.db.update_avatar(new_avatar, self.user_id)
             messagebox.showinfo("Success", "Avatar changed successfully!")
             self.dashboard.update_dashboard_avatar(new_avatar)
-
-    

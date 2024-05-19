@@ -291,7 +291,8 @@ class MyHabits(Frame):
         """
         Save the edited habit.
 
-        This method is called to save the changes made to a habit's description.
+        This method is called to save the changes made to
+        a habit's description.
         It updates the habit description in the database and the UI.
 
         Parameters:

@@ -141,7 +141,7 @@ class LoginFrame(Frame):
             self.show_pass_button.configure(image=self.show_pass_image)
 
     def login(self):
-        """Handle the login process by validating and submitting user credentials."""
+        """Handle the login process."""
         username = self.user_entry.get()
         password = self.pass_entry.get()
 

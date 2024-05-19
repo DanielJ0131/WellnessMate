@@ -127,11 +127,14 @@ class MainUI:
         register_button.grid(row=0, column=1, padx=40, sticky="w")
 
         # Login/Signup Container Frame
-        container_frame = Frame(self.right_frame, pady=20, bg="#F3F1EB", padx=200)
+        container_frame = Frame(self.right_frame, pady=20,
+                                bg="#F3F1EB", padx=200)
         container_frame.grid(row=1, column=0, sticky="ew", padx=0)
 
-        self.register_frame = RegisterFrame(container_frame, self, self.db, self.font_size)
-        self.login_frame = LoginFrame(container_frame, self, self.db, self.font_size)
+        self.register_frame = RegisterFrame(container_frame, self, self.db,
+                                            self.font_size)
+        self.login_frame = LoginFrame(container_frame, self, self.db,
+                                      self.font_size)
         self.login_frame.grid(row=0, column=0, sticky="nsew")
 
         container_frame.rowconfigure(1, weight=1)
@@ -159,7 +162,8 @@ class MainUI:
         self.left_frame.grid_remove()
         self.right_frame.grid_remove()
         self.dashboard_frame = DashboardFrame(self.master, username,
-                                              user_id, db, self, self.font_size)
+                                              user_id, db, self,
+                                              self.font_size)
         self.dashboard_frame.grid(row=0, column=0, sticky="nsew")
 
     def logout(self):

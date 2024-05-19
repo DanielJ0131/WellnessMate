@@ -181,7 +181,7 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not update habit in the database.")
-    
+
     def change_username(self, new_username, user_id):
         """Change the username in the database."""
         try:
@@ -192,7 +192,7 @@ class Database:
             self.db.commit()
         except pymysql.Error:
             print("Error: Could not update username in the database.")
-    
+
     def change_password(self, new_password, user_id):
         """Change the password in the database."""
         try:
@@ -228,7 +228,7 @@ class Database:
             self.server.commit()
         except pymysql.Error:
             print("Error: Could not drop database.")
-    
+
     def get_user_avatar(self, user_id):
         """Get the user avatar from the database."""
         try:

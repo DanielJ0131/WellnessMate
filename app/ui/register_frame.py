@@ -9,13 +9,13 @@ class RegisterFrame(Frame):
 
     def __init__(self, master, main_ui, db, fontsize):
         """
-            Initialize the RegisterFrame.
+        Initialize the RegisterFrame.
 
-            Parameters:
-            - master: The parent widget.
-            - main_ui: The main application interface.
-            - db: The database connection instance.
-            - fontsize: A dictionary specifying font sizes.
+        Parameters:
+        - master: The parent widget.
+        - main_ui: The main application interface.
+        - db: The database connection instance.
+        - fontsize: A dictionary specifying font sizes.
         """
         super().__init__(master, bg="#F3F1EB")
         self.master = master
@@ -109,10 +109,10 @@ class RegisterFrame(Frame):
         )
         self.show_pass_button.grid(row=0, column=1, sticky="e")
 
-
         # Password confirmation
         self.pass_confirmation_frame = Frame(self, bg="#F3F1EB")
-        self.pass_confirmation_frame.grid(row=3, column=0, sticky="ew", pady=10)
+        self.pass_confirmation_frame.grid(row=3, column=0, sticky="ew",
+                                          pady=10)
         self.pass_confirmation_frame.grid_columnconfigure(0, weight=1)
         self.pass_label = Label(
             self.pass_confirmation_frame,
@@ -122,8 +122,10 @@ class RegisterFrame(Frame):
             fg="#4C4A46",
         )
         self.pass_label.grid(row=0, column=0, sticky="w")
-        self.pass_confirmation_entry_frame = Frame(self.pass_confirmation_frame, bg="#FFFFFF")
-        self.pass_confirmation_entry_frame.grid(row=2, column=0, sticky="ew", pady=5)
+        self.pass_confirmation_entry_frame = Frame(
+            self.pass_confirmation_frame, bg="#FFFFFF")
+        self.pass_confirmation_entry_frame.grid(row=2, column=0,
+                                                sticky="ew", pady=5)
         self.pass_confirmation_entry_frame.grid_columnconfigure(0, weight=1)
         self.pass_confirmation_entry = Entry(
             self.pass_confirmation_entry_frame,
@@ -137,7 +139,8 @@ class RegisterFrame(Frame):
             borderwidth=0,
             insertbackground="#4C4A46",
         )
-        self.pass_confirmation_entry.grid(row=0, column=0, sticky="ew", ipady=2)
+        self.pass_confirmation_entry.grid(row=0, column=0,
+                                          sticky="ew", ipady=2)
         self.show_confirm_pass_button = Button(
             self.pass_confirmation_entry_frame,
             image=self.show_pass_image,
@@ -194,7 +197,7 @@ class RegisterFrame(Frame):
             self.show_confirm_pass_button.configure(image=self.show_pass_image)
 
     def create_account(self):
-        """Handle the register process by validating and submitting user credentials."""
+        """Handle the register process by validating user credentials."""
         if self.user_entry.get() == "":
             messagebox.showerror("Error", "Username is required!")
         elif self.pass_entry.get() == "":

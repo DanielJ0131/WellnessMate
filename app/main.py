@@ -14,15 +14,16 @@ def main():
     MainUI(root, db)
 
     # Setting the icon in main window and taskbar
-    
     if sys.platform == 'win32':
-        icon_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'assets', 'logo.ico'))
+        icon_path = os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                                 'assets', 'logo.ico'))
         try:
             root.iconbitmap(icon_path)
         except Exception as e:
             print(f"Error setting icon: {e}")
 
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()

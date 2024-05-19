@@ -1,6 +1,6 @@
+"""Discover frame for displaying user's habits."""
 from tkinter import Frame, Label, Button, Text, messagebox
 from tkmacosx import Button
-
 
 
 class Discover(Frame):
@@ -15,7 +15,8 @@ class Discover(Frame):
             db (Database): The database connection object.
             user_id (int): The ID of the user.
             username (str): The username of the user.
-            fontsize (dict): A dictionary containing font sizes for different text elements.
+            fontsize (dict): A dictionary containing font sizes
+            for different text elements.
         """
         super().__init__(master, bg="#F3F1E7", padx=70, pady=60)
         self.master = master
@@ -32,7 +33,7 @@ class Discover(Frame):
             bg="#F3F1EB",
             fg="#2A2A28",
         )
-        heading_label.grid(row=0, column=0, sticky="w", padx=10, pady=(30,10))
+        heading_label.grid(row=0, column=0, sticky="w", padx=10, pady=(30, 10))
 
         self.subheading_label = Text(
             self,
@@ -47,7 +48,8 @@ class Discover(Frame):
         )
         self.subheading_label.insert("1.0", "Here, you'll find a curated collection of habits and ideas to help you lead a healthier, happier life. Explore the categories below to discover new habits, learn actionable tips, and start incorporating positive changes into your daily routine.")
         self.subheading_label.config(state="disabled")
-        self.subheading_label.grid(row=1, column=0, sticky="ew", padx=10, pady=10)
+        self.subheading_label.grid(row=1, column=0, sticky="ew",
+                                   padx=10, pady=10)
 
         self.mount_trending_habits()
 
@@ -57,9 +59,10 @@ class Discover(Frame):
         self.trending_habits_frame.grid(row=2, column=0, sticky="ew")
         self.trending_habits_frame.grid_columnconfigure(0, weight=1)
 
-        self.trending_habits_container = Frame(self.trending_habits_frame, bg="#F3F1EB")
-        self.trending_habits_container.grid(row=1, column=0, sticky="ew", pady=20)
-
+        self.trending_habits_container = Frame(self.trending_habits_frame,
+                                               bg="#F3F1EB")
+        self.trending_habits_container.grid(row=1, column=0,
+                                            sticky="ew", pady=20)
 
         self.trending_habits_container.grid_columnconfigure(0, weight=1)
         self.trending_habits_container.grid_columnconfigure(1, weight=1)
@@ -124,22 +127,24 @@ class Discover(Frame):
             title="Daily Walk",
             description="Walking boosts mood, reduces stress, and supports overall well-being. Aim for at least 30 minutes a day to reap the benefits.",
         )
-    
-    def create_habit_card(self, container, row, column, bg, highlightbackground, title, description):
+
+    def create_habit_card(self, container, row, column, bg,
+                          highlightbackground, title, description):
         """
         Create a habit card.
 
         Args:
             container (Frame): The parent frame for the habit card.
             row (int): The row in the grid layout to place the habit card.
-            column (int): The column in the grid layout to place the habit card.
+            column (int): Column in the grid layout to place the habit card.
             bg (str): The background color for the habit card.
-            highlightbackground (str): The highlight background color for the button.
+            highlightbackground (str): Highlight color for the button.
             title (str): The title of the habit.
             description (str): The description of the habit.
         """
         habit_frame = Frame(container, bg=bg, padx=10, pady=20)
-        habit_frame.grid(row=row, column=column, padx=15, pady=(30, 30) if row > 0 else 0, sticky="nsew")
+        habit_frame.grid(row=row, column=column, padx=15,
+                         pady=(30, 30) if row > 0 else 0, sticky="nsew")
         habit_frame.grid_columnconfigure(0, weight=1)
 
         habit_label = Label(

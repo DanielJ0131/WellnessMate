@@ -13,8 +13,9 @@ from ui.profile_frame import ProfileFrame
 class DashboardFrame(Frame):
     """Represent the user dashboard in the application.
 
-    This class handles the main dashboard layout, including the sidebar navigation and
-    content display for various sections like My Habits, Sport Events, Discover, and Profile.
+    Handles the main dashboard layout, including the sidebar navigation and
+    content display for various sections like
+    My Habits, Sport Events, Discover, and Profile.
     """
 
     def __init__(self, master, username, user_id, db, main_iu, fontsize):
@@ -26,7 +27,7 @@ class DashboardFrame(Frame):
             user_id (int): The user ID of the logged-in user.
             db (Database): The database connection object.
             main_ui (MainUI): The main UI controller for handling logout.
-            fontsize (dict): A dictionary of font sizes for different UI elements.
+            fontsize (dict): A dictionary of font sizes UI elements.
         """
         super().__init__(master, bg="#F3F1EB")
         self.master = master
@@ -35,8 +36,9 @@ class DashboardFrame(Frame):
         self.fontsize = fontsize
         self.db = db
         self.main_ui = main_iu
-        img_path = os.path.join("app", "assets", f"avatar{db.get_user_avatar(user_id)}.png")
-        self.user_image = PhotoImage(file=img_path).subsample(7,7)
+        img_path = os.path.join("app", "assets",
+                                f"avatar{db.get_user_avatar(user_id)}.png")
+        self.user_image = PhotoImage(file=img_path).subsample(7, 7)
 
         self.master.grid_rowconfigure(0, weight=1)
         self.master.grid_columnconfigure(0, weight=0)
@@ -57,8 +59,10 @@ class DashboardFrame(Frame):
     def create_nav(self):
         """Create the sidebar navigation with buttons for different sections.
 
-        This method sets up the navigation sidebar with buttons for "My Habits", "Sport Events",
-        "Discover", and "Profile". It also includes the application title and user info section.
+        This method sets up the navigation sidebar with buttons for
+        "My Habits", "Sport Events",
+        "Discover", and "Profile".
+        It also includes the application title and user info section.
         """
         # Create and add buttons to the sidebar
         self.title_label = Label(
@@ -163,11 +167,11 @@ class DashboardFrame(Frame):
         self.user_frame.grid(row=8, column=0, sticky="ew")
 
         self.user_image_label = Label(
-            self.user_frame, 
-            image=self.user_image, 
+            self.user_frame,
+            image=self.user_image,
             bg="#2A2A28"
         )
-        self.user_image_label.grid(row=0, column=0, sticky="w", padx=(0,10))
+        self.user_image_label.grid(row=0, column=0, sticky="w", padx=(0, 10))
 
         self.username_label = Label(
             self.user_frame,
@@ -181,7 +185,7 @@ class DashboardFrame(Frame):
 
         self.user_frame.grid_columnconfigure(0, weight=0)
         self.user_frame.grid_columnconfigure(1, weight=1)
-        
+
         self.logout_button = Button(
             self.user_frame,
             anchor="w",
@@ -206,7 +210,7 @@ class DashboardFrame(Frame):
             new_avatar (int): The avatar number to update to.
         """
         img_path = os.path.join("app", "assets", f"avatar{new_avatar}.png")
-        self.user_image = PhotoImage(file=img_path).subsample(7,7)
+        self.user_image = PhotoImage(file=img_path).subsample(7, 7)
         self.user_image_label.config(image=self.user_image)
 
     def update_dashboard_username(self, new_username):
@@ -227,7 +231,8 @@ class DashboardFrame(Frame):
         """Mount the My Habits frame on the dashboard."""
         self.unmount_current_frame()
         self.my_habits_frame = MyHabits(
-            self.content_frame, self.db, self.user_id, self.username, self.fontsize
+            self.content_frame, self.db, self.user_id,
+            self.username, self.fontsize
         )
         self.my_habits_frame.grid(row=0, column=1, sticky="nsew")
 
@@ -235,7 +240,8 @@ class DashboardFrame(Frame):
         """Mount the My Habits frame on the dashboard."""
         self.unmount_current_frame()
         self.discover_frame = Discover(
-            self.content_frame, self.db, self.user_id, self.username, self.fontsize
+            self.content_frame, self.db, self.user_id,
+            self.username, self.fontsize
         )
         self.discover_frame.grid(row=0, column=1, sticky="nsew")
 
@@ -244,13 +250,12 @@ class DashboardFrame(Frame):
         self.unmount_current_frame()
         self.sport_events_frame = SportEventsFrame(self.content_frame)
         self.sport_events_frame.grid(row=1, column=1, sticky="nsew")
-    
+
     def mount_profile(self):
         """Mount the Profile frame on the dashboard."""
         self.unmount_current_frame()
         self.profile_frame = ProfileFrame(
-            self.content_frame, self.db, self.user_id, self.username, self.fontsize, self
+            self.content_frame, self.db, self.user_id, self.username,
+            self.fontsize, self
         )
         self.profile_frame.grid(row=0, column=1, sticky="nsew")
-    
-
