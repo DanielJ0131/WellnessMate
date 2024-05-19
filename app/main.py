@@ -12,6 +12,18 @@ def main():
     root = Tk()
     MainUI(root, db)
     root.iconphoto(False, PhotoImage (file='app/assets/icon.png'))
+
+    icon_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'assets', 'logo.ico'))
+
+    # Check if the file exists and set the icon
+    if os.path.exists(icon_path):
+        try:
+            root.iconbitmap(icon_path)
+            print("Icon set successfully.")
+        except Exception as e:
+            print(f"Error setting icon: {e}")
+    else:
+        print(f"Error: The file {icon_path} does not exist.")
     root.mainloop()
 
 
