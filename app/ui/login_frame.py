@@ -5,10 +5,18 @@ from tkmacosx import Button
 
 
 class LoginFrame(Frame):
-    """Login frame for the application."""
+    """Represents the login interface within the application."""
 
     def __init__(self, master, main_ui, db, fontsize):
-        """Init method for the LoginFrame class."""
+        """
+        Initialize the LoginFrame.
+
+        Parameters:
+        - master: The parent widget.
+        - main_ui: The main application interface.
+        - db: The database connection instance.
+        - fontsize: A dictionary specifying font sizes.
+        """
         super().__init__(master, bg="#F3F1EB")
         self.master = master
         self.main_ui = main_ui
@@ -24,7 +32,7 @@ class LoginFrame(Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        """Create the widgets for the login frame."""
+        """Create and configure all widgets in the login frame."""
         self.login_title = Label(
             self,
             text="Welcome back!",
@@ -133,7 +141,7 @@ class LoginFrame(Frame):
             self.show_pass_button.configure(image=self.show_pass_image)
 
     def login(self):
-        """Submit the data to the database."""
+        """Handle the login process by validating and submitting user credentials."""
         username = self.user_entry.get()
         password = self.pass_entry.get()
 
