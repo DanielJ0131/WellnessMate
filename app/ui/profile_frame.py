@@ -167,7 +167,7 @@ class ProfileFrame(Frame):
                 value=i,
                 indicatoron=True,
                 bg="#F3F1EB",
-                selectcolor="#F3F1EB",
+                selectcolor="#FFFFFF",
                 borderwidth=0,
                 highlightthickness=0,
             ).grid(row=2, column=i, padx=20, pady=20)
