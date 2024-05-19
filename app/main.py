@@ -11,7 +11,7 @@ def main():
     db = Database()
     root = Tk()
     MainUI(root, db)
-    root.iconphoto(False, PhotoImage (file='app/assets/logo.png'))
+    root.iconphoto(False, PhotoImage (file='app/assets/icon.png'))
     root.mainloop()
 
 
