@@ -193,14 +193,14 @@ class ProfileFrame(Frame):
         """Change the username in the database."""
         new_username = self.new_username_entry.get()
         self.db.change_username(new_username, self.user_id)
-        messagebox.showerror("Success", "Username changed successfully!")
+        messagebox.showinfo("Success", "Username changed successfully!")
         self.dashboard.update_dashboard_username(new_username)
 
     def change_password(self):
         """Change the password in the database."""
         new_password = self.new_password_entry.get()
         self.db.change_password(new_password, self.user_id)
-        messagebox.showerror("Error", "Password changed successfully!")
+        messagebox.showinfo("Success", "Password changed successfully!")
     
     def update_avatar(self):
         """Change the password in the database."""
@@ -209,7 +209,7 @@ class ProfileFrame(Frame):
             messagebox.showerror("Error", "You already have that avatar selected")
         else:
             self.db.update_avatar(new_avatar, self.user_id)
-            messagebox.showerror("Success", "Avatar changed successfully!")
+            messagebox.showinfo("Success", "Avatar changed successfully!")
             self.dashboard.update_dashboard_avatar(new_avatar)
 
     
