@@ -1,7 +1,7 @@
 """Discover frame for displaying user's habits."""
 # flake8: noqa E501 
 # Disables the "Line too Long" error for our descriptions.
-from tkinter import Frame, Label, Button, Text, messagebox
+from tkinter import Frame, Label, Text, messagebox
 from tkmacosx import Button
 
 

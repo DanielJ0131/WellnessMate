@@ -1,6 +1,6 @@
 """Tkinter GUI for user's habits."""
 
-from tkinter import Frame, Label, Button, Entry, Canvas, Scrollbar
+from tkinter import Frame, Label, Entry, Canvas, Scrollbar
 from tkmacosx import Button
 
 

@@ -1,6 +1,6 @@
 """Main UI module for WellnessMate application."""
 
-from tkinter import Button, Frame, Label
+from tkinter import Frame, Label
 from tkmacosx import Button
 
 from ui.login_frame import LoginFrame

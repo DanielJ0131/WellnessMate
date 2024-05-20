@@ -1,6 +1,6 @@
 """Tkinter GUI for user dashboard."""
 
-from tkinter import Frame, Label, Button, PhotoImage
+from tkinter import Frame, Label, PhotoImage
 from tkmacosx import Button
 import os
 

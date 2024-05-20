@@ -2,7 +2,6 @@
 from tkinter import (
     Frame,
     Label,
-    Button,
     Entry,
     PhotoImage,
     Radiobutton,
