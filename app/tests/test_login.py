@@ -21,8 +21,18 @@ class TestLoginFrame(unittest.TestCase):
         # Create the database class
         self.db = Database()
 
+        self.font_size = {
+            'xxs': int(1920 / -110),
+            'xs': int(1920 / -100),
+            's': int(1920 / -90),
+            'm': int(1920 / -75),
+            'l': int(1920 / -60),
+            'xl': int(1920 / -50),
+            'xxl': int(1920 / -30),
+        }
+
         # Create login frame
-        self.LoginFrame = LoginFrame(None, None, self.db, None)
+        self.LoginFrame = LoginFrame(None, None, self.db, self.font_size)
 
     def test_LoginFrame(self):
         """Test the LoginFrame class."""
