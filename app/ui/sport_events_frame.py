@@ -26,32 +26,11 @@ class SportEventsFrame(Frame):
             1, weight=1, minsize=200
         )  # Configure column weight
         self.container.grid_rowconfigure(0, weight=0, minsize=300)
-        #  self.container.grid_rowconfigure(4, weight=1, minsize=500)
 
     def create_widgets(self):
         """Create all widgets."""
         self.create_sporting_events_label()
         self.open_to_everyone()
-        # self.create_open_to_everyone_button()
-        # self.create_national_leagues_button()
-        # self.create_elites_only_button()
-        # self.create_return_button()
-
-    # def create_button(self, text, command):
-    #     """Create a button."""
-    #     button = Button(
-    #         self.container,
-    #         text=text,
-    #         bg="#1165A1",
-    #         fg="white",
-    #         font=("Inter", 15, "bold"),
-    #         justify="center",
-    #         wraplength=500,
-    #         command=command,
-    #         cursor="hand2",
-    #         width=35
-    #     )
-    #     return button
 
     def create_label(self, text):
         """Create a label."""
@@ -72,38 +51,6 @@ class SportEventsFrame(Frame):
             "Sporting Events in Sweden")
         self.sporting_events_label.grid(row=0, column=0, padx=480,
                                         pady=50, sticky="nes")
-
-    # def create_open_to_everyone_button(self):
-    #     """Create Open to Everyone button."""
-    #     self.open_to_everyone_button = self.create_button(
-    #         "Open to everyone", self.open_to_everyone
-    #     )
-    #     self.open_to_everyone_button.grid(
-    #         row=1, column=0, padx=512, pady=20, sticky="ew"
-    #     )
-
-    # def create_national_leagues_button(self):
-    #     """Create National Leagues button."""
-    #     self.national_leagues_button = self.create_button(
-    #         "National leagues, cups and tours", self.national_lct_function
-    #     )
-    #     self.national_leagues_button.grid(
-    #         row=2, column=0, padx=512, pady=20, sticky="ew"
-    #     )
-
-    # def create_elites_only_button(self):
-    #     """Create Elites Only button."""
-    #     self.elites_only_button = self.create_button(
-    #         "Elites only", self.elites_only_function
-    #     )
-    #     self.elites_only_button.grid(row=3, column=0, padx=512,
-    #                                  pady=20, sticky="ew")
-
-    # def create_return_button(self):
-    #     """Create Return button."""
-    #     self.return_button = self.create_button("Return",
-    #                                             self.return_function)
-    #     self.return_button.grid(row=4, column=0, padx=580, pady=150)
 
     def open_url(self, url):
         """Open URL in a web browser."""
@@ -143,25 +90,6 @@ class SportEventsFrame(Frame):
 
         return labels
 
-    # def create_event_window(self, events, category):
-    #     """Create and display the event window."""
-    #     # Toplevel window
-    #     event_window = tk.Toplevel(self.master)
-    #     event_window.title(category)
-    #     event_window.geometry("800x300")
-    #     event_window.configure(bg="#82AACF")
-
-    #     # Create labels for event info
-    #     self.create_event_labels(
-    #         event_window,
-    #         events,
-    #         self.on_enter,
-    #         self.on_leave,
-    #         self.open_url)
-
-    #     # Run the Tkinter event loop for the new window
-    #     event_window.mainloop()
-
     def open_to_everyone(self):
         """Display specific sport events."""
         events = [
@@ -196,28 +124,6 @@ class SportEventsFrame(Frame):
              "Djurgården, open for girls and women only",
              "https://tjejmilen.se/"),
         ]
-        print("Open to everyone button clicked!")
-
         # Create and display the event window
         self.create_event_labels(
             events, self.on_enter, self.on_leave, self.open_url)
-
-    # def national_lct_function(self):
-    #     """Display sport leagues, cups and tours."""
-    #     events = [("Test", "https://youtu.be/dQw4w9WgXcQ?si=OFNBRuTy6UWem927"),
-    #               ]
-    #     print("National leagues, cups and tours button clicked!")
-    #     # messagebox.showinfo("National leagues, cups and tours", "test")
-    #     # Create and display the event window
-    #     self.create_event_window(
-    #         events,
-    #         category="Sport leagues, cups and tours")
-
-    # def elites_only_function(self):
-    #     """Display event on elite level."""
-    #     events = [("Test", "https://youtu.be/V1bFr2SWP1I?si=DBN6NGpGsXc-qcZK"),
-    #               ]
-    #     print("Elites only button clicked!")
-    #     # messagebox.showinfo("Elite Events", "test")
-    #     # Create and display the event window
-    #     self.create_event_window(events, category="Elite Sport Event")
