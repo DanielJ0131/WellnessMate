@@ -1,7 +1,8 @@
 """Main UI module for WellnessMate application."""
 
-from tkinter import Frame, Label
+from tkinter import Frame, Label, PhotoImage
 from tkmacosx import Button
+import os
 
 from ui.login_frame import LoginFrame
 from ui.register_frame import RegisterFrame
@@ -30,7 +31,7 @@ class MainUI:
             'm': int(self.screen_width / -75),
             'l': int(self.screen_width / -60),
             'xl': int(self.screen_width / -50),
-            'xxl': int(self.screen_width / -30),
+            'xxl': int(self.screen_width / -27),
         }
         master.title("WellnessMate")
         master.configure(bg="#F3F1EB")
@@ -40,6 +41,9 @@ class MainUI:
             )
         )
         master.state('zoomed')
+        logo_path = os.path.join("app", "assets",
+                                f"logo_white_small.png")
+        self.logo_image = PhotoImage(file=logo_path)
         self.load_app()
 
     def load_app(self):
@@ -50,7 +54,7 @@ class MainUI:
         WellnessMate application's initial interface.
         """
         # Create main frames
-        self.left_frame = Frame(self.master, bg="#59B2A7")
+        self.left_frame = Frame(self.master, bg="#59B2A7", pady=120, padx=80)
         self.left_frame.grid(row=0, column=0, sticky="nswe", rowspan=2)
         self.right_frame = Frame(self.master, bg="#F3F1E7")
         self.right_frame.grid(row=0, column=1, sticky="nswe", rowspan=2)
@@ -61,11 +65,22 @@ class MainUI:
 
         # Left frame
         # Add WellnessMate label at the top
-        wellnessmate_label = Label(
-            self.left_frame, text="WellnessMate",
-            font=("Helvetica", self.font_size['xxl']), bg="#59B2A7"
+        logo_label = Label(
+            self.left_frame,
+            image=self.logo_image,
+            bg="#59B2A7",
         )
-        wellnessmate_label.grid(row=0, column=0, padx=80, pady=80, sticky="nw")
+        logo_label.grid(row=0, column=0, pady=5, sticky="nw")
+        wellnessmate_label = Label(
+            self.left_frame, 
+            text="WellnessMate",
+            font=("Helvetica", self.font_size['xxl']), 
+            bg="#59B2A7", 
+            fg="#F3F1E7",
+        )
+        wellnessmate_label.grid(row=0, column=1, sticky="nsw")
+
+        self.left_frame.grid_columnconfigure(1, weight=1)
 
         # Add slogan label at the bottom
         slogan_text = "Track your habits,\n" \
@@ -79,7 +94,7 @@ class MainUI:
             fg="#2A2A28",
             justify="left",
         )
-        slogan_label.grid(row=1, column=0, padx=80, pady=150, sticky="sw")
+        slogan_label.grid(row=1, column=0, columnspan=2, sticky="sw")
 
         self.left_frame.grid_rowconfigure(1, weight=1)
 

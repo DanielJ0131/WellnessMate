@@ -36,6 +36,9 @@ class DashboardFrame(Frame):
         self.fontsize = fontsize
         self.db = db
         self.main_ui = main_iu
+        logo_path = os.path.join("app", "assets",
+                                f"logo_white_small.png")
+        self.logo_image = PhotoImage(file=logo_path).subsample(3, 3)
         img_path = os.path.join("app", "assets",
                                 f"avatar{db.get_user_avatar(user_id)}.png")
         self.user_image = PhotoImage(file=img_path).subsample(7, 7)
@@ -65,21 +68,34 @@ class DashboardFrame(Frame):
         It also includes the application title and user info section.
         """
         # Create and add buttons to the sidebar
-        self.title_label = Label(
+        title_frame = Frame (
             self.nav_frame,
-            text="WellnessMate",
-            font=("Helvetica", self.fontsize["xl"]),
             bg="#2A2A28",
+        )
+        title_frame.grid(row=0, column=0, pady=30, sticky="ew")
+        logo_label = Label(
+            title_frame,
+            image=self.logo_image,
+            bg="#2A2A28",
+        )
+        logo_label.grid(row=0, column=0, pady=5, sticky="nw")
+        wellnessmate_label = Label(
+            title_frame, 
+            text="WellnessMate",
+            font=("Helvetica", self.fontsize['xl']), 
+            bg="#2A2A28", 
             fg="#F3F1E7",
         )
-        self.title_label.grid(row=0, column=0, sticky="w", pady=(20, 30))
+        wellnessmate_label.grid(row=0, column=1,padx=5, sticky="nsw")
+
+        title_frame.grid_columnconfigure(1, weight=1)
 
         self.subtitle_label = Label(
             self.nav_frame,
             text="General",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             bg="#2A2A28",
-            fg="#CDCBC1",
+            fg="#A9A79E",
         )
         self.subtitle_label.grid(row=1, column=0, sticky="w")
 
@@ -140,7 +156,7 @@ class DashboardFrame(Frame):
             text="Settings",
             font=("Helvetica", self.fontsize["xxs"], "bold"),
             bg="#2A2A28",
-            fg="#CDCBC1",
+            fg="#A9A79E",
         )
         self.subtitle_label.grid(row=5, column=0, sticky="w", pady=(30, 0))
 
