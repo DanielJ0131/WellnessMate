@@ -104,6 +104,7 @@ class ProfileFrame(Frame):
             width=50,
         )
         self.new_username_entry.grid(row=3, column=0, sticky="w")
+        self.new_username_entry.focus_set()
 
         submit_button = Button(
             profile_info_frame,

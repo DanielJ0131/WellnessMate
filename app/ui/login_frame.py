@@ -67,6 +67,7 @@ class LoginFrame(Frame):
             insertbackground="#4C4A46",
         )
         self.user_entry.grid(row=1, column=0, sticky="ew", pady=5, ipady=2)
+        self.user_entry.focus_set()
 
         # Create a frame to input the password and
         # a button to toggle password visibility
